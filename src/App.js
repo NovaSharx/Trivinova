@@ -6,9 +6,12 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { useState } from 'react';
 
 import Home from './Home'
-import Navigation from './Navigation'
+import Navigation from './components/navigation/Navigation'
 import Login from './components/users/Login'
 import SignUp from './components/users/SignUp'
+import Leaderboards from './components/leaderboards/Leaderboards'
+import GameLauncher from './components/game/GameLauncher'
+import Game from './components/game/Game'
 import Error404 from './Error404'
 
 function App() {
@@ -39,6 +42,9 @@ function App() {
             <Route exact path='/' element={<Home />} />
             <Route exact path='/login' element={<Login />} />
             <Route exact path='/signup' element={<SignUp />} />
+            <Route exact path='/leaderboards' element={<Leaderboards />} />
+            <Route exact path='/gamelauncher' element={<GameLauncher />} />
+            <Route exact path='/game' element={<Game />} />
             <Route path='/' element={<Error404 />} />
           </Routes>
         </ThemeProvider>
