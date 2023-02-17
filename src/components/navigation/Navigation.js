@@ -4,17 +4,46 @@ import LightbulbCircleIcon from '@mui/icons-material/LightbulbCircle'
 import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 import LeaderboardIcon from '@mui/icons-material/Leaderboard'
 import MenuIcon from '@mui/icons-material/Menu'
+import { useState } from 'react';
 
 export default function Navigation() {
+
+    let [drawerState, setDrawerState] = useState(false)
+
     return (
         <div>
             <Mui.AppBar position='static'>
                 <Mui.Container maxWidth='x1' sx={{ height: '60px' }}>
                     <Mui.Toolbar disableGutters sx={{ justifyContent: 'space-between' }}>
 
-                        <Mui.IconButton color='inherit'>
+                        <Mui.IconButton color='inherit' onClick={() => setDrawerState(true)}>
                             <MenuIcon fontSize='large' />
                         </Mui.IconButton>
+                        <Mui.Drawer anchor='left' open={drawerState} onClose={() => setDrawerState(false)}>
+                            <Mui.Box sx={{ width: 300 }}>
+                                <Mui.List>
+
+                                    <Mui.ListItem disablePadding>
+                                        <Mui.ListItemButton href='/searchplayer'>
+                                            <Mui.ListItemIcon>
+                                                <PersonSearchIcon />
+                                            </Mui.ListItemIcon>
+                                            <Mui.ListItemText primary='Search Player' />
+                                        </Mui.ListItemButton>
+                                    </Mui.ListItem>
+
+                                    <Mui.ListItem disablePadding>
+                                        <Mui.ListItemButton href='/leaderboards'>
+                                            <Mui.ListItemIcon>
+                                                <LeaderboardIcon />
+                                            </Mui.ListItemIcon>
+                                            <Mui.ListItemText primary='Leaderboards' />
+                                        </Mui.ListItemButton>
+                                    </Mui.ListItem>
+
+                                </Mui.List>
+                            </Mui.Box>
+                        </Mui.Drawer>
 
                         <Mui.Link href='/' underline='none' color='inherit'>
                             <Mui.Typography variant='h4' sx={{ display: 'flex', alignItems: 'center' }}>

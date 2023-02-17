@@ -3,6 +3,7 @@ import './App.css';
 import * as Mui from '@mui/material'
 
 import { ThemeProvider, createTheme } from '@mui/material/styles'
+import { getThemeMode, rewriteThemeMode } from './Theme'
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { useState } from 'react';
@@ -13,6 +14,7 @@ import AccessibilityTool from './components/accessibility/AccessibilityTool'
 
 import Login from './components/users/Login'
 import SignUp from './components/users/SignUp'
+import SearchPlayer from './components/users/SearchPlayer'
 import Leaderboards from './components/leaderboards/Leaderboards'
 import GameLauncher from './components/game/GameLauncher'
 import Game from './components/game/Game'
@@ -20,7 +22,7 @@ import Error404 from './Error404'
 
 function App() {
 
-  let [themeMode, setThemeMode] = useState('light')
+  let [themeMode, setThemeMode] = useState(getThemeMode())
 
   let theme = createTheme({
     palette: {
@@ -39,22 +41,23 @@ function App() {
 
   const toggleThemeMode = () => {
     if (themeMode === 'light') {
-      setThemeMode('dark')
+      setThemeMode(rewriteThemeMode('dark'))
     } else {
-      setThemeMode('light')
+      setThemeMode(rewriteThemeMode('light'))
     }
   }
 
   return (
     <div className='App'>
-      <Router>
-        <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
+        <Router>
           <Mui.Paper sx={{ minHeight: '100vh' }}>
             <Navigation />
             <Routes>
               <Route exact path='/' element={<Home />} />
               <Route exact path='/login' element={<Login />} />
               <Route exact path='/signup' element={<SignUp />} />
+              <Route exact path='/searchplayer' element={<SearchPlayer />} />
               <Route exact path='/leaderboards' element={<Leaderboards />} />
               <Route exact path='/gamelauncher' element={<GameLauncher />} />
               <Route exact path='/game' element={<Game />} />
@@ -62,8 +65,8 @@ function App() {
             </Routes>
             <AccessibilityTool toggleThemeMode={toggleThemeMode} />
           </Mui.Paper>
-        </ThemeProvider>
-      </Router>
+        </Router>
+      </ThemeProvider>
     </div>
   );
 }
