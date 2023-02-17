@@ -37,6 +37,14 @@ function App() {
     },
   })
 
+  const toggleThemeMode = () => {
+    if (themeMode === 'light') {
+      setThemeMode('dark')
+    } else {
+      setThemeMode('light')
+    }
+  }
+
   return (
     <div className='App'>
       <Router>
@@ -52,7 +60,7 @@ function App() {
               <Route exact path='/game' element={<Game />} />
               <Route path='/' element={<Error404 />} />
             </Routes>
-            <AccessibilityTool setThemeMode={setThemeMode} />
+            <AccessibilityTool toggleThemeMode={toggleThemeMode} />
           </Mui.Paper>
         </ThemeProvider>
       </Router>

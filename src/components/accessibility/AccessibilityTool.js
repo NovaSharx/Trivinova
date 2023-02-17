@@ -6,17 +6,9 @@ import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew'
 import LightModeIcon from '@mui/icons-material/LightMode'
 import DarkModeIcon from '@mui/icons-material/DarkMode'
 
-export default function AccessibilityTool({ setThemeMode }) {
+export default function AccessibilityTool({ toggleThemeMode }) {
 
     const theme = useTheme()
-
-    const toggleThemeMode = () => {
-        if (theme.palette.mode === 'light') {
-          setThemeMode('dark')
-        } else {
-          setThemeMode('light')
-        }
-      }
 
     return (
         <Mui.Box>

@@ -22,13 +22,13 @@ export default function Navigation() {
                             </Mui.Typography>
                         </Mui.Link>
 
-                        <Mui.IconButton href='/searchuser' disableRipple>
+                        {/* <Mui.IconButton href='/searchuser' disableRipple>
                             Search User<PersonSearchIcon />
                         </Mui.IconButton>
 
                         <Mui.IconButton href='/leaderboards' disableRipple>
                             Leaderboards<LeaderboardIcon />
-                        </Mui.IconButton>
+                        </Mui.IconButton> */}
 
                         <Mui.Box sx={{
                             width: '180px',
