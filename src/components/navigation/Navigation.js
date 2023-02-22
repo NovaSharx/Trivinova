@@ -1,90 +1,45 @@
 import * as Mui from '@mui/material'
 
 import LightbulbCircleIcon from '@mui/icons-material/LightbulbCircle'
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import PersonSearchIcon from '@mui/icons-material/PersonSearch'
-import LeaderboardIcon from '@mui/icons-material/Leaderboard'
-import MenuIcon from '@mui/icons-material/Menu'
-import { useState } from 'react';
+
+import MenuDrawer from './MenuDrawer'
 
 export default function Navigation() {
-
-    let [drawerState, setDrawerState] = useState(false)
 
     return (
         <div>
             <Mui.AppBar position='static'>
                 <Mui.Container maxWidth='x1'>
-                    <Mui.Toolbar disableGutters sx={{ justifyContent: 'space-between' }}>
+                    <Mui.Toolbar disableGutters>
 
-                        <Mui.IconButton color='inherit' onClick={() => setDrawerState(true)}>
-                            <MenuIcon fontSize='large' />
-                        </Mui.IconButton>
-                        <Mui.Drawer anchor='left' open={drawerState} onClose={() => setDrawerState(false)}>
-                            <Mui.Box sx={{ width: 300 }}>
-                                <Mui.List>
+                        <Mui.Grid container direction='row' alignItems='center' justifyContent='space-between'>
 
-                                    <Mui.Box sx={{
-                                        display: 'flex',
-                                        justifyContent: 'flex-end'
-                                    }}>
-                                        <Mui.IconButton onClick={() => setDrawerState(false)}>
-                                            <ArrowBackIcon fontSize='large' />
-                                        </Mui.IconButton>
-                                    </Mui.Box>
+                            <Mui.Grid item xs={4} sx={{ display: 'flex' }}>
+                                <MenuDrawer />
+                            </Mui.Grid>
 
-                                    <Mui.Divider />
+                            <Mui.Grid item xs={4} sx={{ display: 'flex', justifyContent: 'center' }}>
+                                <Mui.Link href='/' underline='none' color='inherit'>
+                                    <Mui.Typography variant='h4' sx={{ display: 'flex', alignItems: 'center' }}>
+                                        TRIVIN<LightbulbCircleIcon sx={{ fontSize: 32 }} />VA
+                                    </Mui.Typography>
+                                </Mui.Link>
+                            </Mui.Grid>
 
-                                    <Mui.ListItem disablePadding>
-                                        <Mui.ListItemButton href='/searchplayer'>
-                                            <Mui.ListItemIcon>
-                                                <PersonSearchIcon />
-                                            </Mui.ListItemIcon>
-                                            <Mui.ListItemText primary='Search Player' />
-                                        </Mui.ListItemButton>
-                                    </Mui.ListItem>
+                            <Mui.Grid item xs={4} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                                <Mui.Stack direction='row' spacing={1}>
+                                    <Mui.Button href='/login' variant='outlined' color='inherit'>
+                                        Login
+                                    </Mui.Button>
 
-                                    <Mui.ListItem disablePadding>
-                                        <Mui.ListItemButton href='/leaderboards'>
-                                            <Mui.ListItemIcon>
-                                                <LeaderboardIcon />
-                                            </Mui.ListItemIcon>
-                                            <Mui.ListItemText primary='Leaderboards' />
-                                        </Mui.ListItemButton>
-                                    </Mui.ListItem>
+                                    <Mui.Button href='/signup' variant='contained' color='secondary'>
+                                        Sign Up
+                                    </Mui.Button>
+                                </Mui.Stack>
+                            </Mui.Grid>
 
-                                </Mui.List>
-                            </Mui.Box>
-                        </Mui.Drawer>
+                        </Mui.Grid>
 
-                        <Mui.Link href='/' underline='none' color='inherit'>
-                            <Mui.Typography variant='h4' sx={{ display: 'flex', alignItems: 'center' }}>
-                                TRIVIN<LightbulbCircleIcon sx={{ fontSize: 32 }} />VA
-                            </Mui.Typography>
-                        </Mui.Link>
-
-                        {/* <Mui.IconButton href='/searchuser' disableRipple>
-                            Search User<PersonSearchIcon />
-                        </Mui.IconButton>
-
-                        <Mui.IconButton href='/leaderboards' disableRipple>
-                            Leaderboards<LeaderboardIcon />
-                        </Mui.IconButton> */}
-
-                        <Mui.Box sx={{
-                            width: '180px',
-                            display: 'flex',
-                            justifyContent: 'space-between'
-                        }}>
-                            <Mui.Button href='/login' variant='outlined' color='inherit'>
-                                Login
-                            </Mui.Button>
-
-                            <Mui.Button href='/signup' variant='contained' color='secondary'>
-                                Sign Up
-                            </Mui.Button>
-
-                        </Mui.Box>
                     </Mui.Toolbar>
                 </Mui.Container>
             </Mui.AppBar>
