@@ -35,6 +35,7 @@ export default function GameLauncher() {
                             </Mui.Typography>
                         </Mui.Button>
                     </Mui.Grow>
+
                 </Mui.Stack>
             </Mui.Paper>
         </Mui.Container>

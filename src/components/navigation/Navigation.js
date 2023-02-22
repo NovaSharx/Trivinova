@@ -1,7 +1,7 @@
 import * as Mui from '@mui/material'
 
 import LightbulbCircleIcon from '@mui/icons-material/LightbulbCircle'
-import CloseIcon from '@mui/icons-material/Close'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import PersonSearchIcon from '@mui/icons-material/PersonSearch'
 import LeaderboardIcon from '@mui/icons-material/Leaderboard'
 import MenuIcon from '@mui/icons-material/Menu'
@@ -29,7 +29,7 @@ export default function Navigation() {
                                         justifyContent: 'flex-end'
                                     }}>
                                         <Mui.IconButton onClick={() => setDrawerState(false)}>
-                                            <CloseIcon fontSize='large' />
+                                            <ArrowBackIcon fontSize='large' />
                                         </Mui.IconButton>
                                     </Mui.Box>
 
