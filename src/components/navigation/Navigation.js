@@ -1,7 +1,8 @@
 import * as Mui from '@mui/material'
 
 import LightbulbCircleIcon from '@mui/icons-material/LightbulbCircle'
-import PersonSearchIcon from '@mui/icons-material/PersonSearch';
+import CloseIcon from '@mui/icons-material/Close'
+import PersonSearchIcon from '@mui/icons-material/PersonSearch'
 import LeaderboardIcon from '@mui/icons-material/Leaderboard'
 import MenuIcon from '@mui/icons-material/Menu'
 import { useState } from 'react';
@@ -13,7 +14,7 @@ export default function Navigation() {
     return (
         <div>
             <Mui.AppBar position='static'>
-                <Mui.Container maxWidth='x1' sx={{ height: '60px' }}>
+                <Mui.Container maxWidth='x1'>
                     <Mui.Toolbar disableGutters sx={{ justifyContent: 'space-between' }}>
 
                         <Mui.IconButton color='inherit' onClick={() => setDrawerState(true)}>
@@ -22,6 +23,17 @@ export default function Navigation() {
                         <Mui.Drawer anchor='left' open={drawerState} onClose={() => setDrawerState(false)}>
                             <Mui.Box sx={{ width: 300 }}>
                                 <Mui.List>
+
+                                    <Mui.Box sx={{
+                                        display: 'flex',
+                                        justifyContent: 'flex-end'
+                                    }}>
+                                        <Mui.IconButton onClick={() => setDrawerState(false)}>
+                                            <CloseIcon fontSize='large' />
+                                        </Mui.IconButton>
+                                    </Mui.Box>
+
+                                    <Mui.Divider />
 
                                     <Mui.ListItem disablePadding>
                                         <Mui.ListItemButton href='/searchplayer'>
@@ -79,32 +91,3 @@ export default function Navigation() {
         </div >
     )
 }
-
-{/* <div>
-    <Mui.AppBar position='static'>
-        <Mui.Container maxWidth='x1'>
-            <Mui.Toolbar disableGutters sx={{ justifyContent: 'space-between' }}>
-                <Mui.IconButton color='inherit'>
-                    <MenuIcon fontSize='large' />
-                </Mui.IconButton>
-                <Mui.Link href='/' underline='none' color='inherit'>
-                    <Mui.Typography variant='h4' sx={{ display: 'flex', alignItems: 'center' }}>
-                        TRIVIN<LightbulbCircleIcon sx={{ fontSize: 32 }} />VA
-                    </Mui.Typography>
-                </Mui.Link>
-                <Mui.Box sx={{
-                    width: '180px',
-                    display: 'flex',
-                    justifyContent: 'space-between'
-                }}>
-                    <Mui.Link href='/login' underline='none' color='inherit'>
-                        <Mui.Button variant='outlined' color='inherit'>Login</Mui.Button>
-                    </Mui.Link>
-                    <Mui.Link href='/signup' underline='none' color='inherit'>
-                        <Mui.Button variant='contained' color='secondary'>Sign Up</Mui.Button>
-                    </Mui.Link>
-                </Mui.Box>
-            </Mui.Toolbar>
-        </Mui.Container>
-    </Mui.AppBar>
-</div> */}
