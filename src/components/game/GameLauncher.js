@@ -6,7 +6,6 @@ export default function GameLauncher() {
 
     return (
         <Mui.Container>
-            <h1>Game Launcher</h1>
             <Mui.Paper elevation={5} sx={{ padding: 5, display: 'flex', justifyContent: 'center' }}>
                 <Mui.Stack spacing={5} direction='row' sx={{ '& button': { width: 300, height: 300, background: 'url(./pexels-dmitry-demidov-3852577.jpg)', backgroundColor: 'grey', backgroundBlendMode: 'multiply' } }}>
 

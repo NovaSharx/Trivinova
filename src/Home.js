@@ -1,6 +1,7 @@
 import * as Mui from '@mui/material'
 
 import QuizIcon from '@mui/icons-material/Quiz';
+import { Fragment } from 'react';
 
 export default function Home() {
 
@@ -9,7 +10,7 @@ export default function Home() {
     const renderTitleAnimation = title.split('').map((letter, index) => {
         return (
             <Mui.Grow key={index} in timeout={index * 500 + 1000}>
-                <Mui.Typography fontSize={150} color='white'>
+                <Mui.Typography fontSize={200} color='white'>
                     {letter}
                 </Mui.Typography>
             </Mui.Grow>
@@ -17,8 +18,11 @@ export default function Home() {
     })
 
     return (
-        <div>
+        <Fragment>
             <Mui.Box sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
                 width: 'inherit',
                 height: '800px',
                 backgroundImage: 'url(pexels-dmitry-demidov-3852577.jpg)',
@@ -26,19 +30,18 @@ export default function Home() {
                 backgroundSize: 'cover',
                 backgroundColor: 'rgba(0, 0, 0, 0.5)',
                 backgroundBlendMode: 'multiply',
-                // color: 'transparent',
-                // backgroundClip: 'text'
             }}>
 
                 <Mui.Stack spacing={10} direction='row' sx={{ justifyContent: 'center' }}>
                     {renderTitleAnimation}
                 </Mui.Stack>
 
-                <Mui.Button href='/gamelauncher' variant='contained' size='large' endIcon={<QuizIcon />}>
-                    GAME LAUNCHER
-                </Mui.Button>
-
             </Mui.Box>
-        </div>
+
+            <Mui.Button href='/gamelauncher' variant='contained' sx={{ height: '100px', width: '500px', fontSize: '40px', marginTop: '80px' }}>
+                <QuizIcon sx={{ fontSize: '50px' }} /> GAME LAUNCHER <QuizIcon sx={{ fontSize: '50px' }} />
+            </Mui.Button>
+
+        </Fragment >
     )
 }
