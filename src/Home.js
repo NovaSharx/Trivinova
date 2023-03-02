@@ -1,13 +1,17 @@
 import * as Mui from '@mui/material'
 
-import QuizIcon from '@mui/icons-material/Quiz';
-import { Fragment } from 'react';
+import QuizIcon from '@mui/icons-material/Quiz'
+import LightbulbCircleIcon from '@mui/icons-material/LightbulbCircle'
+
+import { Fragment } from 'react'
 
 export default function Home() {
 
     let title = "TRIVINOVA"
+    let titleArray = title.split('')
+    titleArray.splice(6, 1, <LightbulbCircleIcon fontSize='200px' />)
 
-    const renderTitleAnimation = title.split('').map((letter, index) => {
+    const renderTitleAnimation = titleArray.map((letter, index) => {
         return (
             <Mui.Grow key={index} in timeout={index * 500 + 1000}>
                 <Mui.Typography fontSize={200} color='white'>

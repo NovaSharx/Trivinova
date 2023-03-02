@@ -60,7 +60,7 @@ function App() {
               <Route exact path='/searchplayer' element={<SearchPlayer />} />
               <Route exact path='/leaderboards' element={<Leaderboards />} />
               <Route exact path='/gamelauncher' element={<GameLauncher />} />
-              <Route exact path='/game' element={<Game />} />
+              <Route exact path='/game/:gamemode' element={<Game />} />
               <Route path='/' element={<Error404 />} />
             </Routes>
             <AccessibilityTool toggleThemeMode={toggleThemeMode} />
