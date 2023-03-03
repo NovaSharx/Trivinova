@@ -1,12 +1,12 @@
 import * as Mui from '@mui/material'
-import { Fragment, useState } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 export default function GameLauncher() {
 
     const navigate = useNavigate()
 
-    const openGameRoute = (gameMode, category = 'random', limit = 10, difficulty = 'random') => {
+    const openGameRoute = (gameMode, category = 'random', difficulty = 'random', limit = 10) => {
         navigate('/game/' + gameMode, {
             state: {
                 gameMode: gameMode,
@@ -19,7 +19,18 @@ export default function GameLauncher() {
 
     let [modalState, setModalState] = useState(false)
     let [selectedGameMode, setSelectedGameMode] = useState(null)
-    let [selectedCategory, setselectedCategory] = useState('arts_and_literature')
+    let [selectedCategory, setselectedCategory] = useState('random')
+    let [selectedDifficulty, setSelectedDifficulty] = useState('random')
+    let [selectedQuestionLimit, setSelectedQuestionLimit] = useState(10)
+
+    // Rich array used to specify markings for the question limit slider
+    const limitMarks = [
+        { value: 10, label: '10' },
+        { value: 20, label: '20' },
+        { value: 30, label: '30' },
+        { value: 40, label: '40' },
+        { value: 50, label: '50' }
+    ]
 
     const handleModalChange = (gameMode) => {
         if (modalState) {
@@ -29,9 +40,12 @@ export default function GameLauncher() {
             setSelectedGameMode(gameMode)
             setModalState(true)
         }
+        setselectedCategory(gameMode !== 'specialized' ? 'random' : 'arts_and_literature')
+        setSelectedDifficulty('random')
+        setSelectedQuestionLimit(10)
     }
 
-    const mainScreen = (
+    const gameModeSelectionScreen = (
         <Mui.Stack spacing={5} sx={{ '& button': { width: 600, height: 300, background: 'url(./pexels-dmitry-demidov-3852577.jpg)', backgroundColor: 'grey', backgroundBlendMode: 'multiply' } }}>
 
             {/* Make into Mui Cards with details */}
@@ -63,138 +77,6 @@ export default function GameLauncher() {
         </Mui.Stack>
     )
 
-    const modalStyling = {
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        bgcolor: 'background.paper',
-        color: 'text.primary',
-        border: '2px solid #000',
-        boxShadow: 24,
-        p: 4,
-    }
-
-    const specializedScreen = (
-        <Fragment>
-
-            <Mui.Grid item xs={12}>
-                <Mui.ToggleButtonGroup
-                    fullWidth
-                    orientation='vertical'
-                    color='primary'
-                    value={selectedCategory}
-                    exclusive
-                    onChange={(e) => setselectedCategory(e.target.value)}
-                >
-                    <Mui.ToggleButton value='arts_and_literature'>
-                        Arts & Literature
-                    </Mui.ToggleButton>
-                    <Mui.ToggleButton value='film_and_tv'>
-                        Film & TV
-                    </Mui.ToggleButton>
-                    <Mui.ToggleButton value='food_and_drink'>
-                        Food & Drink
-                    </Mui.ToggleButton>
-                    <Mui.ToggleButton value='general_knowledge'>
-                        General Knowledge
-                    </Mui.ToggleButton>
-                    <Mui.ToggleButton value='geography'>
-                        Geography
-                    </Mui.ToggleButton>
-                    <Mui.ToggleButton value='history'>
-                        History
-                    </Mui.ToggleButton>
-                    <Mui.ToggleButton value='music'>
-                        Music
-                    </Mui.ToggleButton>
-                    <Mui.ToggleButton value='science'>
-                        Science
-                    </Mui.ToggleButton>
-                    <Mui.ToggleButton value='society_and_culture'>
-                        Society & Culture
-                    </Mui.ToggleButton>
-                    <Mui.ToggleButton value='sport_and_leisure'>
-                        Sport & Leisure
-                    </Mui.ToggleButton>
-                </Mui.ToggleButtonGroup>
-            </Mui.Grid>
-
-            <Mui.Grid item xs={12}>
-                <Mui.Button variant='contained' fullWidth onClick={() => { openGameRoute(selectedGameMode, selectedCategory) }}>Launch Game</Mui.Button>
-            </Mui.Grid>
-
-        </Fragment>
-    )
-
-    const customScreen = (
-        <Fragment>
-
-            <Mui.Grid item xs={12}>
-                <Mui.Paper elevation={3} sx={{
-                    p: 2
-                }}>
-                    <Mui.Typography variant='h5' textAlign='center' mb>Category</Mui.Typography>
-
-                    <Mui.ToggleButtonGroup
-                        fullWidth
-                        orientation='vertical'
-                        color='primary'
-                        value={selectedCategory}
-                        exclusive
-                        onChange={(e) => setselectedCategory(e.target.value)}
-                    >
-                        <Mui.ToggleButton value='arts_and_literature'>
-                            Arts & Literature
-                        </Mui.ToggleButton>
-                        <Mui.ToggleButton value='film_and_tv'>
-                            Film & TV
-                        </Mui.ToggleButton>
-                        <Mui.ToggleButton value='food_and_drink'>
-                            Food & Drink
-                        </Mui.ToggleButton>
-                        <Mui.ToggleButton value='general_knowledge'>
-                            General Knowledge
-                        </Mui.ToggleButton>
-                        <Mui.ToggleButton value='geography'>
-                            Geography
-                        </Mui.ToggleButton>
-                        <Mui.ToggleButton value='history'>
-                            History
-                        </Mui.ToggleButton>
-                        <Mui.ToggleButton value='music'>
-                            Music
-                        </Mui.ToggleButton>
-                        <Mui.ToggleButton value='science'>
-                            Science
-                        </Mui.ToggleButton>
-                        <Mui.ToggleButton value='society_and_culture'>
-                            Society & Culture
-                        </Mui.ToggleButton>
-                        <Mui.ToggleButton value='sport_and_leisure'>
-                            Sport & Leisure
-                        </Mui.ToggleButton>
-                    </Mui.ToggleButtonGroup>
-                </Mui.Paper>
-            </Mui.Grid>
-
-            <Mui.Grid item xs={12}>
-                <Mui.Paper elevation={3} sx={{
-                    p: 2
-                }}>
-                    <Mui.Typography variant='h5' textAlign='center' mb>Difficulty</Mui.Typography>
-
-
-                </Mui.Paper>
-            </Mui.Grid>
-
-            <Mui.Grid item xs={12}>
-                <Mui.Button variant='contained' fullWidth onClick={() => { openGameRoute(selectedGameMode, selectedCategory) }}>Launch Game</Mui.Button>
-            </Mui.Grid>
-
-        </Fragment>
-    )
-
     return (
         <Mui.Container component='main'>
             <Mui.Paper elevation={5} sx={{ mt: 10, p: 5, display: 'flex', justifyContent: 'center' }}>
@@ -204,23 +86,137 @@ export default function GameLauncher() {
                     aria-labelledby="test"
                     aria-describedby="test"
                 >
-                    <Mui.Container maxWidth='lg' sx={modalStyling}>
+                    <Mui.Container maxWidth='lg' sx={{
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        bgcolor: 'background.paper',
+                        color: 'text.primary',
+                        border: '2px solid #000',
+                        boxShadow: 24,
+                        p: 4
+                    }}>
                         <Mui.Box sx={{
                             display: 'flex',
                             justifyContent: 'center',
                             flexDirection: 'column'
                         }}>
                             <Mui.Grid container spacing={5}>
-                                {
-                                    selectedGameMode === 'specialized' ? specializedScreen :
-                                        selectedGameMode === 'custom' ? customScreen :
-                                            <>...Work In Progress...<Mui.Button variant='contained' fullWidth onClick={() => { openGameRoute(selectedGameMode) }}>Launch Game</Mui.Button></>
-                                }
+
+                                <Mui.Grid item xs={12}>
+                                    <Mui.Paper elevation={3} sx={{
+                                        p: 2,
+                                        textAlign: 'center'
+                                    }}>
+
+                                        <Mui.FormControl fullWidth variant='filled'>
+                                            <Mui.FormLabel id='custom-category'>Category</Mui.FormLabel>
+                                            <Mui.ToggleButtonGroup
+                                                fullWidth
+                                                orientation='vertical'
+                                                color='primary'
+                                                value={selectedCategory}
+                                                exclusive
+                                                onChange={(event) => setselectedCategory(event.target.value)}
+                                                aria-labelledby="cutom-category"
+                                                disabled={selectedGameMode === 'wildcard'}
+                                            >
+                                                <Mui.ToggleButton value='random' disabled={selectedGameMode !== 'custom'}>
+                                                    Random
+                                                </Mui.ToggleButton>
+                                                <Mui.ToggleButton value='arts_and_literature'>
+                                                    Arts & Literature
+                                                </Mui.ToggleButton>
+                                                <Mui.ToggleButton value='film_and_tv'>
+                                                    Film & TV
+                                                </Mui.ToggleButton>
+                                                <Mui.ToggleButton value='food_and_drink'>
+                                                    Food & Drink
+                                                </Mui.ToggleButton>
+                                                <Mui.ToggleButton value='general_knowledge'>
+                                                    General Knowledge
+                                                </Mui.ToggleButton>
+                                                <Mui.ToggleButton value='geography'>
+                                                    Geography
+                                                </Mui.ToggleButton>
+                                                <Mui.ToggleButton value='history'>
+                                                    History
+                                                </Mui.ToggleButton>
+                                                <Mui.ToggleButton value='music'>
+                                                    Music
+                                                </Mui.ToggleButton>
+                                                <Mui.ToggleButton value='science'>
+                                                    Science
+                                                </Mui.ToggleButton>
+                                                <Mui.ToggleButton value='society_and_culture'>
+                                                    Society & Culture
+                                                </Mui.ToggleButton>
+                                                <Mui.ToggleButton value='sport_and_leisure'>
+                                                    Sport & Leisure
+                                                </Mui.ToggleButton>
+                                            </Mui.ToggleButtonGroup>
+                                        </Mui.FormControl>
+
+                                    </Mui.Paper>
+                                </Mui.Grid>
+
+                                <Mui.Grid item xs={12}>
+                                    <Mui.Paper elevation={3} sx={{
+                                        p: 2,
+                                        textAlign: 'center'
+                                    }}>
+
+                                        <Mui.FormControl fullWidth variant='filled'>
+                                            <Mui.FormLabel id='custom-difficulty'>Difficulty</Mui.FormLabel>
+                                            <Mui.RadioGroup
+                                                row
+                                                sx={{ justifyContent: 'center' }}
+                                                aria-labelledby='custom-difficulty'
+                                                name='custom-difficulty-radio-button-group'
+                                                value={selectedDifficulty}
+                                                onChange={(event) => setSelectedDifficulty(event.target.value)}
+                                            >
+                                                <Mui.FormControlLabel value="random" control={<Mui.Radio />} label="Random" disabled={selectedGameMode !== 'custom'} />
+                                                <Mui.FormControlLabel value="easy" control={<Mui.Radio />} label="Easy" disabled={selectedGameMode !== 'custom'} />
+                                                <Mui.FormControlLabel value="medium" control={<Mui.Radio />} label="Medium" disabled={selectedGameMode !== 'custom'} />
+                                                <Mui.FormControlLabel value="hard" control={<Mui.Radio />} label="Hard" disabled={selectedGameMode !== 'custom'} />
+                                            </Mui.RadioGroup>
+                                        </Mui.FormControl>
+
+                                    </Mui.Paper>
+                                </Mui.Grid>
+
+                                <Mui.Grid item xs={12}>
+                                    <Mui.Paper elevation={3} sx={{
+                                        p: 2,
+                                        textAlign: 'center'
+                                    }}>
+
+                                        <Mui.FormControl fullWidth variant='filled'>
+                                            <Mui.FormLabel id='custom-limit'>Number of Questions</Mui.FormLabel>
+                                            <Mui.Slider
+                                                aria-labelledby='custom-limit'
+                                                marks={limitMarks}
+                                                value={selectedQuestionLimit}
+                                                step={10} min={10} max={50}
+                                                onChange={(event) => setSelectedQuestionLimit(event.target.value)}
+                                                disabled={selectedGameMode !== 'custom'}
+                                            />
+                                        </Mui.FormControl>
+
+                                    </Mui.Paper>
+                                </Mui.Grid>
+
+                                <Mui.Grid item xs={12}>
+                                    <Mui.Button variant='contained' fullWidth onClick={() => { openGameRoute(selectedGameMode, selectedCategory, selectedDifficulty, selectedQuestionLimit) }}>Launch Game</Mui.Button>
+                                </Mui.Grid>
+
                             </Mui.Grid>
                         </Mui.Box>
                     </Mui.Container>
                 </Mui.Modal>
-                {mainScreen}
+                {gameModeSelectionScreen}
             </Mui.Paper>
         </Mui.Container>
     )
