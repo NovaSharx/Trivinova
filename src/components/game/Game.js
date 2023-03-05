@@ -27,13 +27,19 @@ export default function Game() {
     }, [triviaSettings])
 
     const renderGame = () => {
+
+        function Tester() {
+            const data = triviaAPIData.result.read()
+
+            return <h1> Content Loaded: {data}</h1>
+        }
+
         if (triviaAPIData) {
             return (
-                <Suspense fallback={<h1>Loading...</h1>}>
-                    <Mui.Typography variant='h1'>Content Loaded! {console.log(triviaAPIData.result.read())}</Mui.Typography>
+                <Suspense fallback={<Mui.Skeleton variant="rounded" width={210} height={60} />}>
+                    <Tester />
                 </Suspense>
             )
-
         }
     }
 
