@@ -9,12 +9,12 @@ export default function Home() {
 
     let title = "TRIVINOVA"
     let titleArray = title.split('')
-    titleArray.splice(6, 1, <LightbulbCircleIcon fontSize='200px' />)
+    titleArray.splice(6, 1, <LightbulbCircleIcon sx={{ fontSize: '175px' }} />)
 
     const renderTitleAnimation = titleArray.map((letter, index) => {
         return (
             <Mui.Grow key={index} in timeout={index * 500 + 1000}>
-                <Mui.Typography fontSize={200} color='white'>
+                <Mui.Typography fontSize={'200px'} color='white' sx={{ display: 'flex', alignItems: 'center' }}>
                     {letter}
                 </Mui.Typography>
             </Mui.Grow>
@@ -36,9 +36,11 @@ export default function Home() {
                 backgroundBlendMode: 'multiply',
             }}>
 
-                <Mui.Stack spacing={10} direction='row' sx={{ justifyContent: 'center' }}>
+                {/* Use a grid for the responsiveness */}
+
+                <Mui.Box sx={{ width: 'inherit', display: 'flex', justifyContent: 'space-araound' }}>
                     {renderTitleAnimation}
-                </Mui.Stack>
+                </Mui.Box>
 
             </Mui.Box>
 
