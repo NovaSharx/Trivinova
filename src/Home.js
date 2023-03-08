@@ -9,7 +9,7 @@ export default function Home() {
 
     let title = "TRIVINOVA"
     let titleArray = title.split('')
-    titleArray.splice(6, 1, <LightbulbCircleIcon sx={{ fontSize: '175px' }} />)
+    titleArray.splice(6, 1, <LightbulbCircleIcon sx={{ fontSize: '185px' }} />)
 
     const renderTitleAnimation = titleArray.map((letter, index) => {
         return (
@@ -28,23 +28,16 @@ export default function Home() {
                 justifyContent: 'center',
                 alignItems: 'center',
                 width: 'inherit',
-                height: '800px',
-                backgroundImage: 'url(pexels-dmitry-demidov-3852577.jpg)',
-                backgroundRepeat: 'no-repeat',
-                backgroundSize: 'cover',
-                backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                backgroundBlendMode: 'multiply',
+                height: '600px',
             }}>
 
-                {/* Use a grid for the responsiveness */}
-
-                <Mui.Box sx={{ width: 'inherit', display: 'flex', justifyContent: 'space-araound' }}>
-                    {renderTitleAnimation}
+                <Mui.Box sx={{ width: '100%', display: 'flex', justifyContent: 'space-around' }}>
+                        {renderTitleAnimation}
                 </Mui.Box>
 
             </Mui.Box>
 
-            <Mui.Button href='/gamelauncher' variant='contained' sx={{ height: '100px', width: '500px', fontSize: '40px', marginTop: '80px' }}>
+            <Mui.Button href='/gamelauncher' variant='contained' sx={{ height: '100px', width: '500px', fontSize: '40px', marginTop: '200px' }}>
                 <QuizIcon sx={{ fontSize: '50px' }} /> GAME LAUNCHER <QuizIcon sx={{ fontSize: '50px' }} />
             </Mui.Button>
 

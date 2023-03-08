@@ -49,9 +49,16 @@ function App() {
 
   return (
     <div className='App'>
-      <ThemeProvider theme={theme}>
-        <Router>
-          <Mui.Paper sx={{ minHeight: '100vh' }}>
+      <Router>
+        <ThemeProvider theme={theme}>
+          <Mui.Paper sx={{
+            minHeight: '100vh',
+            backgroundImage: 'url(white-questionmark-background.jpg)',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+            backgroundColor: themeMode === 'light' ? 'rgba(0, 0, 0, 0)': 'rgba(0, 0, 0, 0.7)',
+            backgroundBlendMode: 'multiply',
+          }}>
             <Navigation />
             <Routes>
               <Route exact path='/' element={<Home />} />
@@ -60,13 +67,13 @@ function App() {
               <Route exact path='/searchplayer' element={<SearchPlayer />} />
               <Route exact path='/leaderboards' element={<Leaderboards />} />
               <Route exact path='/gamelauncher' element={<GameLauncher />} />
-              <Route exact path='/game/:gamemode' element={<Game />} />
+              <Route exact path='/game' element={<Game />} />
               <Route path='/' element={<Error404 />} />
             </Routes>
             <AccessibilityTool toggleThemeMode={toggleThemeMode} />
           </Mui.Paper>
-        </Router>
-      </ThemeProvider>
+        </ThemeProvider>
+      </Router>
     </div>
   );
 }

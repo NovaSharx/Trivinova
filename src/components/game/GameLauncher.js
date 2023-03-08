@@ -7,7 +7,7 @@ export default function GameLauncher() {
     const navigate = useNavigate()
 
     const openGameRoute = (gameMode, category = 'random', difficulty = 'random', limit = 10) => {
-        navigate('/game/' + gameMode, {
+        navigate('/game', {
             state: {
                 gameMode: gameMode,
                 limit: limit,
