@@ -1,12 +1,81 @@
 import * as Mui from '@mui/material'
-import { useState } from 'react'
+import { useState, useEffect, Fragment } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export default function GameContainer(props) {
 
     const triviaQuestions = props.triviaAPIData.result.read()
-    console.log(triviaQuestions)
+    const triviaSettings = props.triviaSettings
+
+    const navigate = useNavigate()
 
     let [questionIndex, setQuestionIndex] = useState(0)
+    let [shuffledAnswers, setShuffledAnswers] = useState([])
+    let [postGameData, setPostGameData] = useState([])
+
+    useEffect(() => {
+        if (questionIndex < testQuestions.length) {
+            shuffleAnswers()
+        } else {
+            navigate('/postgame', {
+                state: {
+                    triviaSettings: triviaSettings,
+                    postGameData: postGameData
+                }
+            })
+        }
+    }, [questionIndex])
+
+
+    // Shuffle the order of the elements in the answers array.
+    const shuffleAnswers = () => {
+        let answers = [testQuestions[questionIndex].correctAnswer, ...testQuestions[questionIndex].incorrectAnswers] // Stores an array of the four possible answers
+        let currentIndex = answers.length
+        let randomIndex
+
+        // Shuffle logic
+        while (currentIndex !== 0) {
+            // Choose a random answer from the array.
+            randomIndex = Math.floor(Math.random() * currentIndex)
+            currentIndex-- //decrement current index.
+
+            // Swap the random element wirth the current element.
+            [answers[currentIndex], answers[randomIndex]] = [answers[randomIndex], answers[currentIndex]]
+        }
+
+        setShuffledAnswers(answers)
+    }
+
+    const renderAnswers = shuffledAnswers.map((answer, index) => {
+        return (
+            <Fragment key={index}>
+                {questionIndex < testQuestions.length &&
+                    <Mui.Grid item xs={6}>
+                        <Mui.Button variant={answer === testQuestions[questionIndex].correctAnswer ? 'outlined' : 'contained'} onClick={() => checkAnswer(answer)} fullWidth>
+                            {answer}
+                        </Mui.Button>
+                    </Mui.Grid>}
+            </Fragment>
+        )
+    })
+
+    const checkAnswer = (selection) => {
+        let gotCorrect = false
+
+        if (selection === testQuestions[questionIndex].correctAnswer) {
+            gotCorrect = true
+        }
+
+        const questionResults = {
+            id: testQuestions[questionIndex].id,
+            selection: selection,
+            answer: testQuestions[questionIndex].correctAnswer,
+            gotCorrect
+        }
+
+        setPostGameData([...postGameData, questionResults])
+        setQuestionIndex(questionIndex + 1)
+    }
 
     return (
         <Mui.Paper elevation={5} sx={{ p: 2 }}>
@@ -29,15 +98,11 @@ export default function GameContainer(props) {
 
             <Mui.Paper variant='outlined' sx={{ m: 2, p: 2 }}>
 
-                <Mui.Typography variant='h3'>{questionIndex + 1}. {testQuestions[questionIndex].question}</Mui.Typography>
+                {questionIndex < testQuestions.length && <Mui.Typography variant='h3'> {questionIndex + 1}.  {testQuestions[questionIndex].question} </Mui.Typography>}
 
-                <Mui.Grid container direction='column'>
+                <Mui.Grid container spacing={{ xs: 1, sm: 2, md: 3 }}>
 
-                    <Mui.Grid item>
-                        <Mui.Button variant='contained'>
-                            {testQuestions[questionIndex].incorrectAnswers[0]}
-                        </Mui.Button>
-                    </Mui.Grid>
+                    {renderAnswers}
 
                 </Mui.Grid>
             </Mui.Paper>

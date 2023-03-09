@@ -17,9 +17,9 @@ export default function Game() {
     useEffect(() => {
         const fetchTriviaData = async () => {
             const { data } = axios.post('http://localhost:5000/trivia', triviaSettings)
-            .catch(error => {
-                console.log(error)
-            })
+                .catch(error => {
+                    console.log(error) // *** PLACEHOLDER ***
+                })
             return data
         }
 
@@ -33,20 +33,19 @@ export default function Game() {
         <Fragment>
             <Mui.Container maxWidth='x1' sx={{
                 display: 'flex',
-                height: '150px',
+                height: '80px',
                 background: 'radial-gradient(circle, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 90%)',
                 backdropFilter: 'blur(5px)',
                 justifyContent: 'center',
-                alignItems: 'center',
-                m: 5
+                alignItems: 'center'
             }}>
-                <Mui.Typography variant='h1' color='white' noWrap>
+                <Mui.Typography variant='h2' color='white' noWrap>
                     {triviaSettings.gameMode.toUpperCase()} TRIVIA
                 </Mui.Typography>
             </Mui.Container>
 
             <Mui.Container maxWidth='lg' component='main' sx={{
-                mt: 2
+                mt: 10
             }}>
                 {triviaAPIData &&
                     <Suspense fallback={
@@ -55,7 +54,7 @@ export default function Game() {
                             <CircularProgress />
                         </Fragment>
                     }>
-                        <GameContainer triviaAPIData={triviaAPIData} />
+                        <GameContainer triviaAPIData={triviaAPIData} triviaSettings={triviaSettings} />
                     </Suspense>
                 }
             </Mui.Container>

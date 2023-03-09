@@ -19,6 +19,7 @@ import Leaderboards from './components/leaderboards/Leaderboards'
 import GameLauncher from './components/game/GameLauncher'
 import Game from './components/game/Game'
 import Error404 from './Error404'
+import PostGame from './components/game/PostGame';
 
 function App() {
 
@@ -56,7 +57,7 @@ function App() {
             backgroundImage: 'url(white-questionmark-background.jpg)',
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
-            backgroundColor: themeMode === 'light' ? 'rgba(0, 0, 0, 0)': 'rgba(0, 0, 0, 0.7)',
+            backgroundColor: themeMode === 'light' ? 'rgba(0, 0, 0, 0)' : 'rgba(0, 0, 0, 0.7)',
             backgroundBlendMode: 'multiply',
           }}>
             <Navigation />
@@ -68,6 +69,7 @@ function App() {
               <Route exact path='/leaderboards' element={<Leaderboards />} />
               <Route exact path='/gamelauncher' element={<GameLauncher />} />
               <Route exact path='/game' element={<Game />} />
+              <Route exact path='/postgame' element={<PostGame />} />
               <Route path='/' element={<Error404 />} />
             </Routes>
             <AccessibilityTool toggleThemeMode={toggleThemeMode} />
