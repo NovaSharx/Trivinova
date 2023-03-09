@@ -11,9 +11,21 @@ export default function GameContainer(props) {
     return (
         <Mui.Paper elevation={5} sx={{ p: 2 }}>
 
-            <Mui.Button href='/gamelauncher' variant='outlined'>
-                Back to Game Launcher
-            </Mui.Button>
+            <Mui.Box sx={{
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'space-between'
+            }}>
+
+                <Mui.Button href='/gamelauncher' variant='outlined'>
+                    Game Launcher
+                </Mui.Button>
+
+                <Mui.Button href='/' variant='outlined'>
+                    Main Menu
+                </Mui.Button>
+
+            </Mui.Box>
 
             <Mui.Paper variant='outlined' sx={{ m: 2, p: 2 }}>
 

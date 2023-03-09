@@ -16,10 +16,10 @@ export default function Game() {
 
     useEffect(() => {
         const fetchTriviaData = async () => {
-            let { data } = await axios.post('http://localhost:5000/trivia', triviaSettings)
-                .catch(error => {
-                    console.log(error)
-                })
+            const { data } = axios.post('http://localhost:5000/trivia', triviaSettings)
+            .catch(error => {
+                console.log(error)
+            })
             return data
         }
 

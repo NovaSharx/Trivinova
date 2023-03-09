@@ -32,7 +32,7 @@ export default function Home() {
             }}>
 
                 <Mui.Box sx={{ width: '100%', display: 'flex', justifyContent: 'space-around' }}>
-                        {renderTitleAnimation}
+                    {renderTitleAnimation}
                 </Mui.Box>
 
             </Mui.Box>
