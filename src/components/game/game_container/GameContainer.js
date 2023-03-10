@@ -1,6 +1,7 @@
 import * as Mui from '@mui/material'
 import { useState, useEffect, Fragment } from 'react'
 import { useNavigate } from 'react-router-dom'
+import GameTimer from './GameTimer'
 
 export default function GameContainer(props) {
 
@@ -60,6 +61,7 @@ export default function GameContainer(props) {
     })
 
     const checkAnswer = (selection) => {
+        console.log('checking')
         let gotCorrect = false
 
         if (selection === testQuestions[questionIndex].correctAnswer) {
@@ -68,6 +70,7 @@ export default function GameContainer(props) {
 
         const questionResults = {
             id: testQuestions[questionIndex].id,
+            question: testQuestions[questionIndex].question,
             selection: selection,
             answer: testQuestions[questionIndex].correctAnswer,
             gotCorrect
@@ -99,6 +102,8 @@ export default function GameContainer(props) {
             <Mui.Paper variant='outlined' sx={{ m: 2, p: 2 }}>
 
                 {questionIndex < testQuestions.length && <Mui.Typography variant='h3'> {questionIndex + 1}.  {testQuestions[questionIndex].question} </Mui.Typography>}
+
+                <GameTimer key={questionIndex} checkAnswer={checkAnswer} />
 
                 <Mui.Grid container spacing={{ xs: 1, sm: 2, md: 3 }}>
 

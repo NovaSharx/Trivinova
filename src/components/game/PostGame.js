@@ -1,11 +1,7 @@
 import * as Mui from '@mui/material'
-import CircularProgress from '@mui/material/CircularProgress';
 
-import { useState, useEffect, Suspense, Fragment } from 'react'
+import { Fragment } from 'react'
 import { useLocation } from 'react-router-dom'
-
-import axios from 'axios'
-import { promiseSuspender } from '../../promiseSuspender'
 
 export default function PostGame() {
 
@@ -16,11 +12,18 @@ export default function PostGame() {
     return (
         <Fragment>
 
-            <Mui.Button href='/gamelauncher'>
-                Play Again
-            </Mui.Button>
+            <Mui.Container component='main' maxWidth='lg'>
+                <Mui.Paper elevation={5}>
 
-            <h1>POST GAME</h1>
+                    <h1>POST GAME</h1>
+
+                    <Mui.Button href='/gamelauncher' variant='contained'>
+                        Play Again
+                    </Mui.Button>
+
+                </Mui.Paper>
+            </Mui.Container>
+
         </Fragment>
     )
 }
