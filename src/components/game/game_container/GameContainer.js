@@ -16,7 +16,7 @@ export default function GameContainer(props) {
     let [postGameData, setPostGameData] = useState([])
 
     useEffect(() => {
-        if (questionIndex < testQuestions.length) {
+        if (questionIndex < triviaQuestions.length) {
             shuffleAnswers()
         } else {
             navigate('/postgame', {
@@ -31,7 +31,7 @@ export default function GameContainer(props) {
 
     // Shuffle the order of the elements in the answers array.
     const shuffleAnswers = () => {
-        let answers = [testQuestions[questionIndex].correctAnswer, ...testQuestions[questionIndex].incorrectAnswers] // Stores an array of the four possible answers
+        let answers = [triviaQuestions[questionIndex].correctAnswer, ...triviaQuestions[questionIndex].incorrectAnswers] // Stores an array of the four possible answers
         let currentIndex = answers.length
         let randomIndex
 
@@ -51,9 +51,9 @@ export default function GameContainer(props) {
     const renderAnswers = shuffledAnswers.map((answer, index) => {
         return (
             <Fragment key={index}>
-                {questionIndex < testQuestions.length &&
+                {questionIndex < triviaQuestions.length &&
                     <Mui.Grid item xs={6}>
-                        <Mui.Button variant={answer === testQuestions[questionIndex].correctAnswer ? 'outlined' : 'contained'} onClick={() => checkAnswer(answer)} fullWidth>
+                        <Mui.Button variant={answer === triviaQuestions[questionIndex].correctAnswer ? 'outlined' : 'contained'} onClick={() => checkAnswer(answer)} fullWidth>
                             {answer}
                         </Mui.Button>
                     </Mui.Grid>}
@@ -64,15 +64,15 @@ export default function GameContainer(props) {
     const checkAnswer = (selection) => {
         let gotCorrect = false
 
-        if (selection === testQuestions[questionIndex].correctAnswer) {
+        if (selection === triviaQuestions[questionIndex].correctAnswer) {
             gotCorrect = true
         }
 
         const questionResults = {
-            id: testQuestions[questionIndex].id,
-            question: testQuestions[questionIndex].question,
+            id: triviaQuestions[questionIndex].id,
+            question: triviaQuestions[questionIndex].question,
             selection: selection,
-            answer: testQuestions[questionIndex].correctAnswer,
+            answer: triviaQuestions[questionIndex].correctAnswer,
             timeTaken,
             gotCorrect
         }
@@ -102,7 +102,7 @@ export default function GameContainer(props) {
 
             <Mui.Paper variant='outlined' sx={{ m: 2, p: 2 }}>
 
-                {questionIndex < testQuestions.length && <Mui.Typography variant='h3'> {questionIndex + 1}.  {testQuestions[questionIndex].question} </Mui.Typography>}
+                {questionIndex < triviaQuestions.length && <Mui.Typography variant='h3'> {questionIndex + 1}.  {triviaQuestions[questionIndex].question} </Mui.Typography>}
 
                 <GameTimer key={questionIndex} checkAnswer={checkAnswer} setTimeTaken={setTimeTaken} />
 
@@ -116,7 +116,7 @@ export default function GameContainer(props) {
     )
 }
 
-const testQuestions = [
+const triviaQuestions = [
     {
         "category": "Geography",
         "id": "6233847b62eaad73716a8c0f",

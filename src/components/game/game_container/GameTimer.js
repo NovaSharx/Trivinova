@@ -6,7 +6,7 @@ export default function GameTimer(props) {
 
     const { checkAnswer, setTimeTaken } = props
 
-    const duration = 5
+    const duration = 30
 
     let [startTime, setStartTime] = useState(Date.now() + 1000 * duration)
     let [timeLeft, setTimeLeft] = useState(duration)
@@ -38,7 +38,7 @@ export default function GameTimer(props) {
     return (
         <Fragment>
             <Mui.Box sx={{ m: 3 }}>
-                <Mui.Typography variant='h6'>Seconds Left: <b>{parseInt(timeLeft)}</b></Mui.Typography>
+                <Mui.Typography variant='h6'>Seconds Left: <b>{timeLeft.toFixed(1)}s</b></Mui.Typography>
 
                 <Mui.LinearProgress variant='determinate' value={parseInt((timeLeft / duration) * 100)} sx={{ borderRadius: '5px', height: '10px' }} />
             </Mui.Box>

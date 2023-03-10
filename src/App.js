@@ -37,7 +37,7 @@ function App() {
       error: {
         main: '#d32f2f',
       },
-    },
+    }
   })
 
   const toggleThemeMode = () => {
@@ -57,6 +57,7 @@ function App() {
             backgroundImage: themeMode === 'light' ? 'url(white-questionmark-background-glow-lightmode.jpg)' : 'url(white-questionmark-background-glow-darkmode.jpg)',
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
+            backgroundPosition: 'center',
             backgroundColor: 'rgba(0, 0, 0, 0)',
             backgroundBlendMode: 'multiply',
           }}>

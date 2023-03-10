@@ -15,7 +15,7 @@ export default function PostGame() {
                 <Mui.Grid item xs={12}>
                     <Mui.Paper elevation={8} sx={{ borderRadius: 3, border: result.gotCorrect ? 'solid 3px rgba(47,154,47,1)' : 'solid 3px rgba(255,0,0,1)' }}>
 
-                        <Mui.Typography bgcolor={result.gotCorrect ? 'rgb(47,154,47)' : 'rgb(255,0,0)'} color='white'>{result.question}</Mui.Typography>
+                        <Mui.Typography bgcolor={result.gotCorrect ? 'rgb(47,154,47)' : 'rgb(255,0,0)'} color='white'>{index + 1}.  {result.question}</Mui.Typography>
 
                         <Mui.Box sx={{ p: 1 }}>
                             <Mui.Typography>Selection: <b>{result.selection}</b></Mui.Typography>
@@ -28,29 +28,42 @@ export default function PostGame() {
         )
     })
 
-    const renderScore = () => {
+    const calculateScore = () => {
+        let playerScore = 0
 
+        postGameData.forEach(result => {
+            if (result.gotCorrect) {
+                playerScore += (30 - result.timeTaken) * 100
+            }
+        })
+        return playerScore
     }
 
     return (
-        <Mui.Container component='main' maxWidth='lg'>
-            <Mui.Paper elevation={5}>
-
-                <h1>POST GAME</h1>
+        <Mui.Container component='main' maxWidth='xl'>
+            <Mui.Box elevation={5} sx={{
+                mt: 10,
+                p: 2,
+                borderRadius: 3,
+                background: 'rgba(0,0,0,0.15)',
+                backdropFilter: 'blur(5px)'
+            }}>
 
                 <Mui.Button href='/gamelauncher' variant='contained'>
                     Play Again
                 </Mui.Button>
 
+                <Mui.Typography variant='h3'>Score: {calculateScore()} points</Mui.Typography>
+
                 <Mui.Box sx={{ p: 3 }}>
-                    <Mui.Grid container direction='column' spacing={{ xs: 1, sm: 2, md: 3 }}>
+                    <Mui.Grid container direction='row' spacing={{ xs: 1, sm: 2, md: 3 }}>
 
                         {renderResults}
 
                     </Mui.Grid>
                 </Mui.Box>
 
-            </Mui.Paper>
+            </Mui.Box>
         </Mui.Container>
     )
 }
