@@ -54,10 +54,10 @@ function App() {
         <ThemeProvider theme={theme}>
           <Mui.Paper sx={{
             minHeight: '100vh',
-            backgroundImage: 'url(white-questionmark-background.jpg)',
+            backgroundImage: themeMode === 'light' ? 'url(white-questionmark-background-glow-lightmode.jpg)' : 'url(white-questionmark-background-glow-darkmode.jpg)',
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
-            backgroundColor: themeMode === 'light' ? 'rgba(0, 0, 0, 0)' : 'rgba(0, 0, 0, 0.7)',
+            backgroundColor: 'rgba(0, 0, 0, 0)',
             backgroundBlendMode: 'multiply',
           }}>
             <Navigation />

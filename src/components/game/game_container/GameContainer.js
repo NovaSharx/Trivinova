@@ -12,6 +12,7 @@ export default function GameContainer(props) {
 
     let [questionIndex, setQuestionIndex] = useState(0)
     let [shuffledAnswers, setShuffledAnswers] = useState([])
+    let [timeTaken, setTimeTaken] = useState(0)
     let [postGameData, setPostGameData] = useState([])
 
     useEffect(() => {
@@ -20,8 +21,8 @@ export default function GameContainer(props) {
         } else {
             navigate('/postgame', {
                 state: {
-                    triviaSettings: triviaSettings,
-                    postGameData: postGameData
+                    triviaSettings,
+                    postGameData
                 }
             })
         }
@@ -61,7 +62,6 @@ export default function GameContainer(props) {
     })
 
     const checkAnswer = (selection) => {
-        console.log('checking')
         let gotCorrect = false
 
         if (selection === testQuestions[questionIndex].correctAnswer) {
@@ -73,6 +73,7 @@ export default function GameContainer(props) {
             question: testQuestions[questionIndex].question,
             selection: selection,
             answer: testQuestions[questionIndex].correctAnswer,
+            timeTaken,
             gotCorrect
         }
 
@@ -103,7 +104,7 @@ export default function GameContainer(props) {
 
                 {questionIndex < testQuestions.length && <Mui.Typography variant='h3'> {questionIndex + 1}.  {testQuestions[questionIndex].question} </Mui.Typography>}
 
-                <GameTimer key={questionIndex} checkAnswer={checkAnswer} />
+                <GameTimer key={questionIndex} checkAnswer={checkAnswer} setTimeTaken={setTimeTaken} />
 
                 <Mui.Grid container spacing={{ xs: 1, sm: 2, md: 3 }}>
 

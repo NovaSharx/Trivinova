@@ -16,7 +16,8 @@ export default function Game() {
 
     useEffect(() => {
         const fetchTriviaData = async () => {
-            const { data } = axios.post('http://localhost:5000/trivia', triviaSettings)
+            const { data } = await axios.post('http://localhost:5000/trivia', triviaSettings)
+                // Mentor said I can't use catch and await apparently
                 .catch(error => {
                     console.log(error) // *** PLACEHOLDER ***
                 })

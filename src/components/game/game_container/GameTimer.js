@@ -4,9 +4,9 @@ import { Fragment, useState } from 'react'
 
 export default function GameTimer(props) {
 
-    const { checkAnswer } = props
+    const { checkAnswer, setTimeTaken } = props
 
-    const duration = 10
+    const duration = 5
 
     let [startTime, setStartTime] = useState(Date.now() + 1000 * duration)
     let [timeLeft, setTimeLeft] = useState(duration)
@@ -20,6 +20,7 @@ export default function GameTimer(props) {
 
             const millisecondsLeft = startTime - Date.now()
             setTimeLeft(millisecondsLeft / 1000)
+            setTimeTaken((duration - (millisecondsLeft / 1000)).toFixed(2))
 
             if (millisecondsLeft < 0) {
                 endTimer()
@@ -29,7 +30,6 @@ export default function GameTimer(props) {
 
     const endTimer = () => {
         clearTimeout(timeoutId)
-        console.log('cleared')
         checkAnswer('')
     }
 
