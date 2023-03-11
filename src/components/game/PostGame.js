@@ -1,13 +1,12 @@
 import * as Mui from '@mui/material'
 
-import { Fragment } from 'react'
+import { Fragment, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 
 export default function PostGame() {
 
     const location = useLocation()
     const { postGameData, triviaSettings } = location.state
-    console.log(postGameData)
 
     const renderResults = postGameData.map((result, index) => {
         return (
@@ -29,14 +28,17 @@ export default function PostGame() {
     })
 
     const calculateScore = () => {
-        let playerScore = 0
+        let scoreTotal = 0
 
         postGameData.forEach(result => {
             if (result.gotCorrect) {
-                playerScore += (30 - result.timeTaken) * 100
+                scoreTotal += (30 - result.timeTaken) * 1000
             }
         })
-        return playerScore
+
+        let averagePlayerScore = Math.round(scoreTotal / triviaSettings.limit)
+
+        return averagePlayerScore
     }
 
     return (
@@ -53,7 +55,15 @@ export default function PostGame() {
                     Play Again
                 </Mui.Button>
 
-                <Mui.Typography variant='h3'>Score: {calculateScore()} points</Mui.Typography>
+                <Mui.Box sx={{
+                    m: '10px 30%',
+                    p: 3,
+                    borderRadius: 3,
+                    boxShadow: 'inset 0px 0px 20px 10px #00000050',
+                }}>
+                    <Mui.Typography variant='h5'>SCORE</Mui.Typography>
+                    <Mui.Typography variant='h2'>{calculateScore()} </Mui.Typography>
+                </Mui.Box>
 
                 <Mui.Box sx={{ p: 3 }}>
                     <Mui.Grid container direction='row' spacing={{ xs: 1, sm: 2, md: 3 }}>

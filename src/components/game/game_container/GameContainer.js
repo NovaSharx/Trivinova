@@ -28,7 +28,6 @@ export default function GameContainer(props) {
         }
     }, [questionIndex])
 
-
     // Shuffle the order of the elements in the answers array.
     const shuffleAnswers = () => {
         let answers = [triviaQuestions[questionIndex].correctAnswer, ...triviaQuestions[questionIndex].incorrectAnswers] // Stores an array of the four possible answers
@@ -45,6 +44,7 @@ export default function GameContainer(props) {
             [answers[currentIndex], answers[randomIndex]] = [answers[randomIndex], answers[currentIndex]]
         }
 
+        console.log(answers)
         setShuffledAnswers(answers)
     }
 

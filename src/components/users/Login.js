@@ -1,8 +1,11 @@
 import * as Mui from '@mui/material'
 
 import PersonIcon from '@mui/icons-material/Person'
+import { useTheme } from '@emotion/react'
 
 export default function Login() {
+
+    const theme = useTheme()
 
     return (
         <Mui.Container component='main' maxWidth='xs'>
@@ -27,7 +30,11 @@ export default function Login() {
                     Login
                 </Mui.Typography>
 
-                <Mui.Box component='form' onSubmit={() => { }}>
+                <Mui.Box component='form' onSubmit={() => { }} sx={{
+                    p: 3,
+                    borderRadius: 2,
+                    background: theme.palette.background.paper,
+                }}>
                     <Mui.Grid container spacing={2} justifyContent='center'>
 
                         <Mui.Grid item xs={12}>

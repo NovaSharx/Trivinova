@@ -1,8 +1,12 @@
 import * as Mui from '@mui/material'
 
 import LockOpenIcon from '@mui/icons-material/LockOpen';
+import { useTheme } from '@emotion/react';
 
 export default function SignUp() {
+
+    const theme = useTheme()
+
     return (
         <Mui.Container component='main' maxWidth='sm'>
 
@@ -26,7 +30,11 @@ export default function SignUp() {
                     Sign Up
                 </Mui.Typography>
 
-                <Mui.Box component='form' onSubmit={() => { }}>
+                <Mui.Box component='form' onSubmit={() => { }} sx={{
+                    p: 3,
+                    borderRadius: 2,
+                    background: theme.palette.background.paper,
+                }}>
                     <Mui.Grid container spacing={2} justifyContent='center'>
 
                         <Mui.Grid item xs={6}>
