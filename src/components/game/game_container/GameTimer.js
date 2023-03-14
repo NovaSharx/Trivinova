@@ -1,6 +1,6 @@
 import * as Mui from '@mui/material'
 
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 
 export default function GameTimer(props) {
 
@@ -11,6 +11,8 @@ export default function GameTimer(props) {
     let [startTime, setStartTime] = useState(Date.now() + 1000 * duration)
     let [timeLeft, setTimeLeft] = useState(duration)
     let [timeoutId, setTimeoutId] = useState()
+
+    useEffect(() => { }, [timeLeft]) // Rerenders timer bar to match time being displayed
 
     const countdown = () => {
         if (timeLeft < 0) return
@@ -40,7 +42,7 @@ export default function GameTimer(props) {
             <Mui.Box sx={{ m: 3 }}>
                 <Mui.Typography variant='h6'>Seconds Left: <b>{timeLeft.toFixed(1)}s</b></Mui.Typography>
 
-                <Mui.LinearProgress variant='determinate' value={Math.round(timeLeft / duration) * 100} sx={{ borderRadius: '5px', height: '10px' }} />
+                <Mui.LinearProgress variant='determinate' value={(timeLeft / duration) * 100} sx={{ borderRadius: '5px', height: '10px' }} />
             </Mui.Box>
 
 

@@ -44,7 +44,6 @@ export default function GameContainer(props) {
             [answers[currentIndex], answers[randomIndex]] = [answers[randomIndex], answers[currentIndex]]
         }
 
-        console.log(answers)
         setShuffledAnswers(answers)
     }
 
