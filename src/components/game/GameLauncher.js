@@ -94,7 +94,7 @@ export default function GameLauncher() {
                 justifyContent: 'center',
                 flexDirection: 'column'
             }}>
-                <Mui.Grid container spacing={5}>
+                <Mui.Grid container spacing={5} justifyContent='center'>
 
                     <Mui.Grid item xs={12}>
                         <Mui.Paper elevation={3} sx={{
@@ -200,7 +200,7 @@ export default function GameLauncher() {
                         </Mui.Paper>
                     </Mui.Grid>
 
-                    <Mui.Grid item xs={12}>
+                    <Mui.Grid item xs={6}>
                         <Mui.Button variant='contained' fullWidth onClick={() => { openGameRoute(selectedGameMode, selectedCategory, selectedDifficulty, selectedQuestionLimit) }}>Launch Game</Mui.Button>
                     </Mui.Grid>
 

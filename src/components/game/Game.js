@@ -30,6 +30,52 @@ export default function Game() {
 
     }, [triviaSettings])
 
+    const suspenseSkeleton = (
+        <Mui.Paper elevation={5} sx={{ p: 2 }}>
+
+            <Mui.Box sx={{
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'space-between'
+            }}>
+
+                <Mui.Skeleton variant="rounded" width={160} height={36} />
+
+                <Mui.Skeleton variant="rounded" width={160} height={36} />
+
+            </Mui.Box>
+
+            <Mui.Paper variant='outlined' sx={{ m: 2, p: 2, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+
+                <Mui.Typography variant='h3'>...Loading Trivia...</Mui.Typography>
+
+                <Mui.Box sx={{ m: 4, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                    <Mui.Skeleton variant="rounded" width='100%' height={10} />
+                </Mui.Box>
+
+                <Mui.Grid container spacing={{ xs: 1, sm: 2, md: 3 }}>
+
+                    <Mui.Grid item xs={6}>
+                        <Mui.Skeleton variant="rounded" width='100%' height={36} />
+                    </Mui.Grid>
+
+                    <Mui.Grid item xs={6}>
+                        <Mui.Skeleton variant="rounded" width='100%' height={36} />
+                    </Mui.Grid>
+
+                    <Mui.Grid item xs={6}>
+                        <Mui.Skeleton variant="rounded" width='100%' height={36} />
+                    </Mui.Grid>
+
+                    <Mui.Grid item xs={6}>
+                        <Mui.Skeleton variant="rounded" width='100%' height={36} />
+                    </Mui.Grid>
+
+                </Mui.Grid>
+            </Mui.Paper>
+        </Mui.Paper>
+    )
+
     return (
         <Fragment>
             <Mui.Container maxWidth='x1' sx={{
@@ -51,8 +97,7 @@ export default function Game() {
                 {triviaAPIData &&
                     <Suspense fallback={
                         <Fragment>
-                            <Mui.Typography variant='h3'>Loading Trivia Game...</Mui.Typography>
-                            <CircularProgress />
+                            {suspenseSkeleton}
                         </Fragment>
                     }>
                         <GameContainer triviaAPIData={triviaAPIData} triviaSettings={triviaSettings} />

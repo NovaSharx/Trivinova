@@ -52,7 +52,7 @@ function App() {
     <div className='App'>
       <Router>
         <ThemeProvider theme={theme}>
-          <Mui.Paper sx={{
+          <Mui.Paper square sx={{
             minHeight: '100vh',
             backgroundImage: themeMode === 'light' ? 'url(white-questionmark-background-glow-lightmode.jpg)' : 'url(white-questionmark-background-glow-darkmode.jpg)',
             backgroundRepeat: 'no-repeat',
