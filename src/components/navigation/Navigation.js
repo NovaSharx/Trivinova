@@ -1,9 +1,10 @@
 import * as Mui from '@mui/material'
 
 import LightbulbCircleIcon from '@mui/icons-material/LightbulbCircle'
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 import MenuDrawer from './MenuDrawer'
-import { Fragment, useContext } from 'react'
+import { useContext } from 'react'
 import { CurrentUser } from '../contexts/CurrentUser'
 
 export default function Navigation() {
@@ -11,7 +12,7 @@ export default function Navigation() {
     const { currentUser } = useContext(CurrentUser)
 
     let profileActions = (
-        <Mui.Grid item xs={4} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <Mui.Grid item xs={5} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
             <Mui.Stack direction='row' spacing={1}>
                 <Mui.Button href='/login' variant='outlined' color='inherit'>
                     Login
@@ -26,9 +27,12 @@ export default function Navigation() {
 
     if (currentUser) {
         profileActions = (
-            <Fragment>
-                Profile Buttons Here.
-            </Fragment>
+            <Mui.Grid item xs={5} sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+                <Mui.Typography>Welcome, {currentUser.userName}</Mui.Typography>
+                <Mui.IconButton>
+                    <AccountCircleIcon fontSize='large' sx={{ color: 'white' }} />
+                </Mui.IconButton>
+            </Mui.Grid>
         )
     }
 
@@ -40,11 +44,11 @@ export default function Navigation() {
 
                         <Mui.Grid container direction='row' alignItems='center' justifyContent='space-between'>
 
-                            <Mui.Grid item xs={4} sx={{ display: 'flex' }}>
+                            <Mui.Grid item xs={5} sx={{ display: 'flex' }}>
                                 <MenuDrawer />
                             </Mui.Grid>
 
-                            <Mui.Grid item xs={4} sx={{ display: 'flex', justifyContent: 'center' }}>
+                            <Mui.Grid item xs={2} sx={{ display: 'flex', justifyContent: 'center' }}>
                                 <Mui.Link href='/' underline='none' color='inherit'>
                                     <Mui.Typography variant='h4' sx={{ display: 'flex', alignItems: 'center' }}>
                                         TRIVIN<LightbulbCircleIcon sx={{ fontSize: 32 }} />VA
