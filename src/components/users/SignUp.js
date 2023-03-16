@@ -31,14 +31,16 @@ export default function SignUp() {
         }
     }
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault()
 
-        const user = await axios.post('http://localhost:5000/users', userDetails)
+        axios.post('http://localhost:5000/users', userDetails)
+            .then(user => {
+                console.log(user)
+            })
             .catch(error => {
                 console.log(error) // *** PLACEHOLDER ***
             })
-        console.log(user.data)
     }
 
     return (

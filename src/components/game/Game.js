@@ -1,5 +1,4 @@
 import * as Mui from '@mui/material'
-import CircularProgress from '@mui/material/CircularProgress'
 
 import { useState, useEffect, Suspense, Fragment } from 'react'
 import { useLocation } from 'react-router-dom'
@@ -15,17 +14,16 @@ export default function Game() {
     let [triviaAPIData, setTriviaAPIData] = useState(null)
 
     useEffect(() => {
-        const fetchTriviaData = async () => {
-            const { data } = await axios.post('http://localhost:5000/trivia', triviaSettings)
-                // Mentor said I can't use catch and await apparently
+        // Axios request is wrapped in a suspender helper function and assigned to triviaAPIData
+        const suspenseTriviaData = promiseSuspender(
+            axios.post('http://localhost:5000/trivia', triviaSettings)
+                .then(response => {
+                    return response.data
+                })
                 .catch(error => {
                     console.log(error) // *** PLACEHOLDER ***
                 })
-            return data
-        }
-
-        // Fetch function is wrapped in a suspender helper function and assigned to triviaAPIData
-        const suspenseTriviaData = promiseSuspender(fetchTriviaData())
+        )
         setTriviaAPIData(suspenseTriviaData)
 
     }, [triviaSettings])

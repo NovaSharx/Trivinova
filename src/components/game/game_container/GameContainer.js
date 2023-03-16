@@ -15,6 +15,7 @@ export default function GameContainer(props) {
     let [timeTaken, setTimeTaken] = useState(0)
     let [postGameData, setPostGameData] = useState([])
 
+    // !!! React Hook useEffect has missing dependencies: 'navigate', 'postGameData', 'shuffleAnswers', 'triviaQuestions.length', and 'triviaSettings'. Either include them or remove the dependency array  react-hooks/exhaustive-deps!!!
     useEffect(() => {
         if (questionIndex < triviaQuestions.length) {
             shuffleAnswers()

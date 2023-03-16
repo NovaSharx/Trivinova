@@ -3,13 +3,46 @@ import * as Mui from '@mui/material'
 import PersonIcon from '@mui/icons-material/Person'
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import LoadingButton from '@mui/lab/LoadingButton';
 
 import { useTheme } from '@emotion/react'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+
+import { CurrentUser } from "../contexts/CurrentUser"
+import axios from 'axios';
 
 export default function Login() {
 
     const theme = useTheme()
+
+    const { setCurrentUser } = useContext(CurrentUser)
+
+    const [userCredentials, setUserCredentials] = useState({
+        userName: '',
+        password: ''
+    })
+
+    const [errorMessage, setErrorMessage] = useState(null)
+
+    const [isLoggingIn, setIsLoggingIn] = useState(false)
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        setIsLoggingIn(true)
+
+        axios.post('http://localhost:5000/authentication', userCredentials)
+            .then(response => {
+                console.log(response)
+                setCurrentUser(response.data)
+            })
+            .catch(error => {
+                setErrorMessage(error.response.data.message)
+            })
+            .finally(() => {
+                setIsLoggingIn(false)
+            })
+    }
 
     const [passwordVisibility, setPasswordVisibility] = useState(false)
 
@@ -19,6 +52,11 @@ export default function Login() {
         } else {
             setPasswordVisibility(true)
         }
+    }
+
+    const handleInputFieldChange = (credentials) => {
+        errorMessage && setErrorMessage(null)
+        setUserCredentials(credentials)
     }
 
     return (
@@ -44,7 +82,7 @@ export default function Login() {
                     Login
                 </Mui.Typography>
 
-                <Mui.Box component='form' onSubmit={() => { }} sx={{
+                <Mui.Box component='form' onSubmit={handleSubmit} sx={{
                     p: 3,
                     borderRadius: 2,
                     background: theme.palette.background.paper,
@@ -53,6 +91,7 @@ export default function Login() {
 
                         <Mui.Grid item xs={12}>
                             <Mui.TextField
+                                error={errorMessage != null}
                                 name='username'
                                 id='username'
                                 label='Username'
@@ -60,7 +99,9 @@ export default function Login() {
                                 fullWidth
                                 autoFocus
                                 autoComplete='username'
-                            // inputProps={{ pattern: '/^[a-zA-Z0-9]+$/' }}
+                                // inputProps={{ pattern: '/^[a-zA-Z0-9]+$/' }}
+                                helperText={errorMessage}
+                                onChange={e => handleInputFieldChange({ ...userCredentials, userName: e.target.value })}
                             />
                         </Mui.Grid>
 
@@ -83,11 +124,21 @@ export default function Login() {
                                         </Mui.InputAdornment>
                                     )
                                 }}
+                                onChange={e => handleInputFieldChange({ ...userCredentials, password: e.target.value })}
                             />
                         </Mui.Grid>
 
                         <Mui.Grid item xs={12}>
-                            <Mui.Button variant='contained' size='large' fullWidth type='submit'>Log in</Mui.Button>
+                            <LoadingButton
+                                variant='contained'
+                                size='large'
+                                fullWidth
+                                type='submit'
+                                loading={isLoggingIn}
+                                loadingIndicator="Logging In…"
+                            >
+                                <span>Log in</span>
+                            </LoadingButton>
                         </Mui.Grid>
 
                         <Mui.Grid item xs={12}>
