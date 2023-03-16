@@ -1,11 +1,25 @@
 import * as Mui from '@mui/material'
 
 import PersonIcon from '@mui/icons-material/Person'
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+
 import { useTheme } from '@emotion/react'
+import { useState } from 'react'
 
 export default function Login() {
 
     const theme = useTheme()
+
+    const [passwordVisibility, setPasswordVisibility] = useState(false)
+
+    const handlePasswordVisibility = () => {
+        if (passwordVisibility) {
+            setPasswordVisibility(false)
+        } else {
+            setPasswordVisibility(true)
+        }
+    }
 
     return (
         <Mui.Container component='main' maxWidth='xs'>
@@ -53,13 +67,22 @@ export default function Login() {
                         <Mui.Grid item xs={12}>
                             <Mui.TextField
                                 name='password'
-                                type='password'
+                                type={passwordVisibility ? 'text' : 'password'}
                                 id='password'
                                 label='Password'
-                                placeholder='**********'
+                                placeholder={passwordVisibility ? 'Enter Password' : '**********'}
                                 required
                                 fullWidth
                                 autoComplete='current-password'
+                                InputProps={{
+                                    endAdornment: (
+                                        <Mui.InputAdornment position='end'>
+                                            <Mui.IconButton onClick={handlePasswordVisibility}>
+                                                {passwordVisibility ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                                            </Mui.IconButton>
+                                        </Mui.InputAdornment>
+                                    )
+                                }}
                             />
                         </Mui.Grid>
 

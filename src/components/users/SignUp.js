@@ -1,11 +1,45 @@
 import * as Mui from '@mui/material'
 
 import LockOpenIcon from '@mui/icons-material/LockOpen';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+
 import { useTheme } from '@emotion/react';
+import { useState } from 'react';
+
+import axios from 'axios';
 
 export default function SignUp() {
 
     const theme = useTheme()
+
+    const [userDetails, setUserDetails] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        userName: '',
+        password: ''
+    })
+
+    const [passwordVisibility, setPasswordVisibility] = useState(false)
+
+    const handlePasswordVisibility = () => {
+        if (passwordVisibility) {
+            setPasswordVisibility(false)
+        } else {
+            setPasswordVisibility(true)
+        }
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+
+        const user = await axios.post('http://localhost:5000/users', userDetails)
+            .catch(error => {
+                console.log(error) // *** PLACEHOLDER ***
+            })
+        console.log(user.data)
+    }
 
     return (
         <Mui.Container component='main' maxWidth='sm'>
@@ -30,7 +64,7 @@ export default function SignUp() {
                     Sign Up
                 </Mui.Typography>
 
-                <Mui.Box component='form' onSubmit={() => { }} sx={{
+                <Mui.Box component='form' onSubmit={handleSubmit} sx={{
                     p: 3,
                     borderRadius: 2,
                     background: theme.palette.background.paper,
@@ -46,6 +80,7 @@ export default function SignUp() {
                                 fullWidth
                                 autoFocus
                                 autoComplete='given-name'
+                                onChange={e => setUserDetails({ ...userDetails, firstName: e.target.value })}
                             />
                         </Mui.Grid>
 
@@ -57,33 +92,65 @@ export default function SignUp() {
                                 required
                                 fullWidth
                                 autoComplete='family-name'
+                                onChange={e => setUserDetails({ ...userDetails, lastName: e.target.value })}
                             />
                         </Mui.Grid>
 
                         <Mui.Grid item xs={12}>
                             <Mui.TextField
+                                name='email'
+                                id='email'
+                                label='Email'
+                                required
+                                fullWidth
+                                autoComplete='email'
+                                onChange={e => setUserDetails({ ...userDetails, email: e.target.value })}
+                            />
+                        </Mui.Grid>
+
+                        <Mui.Grid item xs={12}>
+                            <Mui.TextField sx={{ mt: 5 }}
                                 name='username'
                                 id='username'
                                 label='Username'
                                 required
                                 fullWidth
                                 autoComplete='username'
+                                onChange={e => setUserDetails({ ...userDetails, userName: e.target.value })}
                             />
                         </Mui.Grid>
 
                         <Mui.Grid item xs={12}>
                             <Mui.TextField
                                 name='password'
-                                type='password'
+                                type={passwordVisibility ? 'text' : 'password'}
                                 id='password'
                                 label='Password'
+                                placeholder={passwordVisibility ? 'Enter Password' : '**********'}
+                                required
+                                fullWidth
+                                autoComplete='new-password'
+                                InputProps={{
+                                    endAdornment: (
+                                        <Mui.InputAdornment position='end'>
+                                            <Mui.IconButton onClick={handlePasswordVisibility}>
+                                                {passwordVisibility ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                                            </Mui.IconButton>
+                                        </Mui.InputAdornment>
+                                    )
+                                }}
+                                onChange={e => setUserDetails({ ...userDetails, password: e.target.value })}
+                            />
+                            <Mui.TextField sx={{ mt: 1 }}
+                                name='confirm-password'
+                                type={passwordVisibility ? 'text' : 'password'}
+                                id='confirm-password'
+                                label='Confirm Password'
                                 required
                                 fullWidth
                                 autoComplete='new-password'
                             />
                         </Mui.Grid>
-
-                        {/* Add confirm password input */}
 
                         <Mui.Grid item xs={12}>
                             <Mui.Button variant='contained' size='large' fullWidth type='submit'>Sign Up</Mui.Button>

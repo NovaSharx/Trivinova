@@ -8,7 +8,7 @@ export default function GameTimer(props) {
 
     const duration = 30
 
-    let [startTime, setStartTime] = useState(Date.now() + 1000 * duration)
+    let [startTime] = useState(Date.now() + 1000 * duration)
     let [timeLeft, setTimeLeft] = useState(duration)
     let [timeoutId, setTimeoutId] = useState()
 

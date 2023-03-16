@@ -50,7 +50,7 @@ export default function GameLauncher() {
 
             {/* Make into Mui Cards with details */}
 
-            <Mui.Grow in timeout={500}>
+            <Mui.Grow in timeout={2000}>
                 <Mui.Button color='secondary' variant='contained' onClick={() => handleModalChange('wildcard')}>
                     <Mui.Typography variant='h4'>
                         Wildcard Mode
@@ -58,7 +58,7 @@ export default function GameLauncher() {
                 </Mui.Button>
             </Mui.Grow>
 
-            <Mui.Grow in timeout={1000}>
+            <Mui.Grow in timeout={2500}>
                 <Mui.Button color='secondary' variant='contained' onClick={() => handleModalChange('specialized')}>
                     <Mui.Typography variant='h4'>
                         Specialized Mode
@@ -66,7 +66,7 @@ export default function GameLauncher() {
                 </Mui.Button>
             </Mui.Grow>
 
-            <Mui.Grow in timeout={1500}>
+            <Mui.Grow in timeout={3000}>
                 <Mui.Button color='secondary' variant='contained' onClick={() => handleModalChange('custom')}>
                     <Mui.Typography variant='h4'>
                         Custom Settings Mode

@@ -20,6 +20,7 @@ import GameLauncher from './components/game/GameLauncher'
 import Game from './components/game/Game'
 import Error404 from './Error404'
 import PostGame from './components/game/PostGame';
+import CurrentUserProvider from './components/contexts/CurrentUser';
 
 function App() {
 
@@ -50,33 +51,35 @@ function App() {
 
   return (
     <div className='App'>
-      <Router>
-        <ThemeProvider theme={theme}>
-          <Mui.Paper square sx={{
-            minHeight: '100vh',
-            backgroundImage: themeMode === 'light' ? 'url(white-questionmark-background-glow-lightmode.jpg)' : 'url(white-questionmark-background-glow-darkmode.jpg)',
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundColor: 'rgba(0, 0, 0, 0)',
-            backgroundBlendMode: 'multiply',
-          }}>
-            <Navigation />
-            <Routes>
-              <Route exact path='/' element={<Home />} />
-              <Route exact path='/login' element={<Login />} />
-              <Route exact path='/signup' element={<SignUp />} />
-              <Route exact path='/searchplayer' element={<SearchPlayer />} />
-              <Route exact path='/leaderboards' element={<Leaderboards />} />
-              <Route exact path='/gamelauncher' element={<GameLauncher />} />
-              <Route exact path='/game' element={<Game />} />
-              <Route exact path='/postgame' element={<PostGame />} />
-              <Route path='/' element={<Error404 />} />
-            </Routes>
-            <AccessibilityTool toggleThemeMode={toggleThemeMode} />
-          </Mui.Paper>
-        </ThemeProvider>
-      </Router>
+      <CurrentUserProvider>
+        <Router>
+          <ThemeProvider theme={theme}>
+            <Mui.Paper square sx={{
+              minHeight: '100vh',
+              backgroundImage: themeMode === 'light' ? 'url(white-questionmark-background-glow-lightmode.jpg)' : 'url(white-questionmark-background-glow-darkmode.jpg)',
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundColor: 'rgba(0, 0, 0, 0)',
+              backgroundBlendMode: 'multiply',
+            }}>
+              <Navigation />
+              <Routes>
+                <Route exact path='/' element={<Home />} />
+                <Route exact path='/login' element={<Login />} />
+                <Route exact path='/signup' element={<SignUp />} />
+                <Route exact path='/searchplayer' element={<SearchPlayer />} />
+                <Route exact path='/leaderboards' element={<Leaderboards />} />
+                <Route exact path='/gamelauncher' element={<GameLauncher />} />
+                <Route exact path='/game' element={<Game />} />
+                <Route exact path='/postgame' element={<PostGame />} />
+                <Route path='/' element={<Error404 />} />
+              </Routes>
+              <AccessibilityTool toggleThemeMode={toggleThemeMode} />
+            </Mui.Paper>
+          </ThemeProvider>
+        </Router>
+      </CurrentUserProvider>
     </div>
   );
 }

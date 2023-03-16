@@ -3,8 +3,34 @@ import * as Mui from '@mui/material'
 import LightbulbCircleIcon from '@mui/icons-material/LightbulbCircle'
 
 import MenuDrawer from './MenuDrawer'
+import { Fragment, useContext } from 'react'
+import { CurrentUser } from '../contexts/CurrentUser'
 
 export default function Navigation() {
+
+    const { currentUser } = useContext(CurrentUser)
+
+    let profileActions = (
+        <Mui.Grid item xs={4} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <Mui.Stack direction='row' spacing={1}>
+                <Mui.Button href='/login' variant='outlined' color='inherit'>
+                    Login
+                </Mui.Button>
+
+                <Mui.Button href='/signup' variant='contained' color='secondary'>
+                    Sign Up
+                </Mui.Button>
+            </Mui.Stack>
+        </Mui.Grid>
+    )
+
+    if (currentUser) {
+        profileActions = (
+            <Fragment>
+                Profile Buttons Here.
+            </Fragment>
+        )
+    }
 
     return (
         <div>
@@ -26,17 +52,7 @@ export default function Navigation() {
                                 </Mui.Link>
                             </Mui.Grid>
 
-                            <Mui.Grid item xs={4} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                                <Mui.Stack direction='row' spacing={1}>
-                                    <Mui.Button href='/login' variant='outlined' color='inherit'>
-                                        Login
-                                    </Mui.Button>
-
-                                    <Mui.Button href='/signup' variant='contained' color='secondary'>
-                                        Sign Up
-                                    </Mui.Button>
-                                </Mui.Stack>
-                            </Mui.Grid>
+                            {profileActions}
 
                         </Mui.Grid>
 
