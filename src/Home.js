@@ -41,7 +41,7 @@ export default function Home() {
 
             </Mui.Box>
 
-            <Mui.Button onClick={() => navigate("/gamelauncher")} variant='contained' sx={{ height: '100px', width: '500px', fontSize: '40px', marginTop: '200px' }}>
+            <Mui.Button onClick={() => navigate("/gamelauncher")} variant='contained' sx={{ height: '100px', width: '500px', fontSize: '40px', marginTop: '220px' }}>
                 <QuizIcon sx={{ fontSize: '50px' }} /> GAME LAUNCHER <QuizIcon sx={{ fontSize: '50px' }} />
             </Mui.Button>
 

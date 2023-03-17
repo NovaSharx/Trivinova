@@ -10,8 +10,11 @@ import { useContext, useState } from 'react'
 
 import { CurrentUser } from "../contexts/CurrentUser"
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
+
+    const navigate = useNavigate()
 
     const theme = useTheme()
 
@@ -35,6 +38,7 @@ export default function Login() {
             .then(response => {
                 localStorage.setItem('token', response.data.token)
                 setCurrentUser(response.data.user)
+                navigate("/")
             })
             .catch(error => {
                 if (error.response) {
