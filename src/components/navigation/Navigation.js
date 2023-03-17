@@ -11,29 +11,33 @@ export default function Navigation() {
 
     const { currentUser } = useContext(CurrentUser)
 
-    let profileActions = (
-        <Mui.Grid item xs={5} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-            <Mui.Stack direction='row' spacing={1}>
-                <Mui.Button href='/login' variant='outlined' color='inherit'>
-                    Login
-                </Mui.Button>
-
-                <Mui.Button href='/signup' variant='contained' color='secondary'>
-                    Sign Up
-                </Mui.Button>
-            </Mui.Stack>
-        </Mui.Grid>
-    )
+    let profileActions = <Mui.Grid item xs={5} sx={{ display: 'flex', justifyContent: 'flex-end' }}></Mui.Grid>
 
     if (currentUser) {
-        profileActions = (
-            <Mui.Grid item xs={5} sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
-                <Mui.Typography>Welcome, {currentUser.userName}</Mui.Typography>
-                <Mui.IconButton>
-                    <AccountCircleIcon fontSize='large' sx={{ color: 'white' }} />
-                </Mui.IconButton>
-            </Mui.Grid>
-        )
+        if (currentUser.defaultName) {
+            profileActions = (
+                <Mui.Grid item xs={5} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                    <Mui.Stack direction='row' spacing={1}>
+                        <Mui.Button href='/login' variant='outlined' color='inherit'>
+                            Login
+                        </Mui.Button>
+
+                        <Mui.Button href='/signup' variant='contained' color='secondary'>
+                            Sign Up
+                        </Mui.Button>
+                    </Mui.Stack>
+                </Mui.Grid>
+            )
+        } else {
+            profileActions = (
+                <Mui.Grid item xs={5} sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+                    <Mui.Typography>Welcome, {currentUser.userName}</Mui.Typography>
+                    <Mui.IconButton>
+                        <AccountCircleIcon fontSize='large' sx={{ color: 'white' }} />
+                    </Mui.IconButton>
+                </Mui.Grid>
+            )
+        }
     }
 
     return (

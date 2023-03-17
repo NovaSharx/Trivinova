@@ -33,11 +33,15 @@ export default function Login() {
 
         axios.post('http://localhost:5000/authentication', userCredentials)
             .then(response => {
-                console.log(response)
-                setCurrentUser(response.data)
+                localStorage.setItem('token', response.data.token)
+                setCurrentUser(response.data.user)
             })
             .catch(error => {
-                setErrorMessage(error.response.data.message)
+                if (error.response) {
+                    setErrorMessage(error.response.data.message)
+                } else {
+                    setErrorMessage(error.message)
+                }
             })
             .finally(() => {
                 setIsLoggingIn(false)
@@ -137,7 +141,7 @@ export default function Login() {
                                 loading={isLoggingIn}
                                 loadingIndicator="Logging In…"
                             >
-                                <span>Log in</span>
+                                <span>Login</span>
                             </LoadingButton>
                         </Mui.Grid>
 

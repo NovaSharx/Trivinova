@@ -93,11 +93,7 @@ export default function Game() {
                 mt: 10
             }}>
                 {triviaAPIData &&
-                    <Suspense fallback={
-                        <Fragment>
-                            {suspenseSkeleton}
-                        </Fragment>
-                    }>
+                    <Suspense fallback={suspenseSkeleton}>
                         <GameContainer triviaAPIData={triviaAPIData} triviaSettings={triviaSettings} />
                     </Suspense>
                 }
