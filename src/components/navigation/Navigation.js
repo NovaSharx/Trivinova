@@ -6,10 +6,13 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import MenuDrawer from './MenuDrawer'
 import { useContext } from 'react'
 import { CurrentUser } from '../contexts/CurrentUser'
+import { useNavigate } from 'react-router-dom';
 
 export default function Navigation() {
 
     const { currentUser } = useContext(CurrentUser)
+
+    const navigate = useNavigate()
 
     let profileActions = <Mui.Grid item xs={5} sx={{ display: 'flex', justifyContent: 'flex-end' }}></Mui.Grid>
 
@@ -18,11 +21,11 @@ export default function Navigation() {
             profileActions = (
                 <Mui.Grid item xs={5} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                     <Mui.Stack direction='row' spacing={1}>
-                        <Mui.Button href='/login' variant='outlined' color='inherit'>
+                        <Mui.Button onClick={() => navigate("/login")} variant='outlined' color='inherit'>
                             Login
                         </Mui.Button>
 
-                        <Mui.Button href='/signup' variant='contained' color='secondary'>
+                        <Mui.Button onClick={() => navigate("/signup")} variant='contained' color='secondary'>
                             Sign Up
                         </Mui.Button>
                     </Mui.Stack>
@@ -53,7 +56,7 @@ export default function Navigation() {
                             </Mui.Grid>
 
                             <Mui.Grid item xs={2} sx={{ display: 'flex', justifyContent: 'center' }}>
-                                <Mui.Link href='/' underline='none' color='inherit'>
+                                <Mui.Link component='button' onClick={() => navigate("/")} underline='none' color='inherit'>
                                     <Mui.Typography variant='h4' sx={{ display: 'flex', alignItems: 'center' }}>
                                         TRIVIN<LightbulbCircleIcon sx={{ fontSize: 32 }} />VA
                                     </Mui.Typography>

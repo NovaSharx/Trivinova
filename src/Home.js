@@ -5,7 +5,11 @@ import LightbulbCircleIcon from '@mui/icons-material/LightbulbCircle'
 
 import { Fragment } from 'react'
 
+import { useNavigate } from "react-router-dom";
+
 export default function Home() {
+
+    const navigate = useNavigate()
 
     let title = "TRIVINOVA"
     let titleArray = title.split('')
@@ -37,7 +41,7 @@ export default function Home() {
 
             </Mui.Box>
 
-            <Mui.Button href='/gamelauncher' variant='contained' sx={{ height: '100px', width: '500px', fontSize: '40px', marginTop: '200px' }}>
+            <Mui.Button onClick={() => navigate("/gamelauncher")} variant='contained' sx={{ height: '100px', width: '500px', fontSize: '40px', marginTop: '200px' }}>
                 <QuizIcon sx={{ fontSize: '50px' }} /> GAME LAUNCHER <QuizIcon sx={{ fontSize: '50px' }} />
             </Mui.Button>
 

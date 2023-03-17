@@ -90,11 +90,11 @@ export default function GameContainer(props) {
                 justifyContent: 'space-between'
             }}>
 
-                <Mui.Button href='/gamelauncher' variant='outlined'>
+                <Mui.Button onClick={() => navigate("/gamelauncher")} variant='outlined'>
                     Game Launcher
                 </Mui.Button>
 
-                <Mui.Button href='/' variant='outlined'>
+                <Mui.Button onClick={() => navigate("/")} variant='outlined'>
                     Main Menu
                 </Mui.Button>
 

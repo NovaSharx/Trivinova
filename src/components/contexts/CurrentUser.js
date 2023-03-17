@@ -16,7 +16,9 @@ function CurrentUserProvider({ children }) {
             }).then(user => {
                 setCurrentUser(user.data)
             }).catch(error => {
-                console.log(error) // *** PLACEHOLDER ***
+                setCurrentUser({
+                    defaultName: 'Guest'
+                })
             })
         }
 

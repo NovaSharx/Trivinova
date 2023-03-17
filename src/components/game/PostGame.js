@@ -1,8 +1,10 @@
 import * as Mui from '@mui/material'
 
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 export default function PostGame() {
+
+    const navigate = useNavigate()
 
     const location = useLocation()
     const { postGameData, triviaSettings } = location.state
@@ -50,7 +52,7 @@ export default function PostGame() {
                 backdropFilter: 'blur(5px)'
             }}>
 
-                <Mui.Button href='/gamelauncher' variant='contained'>
+                <Mui.Button onClick={() => navigate("/gamelauncher")} variant='contained'>
                     Play Again
                 </Mui.Button>
 
