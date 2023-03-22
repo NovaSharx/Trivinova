@@ -1,4 +1,4 @@
-import * as Mui from '@mui/material'
+import * as Mui from '@mui/material';
 
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import CircularProgress from '@mui/material/CircularProgress';
@@ -6,31 +6,39 @@ import PersonIcon from '@mui/icons-material/Person';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import LogoutIcon from '@mui/icons-material/Logout';
 
-import { useNavigate } from 'react-router-dom'
-import { Fragment, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { Fragment, useState } from 'react';
 
-export default function ProfileActions(props) {
+import { useContext } from 'react';
+import { CurrentUser } from '../contexts/CurrentUser';
 
-    const { currentUser } = props
+export default function ProfileActions() {
+
+    const { currentUser } = useContext(CurrentUser) // Calls on the CurrentUser context and destructures current user data from CurrentUserProvider 
 
     const navigate = useNavigate()
 
-    const [anchorElement, setAnchorElement] = useState(null)
-    const menuOpen = Boolean(anchorElement)
+    const [anchorElement, setAnchorElement] = useState(null) // Profile menu anchor
+    const menuOpen = Boolean(anchorElement) // Open once the menu anchor has been assigned
 
+    // Opens profile menu
     const handleMenuOpen = (event) => {
         setAnchorElement(event.currentTarget)
     }
+    // Closes profile menu
     const handleMenuClose = () => {
         setAnchorElement(null)
     }
+    // Logs current user out by removing json web token
     const handleLogout = () => {
-        navigate("/")
+        navigate("/login")
         localStorage.removeItem('token')
         window.location.reload(false) // Reloads the page using the version of the page cached by the browser.
     }
 
+    // Render buttons depending on current user
     if (currentUser) {
+        // Render login and signup if defaultName exists
         if (currentUser.defaultName) {
             return (
                 <Mui.Stack direction='row' spacing={1}>
@@ -43,7 +51,9 @@ export default function ProfileActions(props) {
                     </Mui.Button>
                 </Mui.Stack>
             )
-        } else {
+        }
+        // Render profile buttons if current user has been established through CurrentUser Context
+        else {
             return (
                 <Fragment>
                     <Mui.Typography>Welcome, {currentUser.userName}</Mui.Typography>
@@ -91,11 +101,11 @@ export default function ProfileActions(props) {
                         </Mui.MenuList>
                     </Mui.Menu>
                 </Fragment>
-
             )
         }
     }
 
+    // If current user has not been established yet then render loading icon feedback
     return (
         <Mui.Grid item xs={5} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
             <CircularProgress color='inherit' />

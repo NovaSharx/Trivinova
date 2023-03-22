@@ -1,11 +1,12 @@
-import * as Mui from '@mui/material'
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import * as Mui from '@mui/material';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function GameLauncher() {
 
     const navigate = useNavigate()
 
+    // Trivia settings are passed to the game route through it's location state variable 
     const openGameRoute = (gameMode, category = 'random', difficulty = 'random', limit = 10) => {
         navigate('/game', {
             state: {
@@ -17,21 +18,14 @@ export default function GameLauncher() {
         })
     }
 
-    let [modalState, setModalState] = useState(false)
-    let [selectedGameMode, setSelectedGameMode] = useState(null)
-    let [selectedCategory, setselectedCategory] = useState('random')
-    let [selectedDifficulty, setSelectedDifficulty] = useState('random')
-    let [selectedQuestionLimit, setSelectedQuestionLimit] = useState(10)
+    let [modalState, setModalState] = useState(false) // Controls whether or not modal is open or not
 
-    // Rich array used to specify markings for the question limit slider
-    const limitMarks = [
-        { value: 10, label: '10' },
-        { value: 20, label: '20' },
-        { value: 30, label: '30' },
-        { value: 40, label: '40' },
-        { value: 50, label: '50' }
-    ]
+    let [selectedGameMode, setSelectedGameMode] = useState(null) // Stores the selected trivia game mode
+    let [selectedCategory, setselectedCategory] = useState('random') // Stores the selected trivia category
+    let [selectedDifficulty, setSelectedDifficulty] = useState('random') // Stores the selected trivia difficulty level
+    let [selectedQuestionLimit, setSelectedQuestionLimit] = useState(10) // Stores the selected number of trivia question to ask
 
+    // Opens modal if closed with proper initial trivia game mode setting values or closes modal if opened and resets game mode setting values to default values
     const handleModalChange = (gameMode) => {
         if (modalState) {
             setSelectedGameMode(null)
@@ -45,6 +39,7 @@ export default function GameLauncher() {
         setSelectedQuestionLimit(10)
     }
 
+    // Renders the gamemode selection screen
     const gameModeSelectionScreen = (
         <Mui.Stack spacing={3} sx={{ '& button': { height: 200, background: 'url(./pexels-dmitry-demidov-3852577.jpg)', backgroundColor: 'grey', backgroundBlendMode: 'multiply' }, width: '100%' }}>
 
@@ -77,6 +72,16 @@ export default function GameLauncher() {
         </Mui.Stack>
     )
 
+    // Rich array used to specify markings for the question limit slider
+    const limitMarks = [
+        { value: 10, label: '10' },
+        { value: 20, label: '20' },
+        { value: 30, label: '30' },
+        { value: 40, label: '40' },
+        { value: 50, label: '50' }
+    ]
+
+    // Renders the corresponding game mode settings according to the pre-selected game mode
     const gameModeSettings = (
         <Mui.Container maxWidth='lg' sx={{
             position: 'absolute',

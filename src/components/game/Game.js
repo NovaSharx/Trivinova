@@ -10,9 +10,11 @@ import GameContainer from './game_container/GameContainer'
 export default function Game() {
 
     const location = useLocation()
-    const triviaSettings = location.state
-    let [triviaAPIData, setTriviaAPIData] = useState(null)
+    const triviaSettings = location.state // Trivia settings established in the game launcher screen are initialized
 
+    let [triviaAPIData, setTriviaAPIData] = useState(null) // Stores all trivia data processed at '/trivia' endpoint in backend
+
+    // Requests a fresh set of trivia questions onload according to passed trivia settings
     useEffect(() => {
         // Axios request is wrapped in a suspender helper function and assigned to triviaAPIData
         const suspenseTriviaData = promiseSuspender(
@@ -28,6 +30,7 @@ export default function Game() {
 
     }, [triviaSettings])
 
+    // Render while suspense is triggered and data is loading
     const suspenseSkeleton = (
         <Mui.Paper elevation={5} sx={{ p: 2 }}>
 

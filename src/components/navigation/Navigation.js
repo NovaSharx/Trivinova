@@ -1,16 +1,12 @@
-import * as Mui from '@mui/material'
+import * as Mui from '@mui/material';
 
-import LightbulbCircleIcon from '@mui/icons-material/LightbulbCircle'
+import LightbulbCircleIcon from '@mui/icons-material/LightbulbCircle';
 
-import MenuDrawer from './MenuDrawer'
-import { useContext } from 'react'
-import { CurrentUser } from '../contexts/CurrentUser'
+import MenuDrawer from './MenuDrawer';
 import { useNavigate } from 'react-router-dom';
 import ProfileActions from './ProfileActions';
 
 export default function Navigation() {
-
-    const { currentUser } = useContext(CurrentUser)
 
     const navigate = useNavigate()
 
@@ -20,7 +16,7 @@ export default function Navigation() {
                 <Mui.Container maxWidth='x1'>
                     <Mui.Toolbar disableGutters>
 
-                        <Mui.Grid container direction='row' alignItems='center' justifyContent='space-between'>
+                        <Mui.Grid container direction='row'>
 
                             <Mui.Grid item xs={5} sx={{ display: 'flex' }}>
                                 <MenuDrawer />
@@ -35,7 +31,7 @@ export default function Navigation() {
                             </Mui.Grid>
 
                             <Mui.Grid item xs={5} sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
-                                <ProfileActions currentUser={currentUser} />
+                                <ProfileActions />
                             </Mui.Grid>
 
                         </Mui.Grid>

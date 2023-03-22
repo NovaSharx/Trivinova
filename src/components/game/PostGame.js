@@ -1,14 +1,15 @@
-import * as Mui from '@mui/material'
+import * as Mui from '@mui/material';
 
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function PostGame() {
 
     const navigate = useNavigate()
 
     const location = useLocation()
-    const { postGameData, triviaSettings } = location.state
+    const { postGameData, triviaSettings } = location.state // Destructures post game data and trivia settings passed at game container
 
+    // Renders result data
     const renderResults = postGameData.map((result, index) => {
         return (
             <Mui.Zoom key={index} in={true} style={{ transitionDelay: true && `${200 * index}ms` }}>
@@ -28,9 +29,11 @@ export default function PostGame() {
         )
     })
 
+    // Calculates and returns the user's average score rounded to a whole number
     const calculateScore = () => {
         let scoreTotal = 0
 
+        // If user's answer was correct then multiply their score by the amount of time remaining when answered and add it to their total
         postGameData.forEach(result => {
             if (result.gotCorrect) {
                 scoreTotal += (30 - result.timeTaken) * 1000

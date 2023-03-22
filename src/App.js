@@ -1,31 +1,32 @@
 import './App.css';
 
-import * as Mui from '@mui/material'
+import * as Mui from '@mui/material';
 
-import { ThemeProvider, createTheme } from '@mui/material/styles'
-import { getThemeMode, rewriteThemeMode } from './Theme'
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { getThemeMode, rewriteThemeMode } from './Theme';
 
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 
-import Home from './Home'
-import Navigation from './components/navigation/Navigation'
-import AccessibilityTool from './components/accessibility/AccessibilityTool'
+import Home from './Home';
+import Navigation from './components/navigation/Navigation';
+import AccessibilityTool from './components/accessibility/AccessibilityTool';
 
-import Login from './components/users/Login'
-import SignUp from './components/users/SignUp'
-import SearchPlayer from './components/users/SearchPlayer'
-import Leaderboards from './components/leaderboards/Leaderboards'
-import GameLauncher from './components/game/GameLauncher'
-import Game from './components/game/Game'
-import Error404 from './Error404'
+import Login from './components/users/Login';
+import SignUp from './components/users/SignUp';
+import SearchPlayer from './components/users/SearchPlayer';
+import Leaderboards from './components/leaderboards/Leaderboards';
+import GameLauncher from './components/game/GameLauncher';
+import Game from './components/game/Game';
+import Error404 from './Error404';
 import PostGame from './components/game/PostGame';
 import CurrentUserProvider from './components/contexts/CurrentUser';
 
 function App() {
 
-  let [themeMode, setThemeMode] = useState(getThemeMode())
+  let [themeMode, setThemeMode] = useState(getThemeMode()) // Grabs theme token from local storage (light/dark)
 
+  // Theme variables are defined here with themeMode state governing light/dark mode
   let theme = createTheme({
     palette: {
       mode: themeMode,
@@ -41,6 +42,7 @@ function App() {
     }
   })
 
+  // Toggle between light and dark mode when called
   const toggleThemeMode = () => {
     if (themeMode === 'light') {
       setThemeMode(rewriteThemeMode('dark'))
@@ -51,17 +53,15 @@ function App() {
 
   return (
     <div className='App'>
-      <CurrentUserProvider>
-        <Router>
+      <Router>
+        <CurrentUserProvider>
           <ThemeProvider theme={theme}>
             <Mui.Paper square sx={{
               minHeight: '100vh',
-              backgroundImage: themeMode === 'light' ? 'url(white-questionmark-background-glow-lightmode.jpg)' : 'url(white-questionmark-background-glow-darkmode.jpg)',
+              backgroundImage: themeMode === 'light' ? 'url(white-questionmark-background-glow-lightmode.jpg)' : 'url(white-questionmark-background-glow-darkmode.jpg)', // Change game background wallpaper according to the current theme mode
               backgroundRepeat: 'no-repeat',
               backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundColor: 'rgba(0, 0, 0, 0)',
-              backgroundBlendMode: 'multiply',
+              backgroundPosition: 'center'
             }}>
               <Navigation />
               <Routes>
@@ -78,8 +78,8 @@ function App() {
               <AccessibilityTool toggleThemeMode={toggleThemeMode} />
             </Mui.Paper>
           </ThemeProvider>
-        </Router>
-      </CurrentUserProvider>
+        </CurrentUserProvider>
+      </Router>
     </div>
   );
 }

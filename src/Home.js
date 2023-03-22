@@ -5,7 +5,7 @@ import LightbulbCircleIcon from '@mui/icons-material/LightbulbCircle'
 
 import { Fragment } from 'react'
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
 
 export default function Home() {
 
@@ -13,8 +13,9 @@ export default function Home() {
 
     let title = "TRIVINOVA"
     let titleArray = title.split('')
-    titleArray.splice(6, 1, <LightbulbCircleIcon sx={{ fontSize: '185px' }} />)
+    titleArray.splice(6, 1, <LightbulbCircleIcon sx={{ fontSize: '185px' }} />) // Parse the lightbulb icon in place of the 'O' in the title
 
+    // Title with grow animation
     const renderTitleAnimation = titleArray.map((letter, index) => {
         return (
             <Mui.Grow key={index} in timeout={index * 500 + 1000}>
@@ -41,7 +42,7 @@ export default function Home() {
 
             </Mui.Box>
 
-            <Mui.Button onClick={() => navigate("/gamelauncher")} variant='contained' sx={{ height: '100px', width: '500px', fontSize: '40px', marginTop: '220px' }}>
+            <Mui.Button onClick={() => navigate("/gamelauncher")} variant='contained' sx={{ height: '100px', width: '500px', fontSize: '40px', marginTop: '20px' }}>
                 <QuizIcon sx={{ fontSize: '50px' }} /> GAME LAUNCHER <QuizIcon sx={{ fontSize: '50px' }} />
             </Mui.Button>
 

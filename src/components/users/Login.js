@@ -1,14 +1,14 @@
-import * as Mui from '@mui/material'
+import * as Mui from '@mui/material';
 
-import PersonIcon from '@mui/icons-material/Person'
+import PersonIcon from '@mui/icons-material/Person';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import LoadingButton from '@mui/lab/LoadingButton';
 
-import { useTheme } from '@emotion/react'
-import { useContext, useState } from 'react'
+import { useTheme } from '@emotion/react';
+import { useContext, useState } from 'react';
 
-import { CurrentUser } from "../contexts/CurrentUser"
+import { CurrentUser } from "../contexts/CurrentUser";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -20,14 +20,15 @@ export default function Login() {
 
     const { setCurrentUser } = useContext(CurrentUser)
 
+    // Stores the entered user credentials
     const [userCredentials, setUserCredentials] = useState({
         userName: '',
         password: ''
     })
 
-    const [errorMessage, setErrorMessage] = useState(null)
+    const [errorMessage, setErrorMessage] = useState(null) // Stores the error state of the form
 
-    const [isLoggingIn, setIsLoggingIn] = useState(false)
+    const [isLoggingIn, setIsLoggingIn] = useState(false) // Stores the state of the login button
 
     const handleSubmit = (e) => {
         e.preventDefault()

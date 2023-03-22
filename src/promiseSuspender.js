@@ -1,12 +1,12 @@
-// Takes a fetch request promise as an arguement and wraps it.
+// Takes a promise as an arguement and wraps it so that a suspender is thrown while data loads for better feedback.
 export const promiseSuspender = (fetchRequest) => {
 
     const promiseWrapper = (promise) => {
 
         let status = 'pending' // Tracks the status of the promise.
-        let result = '' // Stores to result of the promise.
+        let result = '' // Stores the result of the promise.
 
-        // The suspender represents the resolution of the promise and updates the 'status' variable by flagging either a success or an error.
+        // The suspender represents the resolution state of the promise and updates the 'status' variable by flagging either success or error.
         let suspender = promise.then(response => {
             status = 'success'
             result = response
@@ -27,7 +27,7 @@ export const promiseSuspender = (fetchRequest) => {
                     throw result
                 }
 
-                // If the promise has been triggered and no error has occured then return the result!
+                // If the promise has been triggered and no error has occured (status === 'success') then return the result.
                 return result
             }
         }
