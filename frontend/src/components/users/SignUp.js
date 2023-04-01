@@ -5,13 +5,20 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 import { useTheme } from '@emotion/react';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { CurrentUser } from '../contexts/CurrentUser';
+import LoadingButton from '@mui/lab/LoadingButton/LoadingButton';
 
 export default function SignUp() {
 
+    const navigate = useNavigate()
+
     const theme = useTheme()
+
+    const { setCurrentUser } = useContext(CurrentUser)
 
     const [userDetails, setUserDetails] = useState({
         firstName: '',
@@ -22,6 +29,10 @@ export default function SignUp() {
     })
 
     const [passwordVisibility, setPasswordVisibility] = useState(false)
+
+    const [errorMessage, setErrorMessage] = useState(null) // Stores the error state of the form
+
+    const [isSigningUp, setIsSigningUp] = useState(false) // Stores the state of the sign in button
 
     const handlePasswordVisibility = () => {
         if (passwordVisibility) {
@@ -34,12 +45,24 @@ export default function SignUp() {
     const handleSubmit = (e) => {
         e.preventDefault()
 
+        setIsSigningUp(true)
+
         axios.post('http://localhost:5000/users', userDetails)
-            .then(user => {
-                console.log(user)
+            .then(response => {
+                console.log(response)
+                localStorage.setItem('token', response.data.token)
+                setCurrentUser(response.data.user)
+                navigate("/")
             })
             .catch(error => {
-                console.log(error) // *** PLACEHOLDER ***
+                if (error.response) {
+                    setErrorMessage(error.response.data.message)
+                } else {
+                    setErrorMessage(error.message)
+                }
+            })
+            .finally(() => {
+                setIsSigningUp(false)
             })
     }
 
@@ -142,6 +165,7 @@ export default function SignUp() {
                                     )
                                 }}
                                 onChange={e => setUserDetails({ ...userDetails, password: e.target.value })}
+                                helperText={errorMessage}
                             />
                             <Mui.TextField sx={{ mt: 1 }}
                                 name='confirm-password'
@@ -155,7 +179,16 @@ export default function SignUp() {
                         </Mui.Grid>
 
                         <Mui.Grid item xs={12}>
-                            <Mui.Button variant='contained' size='large' fullWidth type='submit'>Sign Up</Mui.Button>
+                            <LoadingButton
+                                variant='contained'
+                                size='large'
+                                fullWidth
+                                type='submit'
+                                loading={isSigningUp}
+                                loadingIndicator="Creating an account…"
+                            >
+                                <span>Create An Account</span>
+                            </LoadingButton>
                         </Mui.Grid>
 
                         <Mui.Grid item xs={12}>
