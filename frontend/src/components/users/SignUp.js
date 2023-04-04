@@ -47,7 +47,7 @@ export default function SignUp() {
 
         setIsSigningUp(true)
 
-        axios.post('http://localhost:5000/users', userDetails)
+        axios.post(`${process.env.REACT_APP_SERVER_URL}users`, userDetails)
             .then(response => {
                 console.log(response)
                 localStorage.setItem('token', response.data.token)

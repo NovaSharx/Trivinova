@@ -10,7 +10,7 @@ function CurrentUserProvider({ children }) {
     // Verifies user's json web token everytime page is reloaded
     useEffect(() => {
         const getLoggedInUser = () => {
-            axios.get('http://localhost:5000/authentication/profile', {
+            axios.get(`${process.env.REACT_APP_SERVER_URL}authentication/profile`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}` // Send current user's json web token attached through authorization header
                 }

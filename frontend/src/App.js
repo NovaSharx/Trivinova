@@ -39,7 +39,10 @@ function App() {
       error: {
         main: '#d32f2f',
       },
-    }
+    },
+    typography: {
+      fontFamily: 'Montserrat'
+    },
   })
 
   // Toggle between light and dark mode when called

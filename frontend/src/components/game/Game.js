@@ -18,7 +18,7 @@ export default function Game() {
     useEffect(() => {
         // Axios request is wrapped in a suspender helper function and assigned to triviaAPIData
         const suspenseTriviaData = promiseSuspender(
-            axios.post('http://localhost:5000/trivia', triviaSettings)
+            axios.post(`${process.env.REACT_APP_SERVER_URL}trivia`, triviaSettings)
                 .then(response => {
                     return response.data
                 })

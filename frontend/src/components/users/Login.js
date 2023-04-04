@@ -35,7 +35,7 @@ export default function Login() {
 
         setIsLoggingIn(true)
 
-        axios.post('http://localhost:5000/authentication', userCredentials)
+        axios.post(`${process.env.REACT_APP_SERVER_URL}authentication`, userCredentials)
             .then(response => {
                 localStorage.setItem('token', response.data.token)
                 setCurrentUser(response.data.user)

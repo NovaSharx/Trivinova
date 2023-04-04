@@ -13,9 +13,11 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-    const { password, ...otherUserData } = req.body
+    const { firstName, lastName, password, ...otherUserData } = req.body
     const user = await User.create({
         ...otherUserData,
+        firstName: firstName.charAt(0).toUpperCase() + firstName.slice(1),
+        lastName: lastName.charAt(0).toUpperCase() + lastName.slice(1),
         role: 'player',
         passwordDigest: await bcrypt.hash(password, 10)
     })

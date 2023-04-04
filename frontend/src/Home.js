@@ -19,7 +19,7 @@ export default function Home() {
     const renderTitleAnimation = titleArray.map((letter, index) => {
         return (
             <Mui.Grow key={index} in timeout={index * 500 + 1000}>
-                <Mui.Typography fontSize={'200px'} color='white' sx={{ display: 'flex', alignItems: 'center' }}>
+                <Mui.Typography fontSize='200px' fontWeight={200} color='white' sx={{ display: 'flex', alignItems: 'center' }}>
                     {letter}
                 </Mui.Typography>
             </Mui.Grow>
@@ -43,7 +43,7 @@ export default function Home() {
             </Mui.Box>
 
             <Mui.Button onClick={() => navigate("/gamelauncher")} variant='contained' sx={{ height: '100px', width: '500px', fontSize: '40px', marginTop: '50px' }}>
-                <QuizIcon sx={{ fontSize: '50px' }} /> GAME LAUNCHER <QuizIcon sx={{ fontSize: '50px' }} />
+                START
             </Mui.Button>
 
         </Fragment >
