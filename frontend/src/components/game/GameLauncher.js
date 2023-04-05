@@ -55,20 +55,23 @@ export default function GameLauncher() {
         <Mui.Stack spacing={3} sx={{ width: '100%' }}>
 
             <Mui.Grow in timeout={2000}>
-                <Mui.Button sx={gameModeButtonStyling} color='secondary' variant='contained' onClick={() => handleModalChange('wildcard')}>
+                <Mui.Button sx={{ ...gameModeButtonStyling, flexDirection: 'column' }} color='secondary' variant='contained' onClick={() => handleModalChange('wildcard')}>
                     Wildcard Mode
+                    <Mui.Typography>Category: <b>Random</b>, Difficulty: <b>Easy</b>, Number of questions: <b>10</b></Mui.Typography>
                 </Mui.Button>
             </Mui.Grow>
 
             <Mui.Grow in timeout={2500}>
-                <Mui.Button sx={gameModeButtonStyling} color='secondary' variant='contained' onClick={() => handleModalChange('specialized')}>
+                <Mui.Button sx={{ ...gameModeButtonStyling, flexDirection: 'column' }} color='secondary' variant='contained' onClick={() => handleModalChange('specialized')}>
                     Specialized Mode
+                    <Mui.Typography>Category: <b>Custom</b>, Difficulty: <b>Easy</b>, Number of questions: <b>10</b></Mui.Typography>
                 </Mui.Button>
             </Mui.Grow>
 
             <Mui.Grow in timeout={3000}>
-                <Mui.Button sx={gameModeButtonStyling} color='secondary' variant='contained' onClick={() => handleModalChange('custom')}>
+                <Mui.Button sx={{ ...gameModeButtonStyling, flexDirection: 'column' }} color='secondary' variant='contained' onClick={() => handleModalChange('custom')}>
                     Custom Settings Mode
+                    <Mui.Typography>Category: <b>Custom</b>, Difficulty: <b>Custom</b>, Number of questions: <b>Custom</b></Mui.Typography>
                 </Mui.Button>
             </Mui.Grow>
 
@@ -114,7 +117,7 @@ export default function GameLauncher() {
                                 <Mui.FormLabel id='custom-category'>Category</Mui.FormLabel>
                                 <Mui.Select
                                     variant='outlined'
-                                    labelledId="cutom-category"
+                                    aria-labelledby="cutom-category"
                                     value={selectedCategory}
                                     onChange={(event) => setselectedCategory(event.target.value)}
                                     disabled={selectedGameMode === 'wildcard'}
@@ -153,50 +156,6 @@ export default function GameLauncher() {
                                         Sport & Leisure
                                     </Mui.MenuItem>
                                 </Mui.Select>
-                                {/* <Mui.ToggleButtonGroup
-                                    fullWidth
-                                    orientation='vertical'
-                                    color='primary'
-                                    value={selectedCategory}
-                                    exclusive
-                                    onChange={(event) => setselectedCategory(event.target.value)}
-                                    aria-labelledby="cutom-category"
-                                    disabled={selectedGameMode === 'wildcard'}
-                                >
-                                    <Mui.ToggleButton value='random' disabled={selectedGameMode !== 'custom'}>
-                                        Random
-                                    </Mui.ToggleButton>
-                                    <Mui.ToggleButton value='arts_and_literature'>
-                                        Arts & Literature
-                                    </Mui.ToggleButton>
-                                    <Mui.ToggleButton value='film_and_tv'>
-                                        Film & TV
-                                    </Mui.ToggleButton>
-                                    <Mui.ToggleButton value='food_and_drink'>
-                                        Food & Drink
-                                    </Mui.ToggleButton>
-                                    <Mui.ToggleButton value='general_knowledge'>
-                                        General Knowledge
-                                    </Mui.ToggleButton>
-                                    <Mui.ToggleButton value='geography'>
-                                        Geography
-                                    </Mui.ToggleButton>
-                                    <Mui.ToggleButton value='history'>
-                                        History
-                                    </Mui.ToggleButton>
-                                    <Mui.ToggleButton value='music'>
-                                        Music
-                                    </Mui.ToggleButton>
-                                    <Mui.ToggleButton value='science'>
-                                        Science
-                                    </Mui.ToggleButton>
-                                    <Mui.ToggleButton value='society_and_culture'>
-                                        Society & Culture
-                                    </Mui.ToggleButton>
-                                    <Mui.ToggleButton value='sport_and_leisure'>
-                                        Sport & Leisure
-                                    </Mui.ToggleButton>
-                                </Mui.ToggleButtonGroup> */}
                             </Mui.FormControl>
 
                         </Mui.Paper>
@@ -264,8 +223,8 @@ export default function GameLauncher() {
                 <Mui.Modal
                     open={modalState}
                     onClose={() => setModalState(false)}
-                    aria-labelledby="test"
-                    aria-describedby="test"
+                    aria-labelledby="game-launcher-modal"
+                    aria-describedby="game-launcher-modal"
                 >
                     {gameModeSettings}
                 </Mui.Modal>
