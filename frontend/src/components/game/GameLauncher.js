@@ -56,19 +56,19 @@ export default function GameLauncher() {
 
             <Mui.Grow in timeout={2000}>
                 <Mui.Button sx={gameModeButtonStyling} color='secondary' variant='contained' onClick={() => handleModalChange('wildcard')}>
-                        Wildcard Mode
+                    Wildcard Mode
                 </Mui.Button>
             </Mui.Grow>
 
             <Mui.Grow in timeout={2500}>
                 <Mui.Button sx={gameModeButtonStyling} color='secondary' variant='contained' onClick={() => handleModalChange('specialized')}>
-                        Specialized Mode
+                    Specialized Mode
                 </Mui.Button>
             </Mui.Grow>
 
             <Mui.Grow in timeout={3000}>
                 <Mui.Button sx={gameModeButtonStyling} color='secondary' variant='contained' onClick={() => handleModalChange('custom')}>
-                        Custom Settings Mode
+                    Custom Settings Mode
                 </Mui.Button>
             </Mui.Grow>
 
@@ -86,7 +86,7 @@ export default function GameLauncher() {
 
     // Renders the corresponding game mode settings according to the pre-selected game mode
     const gameModeSettings = (
-        <Mui.Container maxWidth='lg' sx={{
+        <Mui.Container maxWidth='md' sx={{
             position: 'absolute',
             top: '50%',
             left: '50%',
@@ -112,7 +112,48 @@ export default function GameLauncher() {
 
                             <Mui.FormControl fullWidth variant='filled'>
                                 <Mui.FormLabel id='custom-category'>Category</Mui.FormLabel>
-                                <Mui.ToggleButtonGroup
+                                <Mui.Select
+                                    variant='outlined'
+                                    labelledId="cutom-category"
+                                    value={selectedCategory}
+                                    onChange={(event) => setselectedCategory(event.target.value)}
+                                    disabled={selectedGameMode === 'wildcard'}
+                                >
+                                    <Mui.MenuItem value='random' disabled={selectedGameMode !== 'custom'}>
+                                        Random
+                                    </Mui.MenuItem>
+                                    <Mui.MenuItem value='arts_and_literature'>
+                                        Arts & Literature
+                                    </Mui.MenuItem>
+                                    <Mui.MenuItem value='film_and_tv'>
+                                        Film & TV
+                                    </Mui.MenuItem>
+                                    <Mui.MenuItem value='food_and_drink'>
+                                        Food & Drink
+                                    </Mui.MenuItem>
+                                    <Mui.MenuItem value='general_knowledge'>
+                                        General Knowledge
+                                    </Mui.MenuItem>
+                                    <Mui.MenuItem value='geography'>
+                                        Geography
+                                    </Mui.MenuItem>
+                                    <Mui.MenuItem value='history'>
+                                        History
+                                    </Mui.MenuItem>
+                                    <Mui.MenuItem value='music'>
+                                        Music
+                                    </Mui.MenuItem>
+                                    <Mui.MenuItem value='science'>
+                                        Science
+                                    </Mui.MenuItem>
+                                    <Mui.MenuItem value='society_and_culture'>
+                                        Society & Culture
+                                    </Mui.MenuItem>
+                                    <Mui.MenuItem value='sport_and_leisure'>
+                                        Sport & Leisure
+                                    </Mui.MenuItem>
+                                </Mui.Select>
+                                {/* <Mui.ToggleButtonGroup
                                     fullWidth
                                     orientation='vertical'
                                     color='primary'
@@ -155,7 +196,7 @@ export default function GameLauncher() {
                                     <Mui.ToggleButton value='sport_and_leisure'>
                                         Sport & Leisure
                                     </Mui.ToggleButton>
-                                </Mui.ToggleButtonGroup>
+                                </Mui.ToggleButtonGroup> */}
                             </Mui.FormControl>
 
                         </Mui.Paper>
