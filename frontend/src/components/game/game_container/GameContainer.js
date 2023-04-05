@@ -107,7 +107,7 @@ export default function GameContainer(props) {
 
             <Mui.Paper variant='outlined' sx={{ m: 2, p: 2 }}>
 
-                {questionIndex < triviaQuestions.length && <Mui.Typography variant='h3'> {questionIndex + 1}.  {triviaQuestions[questionIndex].question} </Mui.Typography>}
+                {questionIndex < triviaQuestions.length && <Mui.Typography variant='h4'> {questionIndex + 1}.  {triviaQuestions[questionIndex].question} </Mui.Typography>}
 
                 <GameTimer key={questionIndex} checkAnswer={checkAnswer} setTimeTaken={setTimeTaken} />
 

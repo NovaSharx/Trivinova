@@ -1,5 +1,7 @@
 import * as Mui from '@mui/material';
 
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
 import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function PostGame() {
@@ -14,16 +16,27 @@ export default function PostGame() {
         return (
             <Mui.Zoom key={index} in={true} style={{ transitionDelay: true && `${200 * index}ms` }}>
                 <Mui.Grid item xs={12}>
-                    <Mui.Paper elevation={8} sx={{ borderRadius: 3, border: result.gotCorrect ? 'solid 3px rgba(47,154,47,1)' : 'solid 3px rgba(255,0,0,1)' }}>
+                    <Mui.Accordion
+                        elevation={8}
+                        sx={{
+                            border: result.gotCorrect ? 'solid 3px #46e046' : 'solid 3px #ff0000',
+                            backgroundColor: result.gotCorrect ? '#2f9a2f' : '#a70000'
+                        }}
+                    >
 
-                        <Mui.Typography bgcolor={result.gotCorrect ? 'rgb(47,154,47)' : 'rgb(255,0,0)'} color='white'>{index + 1}.  {result.question}</Mui.Typography>
+                        <Mui.AccordionSummary expandIcon={<ExpandMoreIcon sx={{ color: 'white' }} />}>
+                            <Mui.Typography color='white'>{index + 1}.  {result.question}</Mui.Typography>
+                        </Mui.AccordionSummary>
 
-                        <Mui.Box sx={{ p: 1 }}>
-                            <Mui.Typography>Selection: <b>{result.selection}</b></Mui.Typography>
-                            <Mui.Typography>Answer: <b>{result.answer}</b></Mui.Typography>
-                            <Mui.Typography>Answered In: <b>{result.timeTaken} second(s)</b></Mui.Typography>
-                        </Mui.Box>
-                    </Mui.Paper>
+                        <Mui.AccordionDetails sx={{ p: 0 }}>
+                            <Mui.Box sx={{ p: 1, backgroundColor: 'white' }}>
+                                <Mui.Typography>Selection: <b>{result.selection}</b></Mui.Typography>
+                                <Mui.Typography>Answer: <b>{result.answer}</b></Mui.Typography>
+                                <Mui.Typography>Answered In: <b>{result.timeTaken} second(s)</b></Mui.Typography>
+                            </Mui.Box>
+                        </Mui.AccordionDetails>
+
+                    </Mui.Accordion>
                 </Mui.Grid>
             </Mui.Zoom >
         )
@@ -66,7 +79,7 @@ export default function PostGame() {
                     boxShadow: 'inset 0px 0px 20px 10px #00000050',
                 }}>
                     <Mui.Typography variant='h5'>SCORE</Mui.Typography>
-                    <Mui.Typography variant='h2'>{calculateScore()} </Mui.Typography>
+                    <Mui.Typography variant='h2' fontWeight={700}>{calculateScore()} </Mui.Typography>
                 </Mui.Box>
 
                 <Mui.Box sx={{ p: 3 }}>
