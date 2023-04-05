@@ -5,7 +5,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 import { useTheme } from '@emotion/react';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -28,11 +28,25 @@ export default function SignUp() {
         password: ''
     })
 
+    const [confirmationPassword, setConfirmationPassword] = useState()
+
     const [passwordVisibility, setPasswordVisibility] = useState(false)
 
     const [errorMessage, setErrorMessage] = useState(null) // Stores the error state of the form
 
     const [isSigningUp, setIsSigningUp] = useState(false) // Stores the state of the sign in button
+
+    useEffect(() => {
+        const handlePasswordMatch = () => {
+            if (confirmationPassword !== userDetails.password) {
+                setErrorMessage('Passwords do not match.')
+            }
+            else {
+                setErrorMessage(null)
+            }
+        }
+        handlePasswordMatch()
+    }, [userDetails, confirmationPassword])
 
     const handlePasswordVisibility = () => {
         if (passwordVisibility) {
@@ -86,7 +100,7 @@ export default function SignUp() {
                 </Mui.Avatar>
 
                 <Mui.Typography variant='h4' m={2}>
-                    Sign Up
+                    SIGN UP
                 </Mui.Typography>
 
                 <Mui.Box component='form' onSubmit={handleSubmit} sx={{
@@ -165,9 +179,9 @@ export default function SignUp() {
                                     )
                                 }}
                                 onChange={e => setUserDetails({ ...userDetails, password: e.target.value })}
-                                helperText={errorMessage}
                             />
                             <Mui.TextField sx={{ mt: 1 }}
+                                error={errorMessage != null}
                                 name='confirm-password'
                                 type={passwordVisibility ? 'text' : 'password'}
                                 id='confirm-password'
@@ -175,11 +189,14 @@ export default function SignUp() {
                                 required
                                 fullWidth
                                 autoComplete='new-password'
+                                onChange={(e) => setConfirmationPassword(e.target.value)}
+                                helperText={errorMessage}
                             />
                         </Mui.Grid>
 
                         <Mui.Grid item xs={12}>
                             <LoadingButton
+                                disabled={errorMessage}
                                 variant='contained'
                                 size='large'
                                 fullWidth

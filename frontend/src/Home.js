@@ -1,6 +1,5 @@
 import * as Mui from '@mui/material'
 
-import QuizIcon from '@mui/icons-material/Quiz'
 import LightbulbCircleIcon from '@mui/icons-material/LightbulbCircle'
 
 import { Fragment } from 'react'
@@ -42,8 +41,8 @@ export default function Home() {
 
             </Mui.Box>
 
-            <Mui.Button onClick={() => navigate("/gamelauncher")} variant='contained' sx={{ height: '100px', width: '500px', fontSize: '40px', marginTop: '50px' }}>
-                START
+            <Mui.Button onClick={() => navigate("/gamelauncher")} variant='contained' sx={{ height: '100px', width: '500px', fontSize: '50px', fontWeight: 300, marginTop: '50px' }}>
+                start trivia
             </Mui.Button>
 
         </Fragment >

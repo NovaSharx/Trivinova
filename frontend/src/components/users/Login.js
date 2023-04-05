@@ -88,7 +88,7 @@ export default function Login() {
                 </Mui.Avatar>
 
                 <Mui.Typography variant='h4' m={2}>
-                    Login
+                    LOGIN
                 </Mui.Typography>
 
                 <Mui.Box component='form' onSubmit={handleSubmit} sx={{
@@ -157,7 +157,6 @@ export default function Login() {
                         </Mui.Grid>
 
                     </Mui.Grid>
-
 
                 </Mui.Box>
 

@@ -6,11 +6,13 @@ import { useLocation } from 'react-router-dom'
 import axios from 'axios'
 import { promiseSuspender } from '../../promiseSuspender'
 import GameContainer from './game_container/GameContainer'
+import { useTheme } from '@emotion/react'
 
 export default function Game() {
 
     const location = useLocation()
     const triviaSettings = location.state // Trivia settings established in the game launcher screen are initialized
+    const theme = useTheme()
 
     let [triviaAPIData, setTriviaAPIData] = useState(null) // Stores all trivia data processed at '/trivia' endpoint in backend
 
@@ -79,18 +81,18 @@ export default function Game() {
 
     return (
         <Fragment>
-            <Mui.Container maxWidth='x1' sx={{
+            <Mui.Box sx={{
                 display: 'flex',
                 height: '80px',
-                background: 'radial-gradient(circle, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 90%)',
+                background: `radial-gradient(circle, ${theme.palette.background.paper} 20%, rgba(0,0,0,0) 70%)`,
                 backdropFilter: 'blur(5px)',
                 justifyContent: 'center',
                 alignItems: 'center'
             }}>
-                <Mui.Typography variant='h2' color='white' noWrap>
+                <Mui.Typography variant='h2' fontWeight={500} noWrap>
                     {triviaSettings.gameMode.toUpperCase()} TRIVIA
                 </Mui.Typography>
-            </Mui.Container>
+            </Mui.Box>
 
             <Mui.Container maxWidth='lg' component='main' sx={{
                 mt: 10

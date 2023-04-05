@@ -39,33 +39,36 @@ export default function GameLauncher() {
         setSelectedQuestionLimit(10)
     }
 
+    const gameModeButtonStyling = {
+        height: 150,
+        background: 'url(./pexels-dmitry-demidov-3852577.jpg)',
+        backgroundColor: 'grey',
+        backgroundBlendMode: 'multiply',
+        fontSize: '2.5em',
+        '&:hover': {
+            fontSize: '2.8em'
+        }
+    }
+
     // Renders the gamemode selection screen
     const gameModeSelectionScreen = (
-        <Mui.Stack spacing={3} sx={{ '& button': { height: 200, background: 'url(./pexels-dmitry-demidov-3852577.jpg)', backgroundColor: 'grey', backgroundBlendMode: 'multiply' }, width: '100%' }}>
-
-            {/* Make into Mui Cards with details */}
+        <Mui.Stack spacing={3} sx={{ width: '100%' }}>
 
             <Mui.Grow in timeout={2000}>
-                <Mui.Button color='secondary' variant='contained' onClick={() => handleModalChange('wildcard')}>
-                    <Mui.Typography variant='h4'>
+                <Mui.Button sx={gameModeButtonStyling} color='secondary' variant='contained' onClick={() => handleModalChange('wildcard')}>
                         Wildcard Mode
-                    </Mui.Typography>
                 </Mui.Button>
             </Mui.Grow>
 
             <Mui.Grow in timeout={2500}>
-                <Mui.Button color='secondary' variant='contained' onClick={() => handleModalChange('specialized')}>
-                    <Mui.Typography variant='h4'>
+                <Mui.Button sx={gameModeButtonStyling} color='secondary' variant='contained' onClick={() => handleModalChange('specialized')}>
                         Specialized Mode
-                    </Mui.Typography>
                 </Mui.Button>
             </Mui.Grow>
 
             <Mui.Grow in timeout={3000}>
-                <Mui.Button color='secondary' variant='contained' onClick={() => handleModalChange('custom')}>
-                    <Mui.Typography variant='h4'>
+                <Mui.Button sx={gameModeButtonStyling} color='secondary' variant='contained' onClick={() => handleModalChange('custom')}>
                         Custom Settings Mode
-                    </Mui.Typography>
                 </Mui.Button>
             </Mui.Grow>
 
