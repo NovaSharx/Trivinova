@@ -9,7 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       user_id: {
-        type: Sequelize.SMALLINT
+        type: Sequelize.INTEGER
       },
       user_name: {
         allowNull: false,

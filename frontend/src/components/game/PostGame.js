@@ -3,13 +3,53 @@ import * as Mui from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useContext, useState } from 'react';
+import { CurrentUser } from '../contexts/CurrentUser';
+import axios from 'axios';
 
 export default function PostGame() {
 
     const navigate = useNavigate()
 
+    const { currentUser } = useContext(CurrentUser)
+
     const location = useLocation()
     const { postGameData, triviaSettings } = location.state // Destructures post game data and trivia settings passed at game container
+
+    const [achievedHighscore, setAchievedHighscore] = useState(false)
+    const [openHighscoreDialog, setOpenHighscoreDialog] = useState(false)
+
+    // Calculates and returns the user's average score rounded to a whole number
+    const calculateScore = () => {
+        let scoreTotal = 0
+
+        // If user's answer was correct then multiply their score by the amount of time remaining when answered and add it to their total
+        postGameData.forEach(result => {
+            if (result.gotCorrect) {
+                scoreTotal += (30 - result.timeTaken) * 1000
+            }
+        })
+
+        let averagePlayerScore = Math.round(scoreTotal / triviaSettings.limit)
+
+        return averagePlayerScore
+    }
+
+    if (currentUser && !achievedHighscore) {
+        if (currentUser.userId) {
+            axios.post(`${process.env.REACT_APP_SERVER_URL}highscores/evaluate`, {
+                highscore: calculateScore(),
+                gameMode: triviaSettings.gameMode,
+            })
+                .then(response => {
+                    setOpenHighscoreDialog(response.data)
+                    setAchievedHighscore(response.data)
+                })
+                .catch(error => {
+                    console.log(error) // ***PlaceHolder***
+                })
+        }
+    }
 
     // Renders result data
     const renderResults = postGameData.map((result, index) => {
@@ -29,7 +69,7 @@ export default function PostGame() {
                         </Mui.AccordionSummary>
 
                         <Mui.AccordionDetails sx={{ p: 0 }}>
-                            <Mui.Box sx={{ p: 1, backgroundColor: 'white' }}>
+                            <Mui.Box sx={{ p: 1, backgroundColor: 'white', color: 'black' }}>
                                 <Mui.Typography>Selection: <b>{result.selection}</b></Mui.Typography>
                                 <Mui.Typography>Answer: <b>{result.answer}</b></Mui.Typography>
                                 <Mui.Typography>Answered In: <b>{result.timeTaken} second(s)</b></Mui.Typography>
@@ -42,20 +82,27 @@ export default function PostGame() {
         )
     })
 
-    // Calculates and returns the user's average score rounded to a whole number
-    const calculateScore = () => {
-        let scoreTotal = 0
+    const closeHighscoreDialog = () => {
+        setOpenHighscoreDialog(false)
+    }
 
-        // If user's answer was correct then multiply their score by the amount of time remaining when answered and add it to their total
-        postGameData.forEach(result => {
-            if (result.gotCorrect) {
-                scoreTotal += (30 - result.timeTaken) * 1000
-            }
+    const submitHighscore = () => {
+        axios.post(`${process.env.REACT_APP_SERVER_URL}highscores`, {
+            userId: currentUser.userId,
+            userName: currentUser.userName,
+            highscore: calculateScore(),
+            gameMode: triviaSettings.gameMode,
+            category: triviaSettings.category,
+            difficulty: triviaSettings.difficulty,
+            limit: triviaSettings.limit,
         })
-
-        let averagePlayerScore = Math.round(scoreTotal / triviaSettings.limit)
-
-        return averagePlayerScore
+            .then(() => {
+                window.history.replaceState(null, '')
+                navigate('/gamelauncher')
+            })
+            .catch(error => {
+                console.log(error) // ***PlaceHolder***
+            })
     }
 
     return (
@@ -68,6 +115,21 @@ export default function PostGame() {
                 backdropFilter: 'blur(5px)'
             }}>
 
+                <Mui.Dialog
+                    open={openHighscoreDialog}
+                    onClose={closeHighscoreDialog}
+                >
+                    <Mui.DialogTitle fontSize={30} textAlign='center'><b>HIGHSCORE ACHIEVED</b></Mui.DialogTitle>
+
+                    <Mui.DialogContent>
+                        <Mui.DialogContentText textAlign='center'>Click the <b>SUBMIT HIGHSCORE</b> button to place your mark on the leaderboards!</Mui.DialogContentText>
+                    </Mui.DialogContent>
+
+                    <Mui.DialogActions>
+                        <Mui.Button variant='outlined' onClick={closeHighscoreDialog}>Okay</Mui.Button>
+                    </Mui.DialogActions>
+                </Mui.Dialog>
+
                 <Mui.Button onClick={() => navigate("/gamelauncher")} variant='contained'>
                     Play Again
                 </Mui.Button>
@@ -76,10 +138,15 @@ export default function PostGame() {
                     m: '10px 30%',
                     p: 3,
                     borderRadius: 3,
-                    boxShadow: 'inset 0px 0px 20px 10px #00000050',
+                    boxShadow: 'inset 0px 0px 20px 10px #00000050'
                 }}>
                     <Mui.Typography variant='h5'>SCORE</Mui.Typography>
                     <Mui.Typography variant='h2' fontWeight={700}>{calculateScore()} </Mui.Typography>
+                    {achievedHighscore &&
+                        <Mui.Button onClick={submitHighscore} variant='contained' fullWidth sx={{ mt: 2 }}>
+                            Submit Highscore
+                        </Mui.Button>
+                    }
                 </Mui.Box>
 
                 <Mui.Box sx={{ p: 3 }}>

@@ -14,11 +14,11 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true
     },
-    user_id: {
-      type: DataTypes.SMALLINT
+    userId: {
+      type: DataTypes.INTEGER
     },
-    user_name: {
-      type: DataTypes.CHAR,
+    userName: {
+      type: DataTypes.STRING,
       allowNull: false
     },
     highscore: {
