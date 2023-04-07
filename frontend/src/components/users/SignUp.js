@@ -28,7 +28,7 @@ export default function SignUp() {
         password: ''
     })
 
-    const [confirmationPassword, setConfirmationPassword] = useState()
+    const [confirmationPassword, setConfirmationPassword] = useState('')
 
     const [passwordVisibility, setPasswordVisibility] = useState(false)
 
@@ -196,7 +196,7 @@ export default function SignUp() {
 
                         <Mui.Grid item xs={12}>
                             <LoadingButton
-                                disabled={errorMessage}
+                                disabled={errorMessage !== null}
                                 variant='contained'
                                 size='large'
                                 fullWidth

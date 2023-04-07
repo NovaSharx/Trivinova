@@ -6,10 +6,13 @@ import LeaderboardIcon from '@mui/icons-material/Leaderboard'
 import MenuIcon from '@mui/icons-material/Menu'
 
 import { Fragment, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export default function MenuDrawer() {
 
-    let [drawerState, setDrawerState] = useState(false)
+    const navigate = useNavigate()
+
+    const [drawerState, setDrawerState] = useState(false)
 
     return (
         <Fragment>
@@ -33,7 +36,7 @@ export default function MenuDrawer() {
                         <Mui.Divider />
 
                         <Mui.ListItem disablePadding>
-                            <Mui.ListItemButton href='/searchplayer'>
+                            <Mui.ListItemButton onClick={() => { navigate('/searchplayer'); setDrawerState(false) }}>
                                 <Mui.ListItemIcon>
                                     <PersonSearchIcon />
                                 </Mui.ListItemIcon>
@@ -42,7 +45,7 @@ export default function MenuDrawer() {
                         </Mui.ListItem>
 
                         <Mui.ListItem disablePadding>
-                            <Mui.ListItemButton href='/leaderboards'>
+                            <Mui.ListItemButton onClick={() => { navigate('/leaderboards'); setDrawerState(false) }}>
                                 <Mui.ListItemIcon>
                                     <LeaderboardIcon />
                                 </Mui.ListItemIcon>

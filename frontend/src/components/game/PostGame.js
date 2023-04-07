@@ -82,6 +82,26 @@ export default function PostGame() {
         )
     })
 
+    const renderhighscoreOptions = () => {
+        if (currentUser) {
+            if (achievedHighscore) {
+                return (
+                    <Mui.Button onClick={submitHighscore} variant='contained' fullWidth sx={{ mt: 2 }}>
+                        Submit Highscore
+                    </Mui.Button>
+                )
+            }
+            else if (currentUser.defaultName === 'Guest') {
+                return (
+                    <Mui.Typography><i><Mui.Link color='inherit' onClick={() => navigate('/login')} sx={{ cursor: 'pointer' }}><b>Login</b></Mui.Link> or <Mui.Link color='inherit' onClick={() => navigate('/signup')} sx={{ cursor: 'pointer' }}><b>Create an account</b></Mui.Link> in order to be placed on the leaderboard</i></Mui.Typography>
+                )
+            }
+            else {
+                return
+            }
+        }
+    }
+
     const closeHighscoreDialog = () => {
         setOpenHighscoreDialog(false)
     }
@@ -106,10 +126,10 @@ export default function PostGame() {
     }
 
     return (
-        <Mui.Container component='main' maxWidth='xl'>
+        <Mui.Container component='main' maxWidth='lg' sx={{ p: 5 }}>
             <Mui.Box elevation={5} sx={{
-                mt: 10,
-                p: 2,
+                pt: 2,
+                pb: 2,
                 borderRadius: 3,
                 background: 'rgba(0,0,0,0.15)',
                 backdropFilter: 'blur(5px)'
@@ -130,23 +150,32 @@ export default function PostGame() {
                     </Mui.DialogActions>
                 </Mui.Dialog>
 
-                <Mui.Button onClick={() => navigate("/gamelauncher")} variant='contained'>
-                    Play Again
-                </Mui.Button>
+                <Mui.Box>
+                    <Mui.Button onClick={() => navigate("/gamelauncher")} variant='contained'>
+                        Play Again
+                    </Mui.Button>
 
-                <Mui.Box sx={{
-                    m: '10px 30%',
-                    p: 3,
-                    borderRadius: 3,
-                    boxShadow: 'inset 0px 0px 20px 10px #00000050'
-                }}>
-                    <Mui.Typography variant='h5'>SCORE</Mui.Typography>
-                    <Mui.Typography variant='h2' fontWeight={700}>{calculateScore()} </Mui.Typography>
-                    {achievedHighscore &&
-                        <Mui.Button onClick={submitHighscore} variant='contained' fullWidth sx={{ mt: 2 }}>
-                            Submit Highscore
-                        </Mui.Button>
-                    }
+                    <Mui.Box sx={{
+                        m: 2,
+                    }}>
+                        <Mui.Typography>Game mode: <b>{triviaSettings.gameMode.toUpperCase()}</b></Mui.Typography>
+                        <Mui.Typography>Category: <b>{triviaSettings.category.toUpperCase()}</b></Mui.Typography>
+                        <Mui.Typography>Difficulty: <b>{triviaSettings.difficulty.toUpperCase()}</b></Mui.Typography>
+                        <Mui.Typography>Number of questions: <b>{triviaSettings.limit}</b></Mui.Typography>
+                    </Mui.Box>
+
+                    <Mui.Box sx={{
+                        m: '10px 30%',
+                        p: 3,
+                        borderRadius: 3,
+                        boxShadow: 'inset 0px 0px 15px 5px #00000050'
+                    }}>
+                        <Mui.Typography variant='h5'>SCORE</Mui.Typography>
+                        <Mui.Typography variant='h2' fontWeight={700}>{calculateScore()} </Mui.Typography>
+
+                        {renderhighscoreOptions()}
+
+                    </Mui.Box>
                 </Mui.Box>
 
                 <Mui.Box sx={{ p: 3 }}>

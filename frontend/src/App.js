@@ -41,7 +41,7 @@ function App() {
       },
     },
     typography: {
-      fontFamily: 'Montserrat'
+      fontFamily: 'Montserrat',
     },
   })
 
