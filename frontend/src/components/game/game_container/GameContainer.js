@@ -7,7 +7,7 @@ import GameTimer from './GameTimer';
 
 export default function GameContainer(props) {
 
-    const triviaQuestions = props.triviaAPIData.result.read() // Reads and stores trivia questions once it loads
+    const triviaQuestions = props.triviaAPIData // Reads and stores trivia questions once it loads
     const triviaSettings = props.triviaSettings // Stores trivia settings passed at game launcher
 
     const navigate = useNavigate()

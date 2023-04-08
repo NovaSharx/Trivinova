@@ -42,7 +42,9 @@ export default function GameTimer(props) {
     return (
         <Fragment>
             <Mui.Box sx={{ m: 3 }}>
-                <Mui.Typography variant='h6'>Seconds Left: <b>{timeLeft.toFixed(1)}s</b></Mui.Typography>
+                <Mui.Typography variant='h6'>
+                    Seconds Left: <b>{timeLeft.toFixed(1)}s</b>
+                </Mui.Typography>
 
                 <Mui.LinearProgress variant='determinate' value={(timeLeft / duration) * 100} sx={{ borderRadius: '5px', height: '10px' }} />
             </Mui.Box>

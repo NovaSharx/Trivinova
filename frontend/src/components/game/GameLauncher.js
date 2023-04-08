@@ -57,14 +57,14 @@ export default function GameLauncher() {
             <Mui.Grow in timeout={2000}>
                 <Mui.Button sx={{ ...gameModeButtonStyling, flexDirection: 'column' }} color='secondary' variant='contained' onClick={() => handleModalChange('wildcard')}>
                     Wildcard Mode
-                    <Mui.Typography>Category: <b>Random</b>, Difficulty: <b>Easy</b>, Number of questions: <b>10</b></Mui.Typography>
+                    <Mui.Typography>Category: <b>Random</b>, Difficulty: <b>Random</b>, Number of questions: <b>10</b></Mui.Typography>
                 </Mui.Button>
             </Mui.Grow>
 
             <Mui.Grow in timeout={2500}>
                 <Mui.Button sx={{ ...gameModeButtonStyling, flexDirection: 'column' }} color='secondary' variant='contained' onClick={() => handleModalChange('specialized')}>
                     Specialized Mode
-                    <Mui.Typography>Category: <b>Custom</b>, Difficulty: <b>Easy</b>, Number of questions: <b>10</b></Mui.Typography>
+                    <Mui.Typography>Category: <b>Custom</b>, Difficulty: <b>Random</b>, Number of questions: <b>10</b></Mui.Typography>
                 </Mui.Button>
             </Mui.Grow>
 
