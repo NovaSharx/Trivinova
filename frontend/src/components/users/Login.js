@@ -5,7 +5,6 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import LoadingButton from '@mui/lab/LoadingButton';
 
-import { useTheme } from '@emotion/react';
 import { useContext, useState } from 'react';
 
 import { CurrentUser } from "../contexts/CurrentUser";
@@ -15,8 +14,6 @@ import { useNavigate } from 'react-router-dom';
 export default function Login() {
 
     const navigate = useNavigate()
-
-    const theme = useTheme()
 
     const { setCurrentUser } = useContext(CurrentUser)
 
@@ -87,16 +84,18 @@ export default function Login() {
                     <PersonIcon sx={{ fontSize: '50px' }} />
                 </Mui.Avatar>
 
-                <Mui.Typography variant='h4' m={2}>
-                    LOGIN
-                </Mui.Typography>
-
-                <Mui.Box component='form' onSubmit={handleSubmit} sx={{
+                <Mui.Paper component='form' onSubmit={handleSubmit} sx={{
                     p: 3,
                     borderRadius: 2,
-                    background: theme.palette.background.paper,
                 }}>
                     <Mui.Grid container spacing={2} justifyContent='center'>
+
+                        <Mui.Grid item xs={12}>
+                            <Mui.Typography variant='h4'>
+                                LOGIN
+                            </Mui.Typography>
+                        </Mui.Grid>
+
 
                         <Mui.Grid item xs={12}>
                             <Mui.TextField
@@ -108,7 +107,7 @@ export default function Login() {
                                 fullWidth
                                 autoFocus
                                 autoComplete='username'
-                                // inputProps={{ pattern: '/^[a-zA-Z0-9]+$/' }}
+                                inputProps={{ pattern: '^[A-Za-z][A-Za-z0-9_]{2,15}$' }}
                                 helperText={errorMessage}
                                 onChange={e => handleInputFieldChange({ ...userCredentials, userName: e.target.value })}
                             />
@@ -132,6 +131,9 @@ export default function Login() {
                                             </Mui.IconButton>
                                         </Mui.InputAdornment>
                                     )
+                                }}
+                                inputProps={{
+                                    pattern: '^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,20}$'
                                 }}
                                 onChange={e => handleInputFieldChange({ ...userCredentials, password: e.target.value })}
                             />
@@ -158,7 +160,7 @@ export default function Login() {
 
                     </Mui.Grid>
 
-                </Mui.Box>
+                </Mui.Paper>
 
             </Mui.Box>
 

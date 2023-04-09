@@ -4,7 +4,6 @@ import LockOpenIcon from '@mui/icons-material/LockOpen';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
-import { useTheme } from '@emotion/react';
 import { useContext, useEffect, useState } from 'react';
 
 import axios from 'axios';
@@ -15,8 +14,6 @@ import LoadingButton from '@mui/lab/LoadingButton/LoadingButton';
 export default function SignUp() {
 
     const navigate = useNavigate()
-
-    const theme = useTheme()
 
     const { setCurrentUser } = useContext(CurrentUser)
 
@@ -99,16 +96,17 @@ export default function SignUp() {
                     <LockOpenIcon sx={{ fontSize: '50px' }} />
                 </Mui.Avatar>
 
-                <Mui.Typography variant='h4' m={2}>
-                    SIGN UP
-                </Mui.Typography>
-
-                <Mui.Box component='form' onSubmit={handleSubmit} sx={{
+                <Mui.Paper component='form' onSubmit={handleSubmit} sx={{
                     p: 3,
                     borderRadius: 2,
-                    background: theme.palette.background.paper,
                 }}>
                     <Mui.Grid container spacing={2} justifyContent='center'>
+
+                        <Mui.Grid item xs={12}>
+                            <Mui.Typography variant='h4'>
+                                SIGN UP
+                            </Mui.Typography>
+                        </Mui.Grid>
 
                         <Mui.Grid item xs={6}>
                             <Mui.TextField
@@ -119,6 +117,7 @@ export default function SignUp() {
                                 fullWidth
                                 autoFocus
                                 autoComplete='given-name'
+                                inputProps={{ pattern: '^[A-Za-z]{2,16}$' }}
                                 onChange={e => setUserDetails({ ...userDetails, firstName: e.target.value })}
                             />
                         </Mui.Grid>
@@ -131,6 +130,7 @@ export default function SignUp() {
                                 required
                                 fullWidth
                                 autoComplete='family-name'
+                                inputProps={{ pattern: '^[A-Za-z]{2,16}$' }}
                                 onChange={e => setUserDetails({ ...userDetails, lastName: e.target.value })}
                             />
                         </Mui.Grid>
@@ -143,6 +143,7 @@ export default function SignUp() {
                                 required
                                 fullWidth
                                 autoComplete='email'
+                                inputProps={{ pattern: '[a-z0-9]+@[a-z]+\.[a-z]{2,3}' }}
                                 onChange={e => setUserDetails({ ...userDetails, email: e.target.value })}
                             />
                         </Mui.Grid>
@@ -155,6 +156,8 @@ export default function SignUp() {
                                 required
                                 fullWidth
                                 autoComplete='username'
+                                inputProps={{ pattern: '^[A-Za-z][A-Za-z0-9_]{2,15}$' }}
+                                helperText='Username must be 3-16 characters long, alphanumeric and can contain underscores(_).'
                                 onChange={e => setUserDetails({ ...userDetails, userName: e.target.value })}
                             />
                         </Mui.Grid>
@@ -169,6 +172,7 @@ export default function SignUp() {
                                 required
                                 fullWidth
                                 autoComplete='new-password'
+                                inputProps={{ pattern: '^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,20}$' }}
                                 InputProps={{
                                     endAdornment: (
                                         <Mui.InputAdornment position='end'>
@@ -190,7 +194,7 @@ export default function SignUp() {
                                 fullWidth
                                 autoComplete='new-password'
                                 onChange={(e) => setConfirmationPassword(e.target.value)}
-                                helperText={errorMessage}
+                                helperText={errorMessage ? errorMessage : 'Password must be 6-20 characters long. Must include at least one lower-case character, one upper-case character, one number and one special character (!@#$%^&*).'}
                             />
                         </Mui.Grid>
 
@@ -216,7 +220,7 @@ export default function SignUp() {
 
                     </Mui.Grid>
 
-                </Mui.Box>
+                </Mui.Paper>
 
             </Mui.Box>
 

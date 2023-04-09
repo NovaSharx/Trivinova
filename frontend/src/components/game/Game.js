@@ -17,7 +17,7 @@ export default function Game() {
 
     // Requests a fresh set of trivia questions onload according to passed trivia settings
     useEffect(() => {
-        // Axios request is wrapped in a suspender helper function and assigned to triviaAPIData
+        // Axios request to fetch trivia data
         axios.post(`${process.env.REACT_APP_SERVER_URL}trivia`, triviaSettings)
             .then(response => {
                 setTriviaAPIData(response.data)
@@ -28,8 +28,8 @@ export default function Game() {
 
     }, [triviaSettings])
 
-    // Render while suspense is triggered and data is loading
-    function SuspenseSkeleton() {
+    // Render while trivia data is being fetched
+    function GameSkeleton() {
         return (
             <Mui.Paper elevation={5} sx={{ p: 2 }}>
 
@@ -98,7 +98,7 @@ export default function Game() {
                 {triviaAPIData ?
                     <GameContainer triviaAPIData={triviaAPIData} triviaSettings={triviaSettings} />
                     :
-                    <SuspenseSkeleton />
+                    <GameSkeleton />
                 }
             </Mui.Container>
         </Fragment>
