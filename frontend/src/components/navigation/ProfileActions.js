@@ -69,7 +69,7 @@ export default function ProfileActions() {
                     >
                         <Mui.MenuList>
 
-                            <Mui.MenuItem onClick={handleMenuClose}>
+                            <Mui.MenuItem onClick={() => { navigate('/profile'); handleMenuClose() }}>
                                 <Mui.ListItemIcon>
                                     <PersonIcon />
                                 </Mui.ListItemIcon>

@@ -143,7 +143,7 @@ export default function SignUp() {
                                 required
                                 fullWidth
                                 autoComplete='email'
-                                inputProps={{ pattern: '[a-z0-9]+@[a-z]+\.[a-z]{2,3}' }}
+                                inputProps={{ pattern: '[a-z0-9]+@[a-z]+.[a-z]{2,3}' }}
                                 onChange={e => setUserDetails({ ...userDetails, email: e.target.value })}
                             />
                         </Mui.Grid>

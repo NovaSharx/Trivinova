@@ -1,8 +1,11 @@
+import { useTheme } from '@emotion/react';
 import * as Mui from '@mui/material';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function GameLauncher() {
+
+    const theme = useTheme()
 
     const navigate = useNavigate()
 
@@ -41,8 +44,12 @@ export default function GameLauncher() {
 
     const gameModeButtonStyling = {
         height: 150,
-        background: 'url(./pexels-dmitry-demidov-3852577.jpg)',
-        backgroundColor: 'grey',
+        color: theme.palette.text.primary,
+        background: `url(./questionmark-background-glow-${theme.palette.mode}mode-button.jpg)`,
+        backgroundPosition: 'center center',
+        backgroundSize: '100%',
+        backgroundRepeat: 'no-repeat',
+        backgroundColor: 'rgba(0, 0, 0, 0)',
         backgroundBlendMode: 'multiply',
         fontSize: '2.5em',
         '&:hover': {
@@ -56,21 +63,21 @@ export default function GameLauncher() {
 
             <Mui.Grow in timeout={2000}>
                 <Mui.Button sx={{ ...gameModeButtonStyling, flexDirection: 'column' }} color='secondary' variant='contained' onClick={() => handleModalChange('wildcard')}>
-                    Wildcard Mode
+                    <Mui.Typography variant='h3' fontWeight={500}>Wildcard Mode</Mui.Typography>
                     <Mui.Typography>Category: <b>Random</b>, Difficulty: <b>Random</b>, Number of questions: <b>10</b></Mui.Typography>
                 </Mui.Button>
             </Mui.Grow>
 
             <Mui.Grow in timeout={2500}>
                 <Mui.Button sx={{ ...gameModeButtonStyling, flexDirection: 'column' }} color='secondary' variant='contained' onClick={() => handleModalChange('specialized')}>
-                    Specialized Mode
+                    <Mui.Typography variant='h3' fontWeight={500}>Specialized Mode</Mui.Typography>
                     <Mui.Typography>Category: <b>Custom</b>, Difficulty: <b>Random</b>, Number of questions: <b>10</b></Mui.Typography>
                 </Mui.Button>
             </Mui.Grow>
 
             <Mui.Grow in timeout={3000}>
                 <Mui.Button sx={{ ...gameModeButtonStyling, flexDirection: 'column' }} color='secondary' variant='contained' onClick={() => handleModalChange('custom')}>
-                    Custom Settings Mode
+                    <Mui.Typography variant='h3' fontWeight={500}>Custom Settings Mode</Mui.Typography>
                     <Mui.Typography>Category: <b>Custom</b>, Difficulty: <b>Custom</b>, Number of questions: <b>Custom</b></Mui.Typography>
                 </Mui.Button>
             </Mui.Grow>
@@ -218,7 +225,7 @@ export default function GameLauncher() {
     )
 
     return (
-        <Mui.Container component='main'>
+        <Mui.Container component='main' maxWidth='md'>
             <Mui.Paper elevation={10} sx={{ mt: 10, p: 3, display: 'flex', justifyContent: 'center', background: 'rgba(0,0,0,0)', backdropFilter: 'blur(10px)' }}>
                 <Mui.Modal
                     open={modalState}
