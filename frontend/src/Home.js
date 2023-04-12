@@ -2,8 +2,6 @@ import * as Mui from '@mui/material'
 
 import LightbulbCircleIcon from '@mui/icons-material/LightbulbCircle'
 
-import { Fragment } from 'react'
-
 import { useNavigate } from "react-router-dom"
 
 export default function Home() {
@@ -26,25 +24,23 @@ export default function Home() {
     })
 
     return (
-        <Fragment>
-            <Mui.Box sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: 'inherit',
-                height: '600px',
-            }}>
+        <Mui.Box sx={{
+            width: '100%',
+            height: '600px',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            alignItems: 'center'
+        }}>
 
-                <Mui.Box sx={{ width: '100%', display: 'flex', justifyContent: 'space-around' }}>
-                    {renderTitleAnimation}
-                </Mui.Box>
-
+            <Mui.Box sx={{ width: '100%', display: 'flex', justifyContent: 'space-around' }}>
+                {renderTitleAnimation}
             </Mui.Box>
 
-            <Mui.Button onClick={() => navigate("/gamelauncher")} variant='contained' sx={{ height: '100px', width: '500px', fontSize: '50px', fontWeight: 300, marginTop: '50px' }}>
+            <Mui.Button onClick={() => navigate("/gamelauncher")} variant='contained' sx={{ height: '100px', width: '500px', fontSize: '50px', fontWeight: 300 }}>
                 start trivia
             </Mui.Button>
 
-        </Fragment >
+        </Mui.Box>
     )
 }

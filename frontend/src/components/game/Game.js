@@ -78,7 +78,7 @@ export default function Game() {
     }
 
     return (
-        <Fragment>
+        <Mui.Container>
             <Mui.Box sx={{
                 display: 'flex',
                 height: '80px',
@@ -101,6 +101,6 @@ export default function Game() {
                     <GameSkeleton />
                 }
             </Mui.Container>
-        </Fragment>
+        </Mui.Container>
     )
 }

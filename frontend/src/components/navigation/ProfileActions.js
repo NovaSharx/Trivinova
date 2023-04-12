@@ -1,6 +1,6 @@
 import * as Mui from '@mui/material';
 
-import AccountCircleIcon from '@mui/icons-material/AccountCircle'
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import CircularProgress from '@mui/material/CircularProgress';
 import PersonIcon from '@mui/icons-material/Person';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';

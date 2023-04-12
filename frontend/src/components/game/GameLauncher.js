@@ -226,7 +226,7 @@ export default function GameLauncher() {
 
     return (
         <Mui.Container component='main' maxWidth='md'>
-            <Mui.Paper elevation={10} sx={{ mt: 10, p: 3, display: 'flex', justifyContent: 'center', background: 'rgba(0,0,0,0)', backdropFilter: 'blur(10px)' }}>
+            <Mui.Paper elevation={10} sx={{ p: 3, display: 'flex', justifyContent: 'center', background: 'rgba(0,0,0,0)', backdropFilter: 'blur(10px)' }}>
                 <Mui.Modal
                     open={modalState}
                     onClose={() => setModalState(false)}

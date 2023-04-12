@@ -61,6 +61,8 @@ function App() {
         <CurrentUserProvider>
           <ThemeProvider theme={theme}>
             <Mui.Paper square sx={{
+              display: 'flex',
+              flexDirection: 'column',
               minHeight: '100vh',
               backgroundImage: themeMode === 'light' ? 'url(white-questionmark-background-glow-lightmode.jpg)' : 'url(white-questionmark-background-glow-darkmode.jpg)', // Change game background wallpaper according to the current theme mode
               backgroundRepeat: 'no-repeat',
@@ -68,18 +70,26 @@ function App() {
               backgroundPosition: 'center'
             }}>
               <Navigation />
-              <Routes>
-                <Route exact path='/' element={<Home />} />
-                <Route exact path='/login' element={<Login />} />
-                <Route exact path='/signup' element={<SignUp />} />
-                <Route exact path='/profile' element={<Profile />} />
-                <Route exact path='/searchplayer' element={<SearchPlayer />} />
-                <Route exact path='/leaderboards' element={<Leaderboards />} />
-                <Route exact path='/gamelauncher' element={<GameLauncher />} />
-                <Route exact path='/game' element={<Game />} />
-                <Route exact path='/postgame' element={<PostGame />} />
-                <Route path='/' element={<Error404 />} />
-              </Routes>
+              <Mui.Box sx={{
+                flexGrow: 1,
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center'
+              }}>
+                <Routes>
+                  <Route exact path='/' element={<Home />} />
+                  <Route exact path='/login' element={<Login />} />
+                  <Route exact path='/signup' element={<SignUp />} />
+                  <Route exact path='/profile' element={<Profile />} />
+                  <Route exact path='/searchplayer' element={<SearchPlayer />} />
+                  <Route exact path='/leaderboards' element={<Leaderboards />} />
+                  <Route exact path='/gamelauncher' element={<GameLauncher />} />
+                  <Route exact path='/game' element={<Game />} />
+                  <Route exact path='/postgame' element={<PostGame />} />
+                  <Route path='/' element={<Error404 />} />
+                </Routes>
+              </Mui.Box>
               <AccessibilityTool toggleThemeMode={toggleThemeMode} />
             </Mui.Paper>
           </ThemeProvider>
