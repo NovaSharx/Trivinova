@@ -81,20 +81,10 @@ export default function SignUp() {
         <Mui.Container component='main' maxWidth='sm'>
 
             <Mui.Box sx={{
-                mt: 8,
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center'
             }}>
-
-                <Mui.Avatar sx={{
-                    bgcolor: 'secondary.main',
-                    m: 1,
-                    width: '60px',
-                    height: '60px'
-                }}>
-                    <LockOpenIcon sx={{ fontSize: '50px' }} />
-                </Mui.Avatar>
 
                 <Mui.Paper component='form' onSubmit={handleSubmit} sx={{
                     p: 3,
@@ -106,6 +96,17 @@ export default function SignUp() {
                             <Mui.Typography variant='h4'>
                                 SIGN UP
                             </Mui.Typography>
+                        </Mui.Grid>
+
+                        <Mui.Grid item xs={12}>
+                            <Mui.Avatar sx={{
+                                bgcolor: 'secondary.main',
+                                margin: '0px auto',
+                                width: '60px',
+                                height: '60px'
+                            }}>
+                                <LockOpenIcon sx={{ fontSize: '50px' }} />
+                            </Mui.Avatar>
                         </Mui.Grid>
 
                         <Mui.Grid item xs={6}>

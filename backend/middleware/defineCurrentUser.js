@@ -13,7 +13,8 @@ const defineCurrentUser = async (req, res, next) => {
             const user = await User.findOne({
                 where: {
                     userId: id
-                }
+                },
+                include: 'highscores'
             })
             req.currentUser = user
             next()
