@@ -14,7 +14,7 @@ import AccessibilityTool from './components/accessibility/AccessibilityTool';
 
 import Login from './components/users/Login';
 import SignUp from './components/users/SignUp';
-import SearchPlayer from './components/users/accounts/SearchPlayer';
+import SearchPlayer from './components/users/SearchPlayer';
 import Leaderboards from './components/leaderboards/Leaderboards';
 import GameLauncher from './components/game/GameLauncher';
 import Game from './components/game/Game';
@@ -22,6 +22,7 @@ import Error404 from './Error404';
 import PostGame from './components/game/PostGame';
 import CurrentUserProvider from './components/contexts/CurrentUser';
 import Profile from './components/users/accounts/Profile';
+import AccountDetails from './components/users/accounts/AccountDetails';
 
 function App() {
 
@@ -82,6 +83,7 @@ function App() {
                   <Route exact path='/login' element={<Login />} />
                   <Route exact path='/signup' element={<SignUp />} />
                   <Route exact path='/profile' element={<Profile />} />
+                  <Route exact path='/accountdetails' element={<AccountDetails />} />
                   <Route exact path='/searchplayer' element={<SearchPlayer />} />
                   <Route exact path='/leaderboards' element={<Leaderboards />} />
                   <Route exact path='/gamelauncher' element={<GameLauncher />} />

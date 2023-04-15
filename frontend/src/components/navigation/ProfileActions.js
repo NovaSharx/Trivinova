@@ -78,12 +78,12 @@ export default function ProfileActions() {
                                 </Mui.ListItemText>
                             </Mui.MenuItem>
 
-                            <Mui.MenuItem onClick={handleMenuClose}>
+                            <Mui.MenuItem onClick={() => { navigate('/accountdetails'); handleMenuClose() }}>
                                 <Mui.ListItemIcon>
                                     <ManageAccountsIcon />
                                 </Mui.ListItemIcon>
                                 <Mui.ListItemText>
-                                    Account Settings
+                                    Account Details
                                 </Mui.ListItemText>
                             </Mui.MenuItem>
 

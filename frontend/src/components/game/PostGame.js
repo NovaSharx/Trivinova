@@ -132,7 +132,7 @@ export default function PostGame() {
                 pb: 2,
                 borderRadius: 3,
                 background: 'rgba(0,0,0,0.15)',
-                backdropFilter: 'blur(5px)'
+                backdropFilter: 'blur(10px)'
             }}>
 
                 <Mui.Dialog

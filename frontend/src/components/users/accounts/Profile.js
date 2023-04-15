@@ -1,7 +1,7 @@
 import * as Mui from '@mui/material';
 import * as MuiLab from '@mui/lab';
 
-import AccountCircleIcon from '@mui/icons-material/AccountCircle'
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Fragment, useContext, useState } from 'react';
 import { CurrentUser } from '../../contexts/CurrentUser';
 
@@ -17,51 +17,75 @@ export default function Profile() {
 
     if (!currentUser) {
         return (
-            <Mui.Typography variant='h2'>
-                ...Loading Profile...
-            </Mui.Typography>
+            <Mui.Container maxWidth='lg'>
+                <Mui.Paper sx={{
+                    height: 600,
+                    p: 1,
+                    borderRadius: 5,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-around',
+                    alignItems: 'center'
+                }}>
+                    <Mui.Typography variant='h2'>
+                        ...Loading Profile...
+                    </Mui.Typography>
+
+                    <Mui.CircularProgress size={200} />
+                </Mui.Paper>
+            </Mui.Container>
         )
     }
     else {
 
-        const renderGaneralTab = (
+        const renderGeneralTab = (
             <Fragment>
 
                 <Mui.Typography variant='h2' fontWeight={600}>{currentUser.userName}</Mui.Typography>
 
-                <Mui.IconButton>
-                    <AccountCircleIcon sx={{ fontSize: 200 }} />
-                </Mui.IconButton>
+                <AccountCircleIcon sx={{ fontSize: 200 }} />
+
+                <Mui.Typography>Date created: <b>{new Date(currentUser.createdAt).toDateString()}</b></Mui.Typography>
 
             </Fragment>
         )
 
         const renderFriendsTab = (
             <Fragment>
-                <Mui.Typography variant='h2' fontWeight={600}>Friends List</Mui.Typography>
+                <Mui.Typography variant='h4' fontWeight={300}>...Friends List Coming Soon...</Mui.Typography>
             </Fragment>
         )
 
-        const renderRecordsTab = (
+        const renderHighscoresTab = (
             <Fragment>
 
-                <Mui.Typography variant='h2' fontWeight={600}>Records</Mui.Typography>
+                <Mui.Box sx={{
+                    height: '500px',
+                    width: '100%',
+                    p: 2,
+                    overflowY: 'scroll'
+                }}>
+                    <Mui.Grid container spacing={3} mt>
 
-                <Mui.Grid container>
+                        {currentUser.highscores.toReversed().map((highscore, index) => {
+                            return (
+                                <Mui.Grid item xs={12} key={index}>
+                                    <Mui.Box sx={{
+                                        p: 1,
+                                        borderLeft: '5px solid #2f9a2f',
+                                        borderBottom: '2px solid #2f9a2f',
+                                        display: 'flex',
+                                        justifyContent: 'space-between'
+                                    }}>
+                                        <Mui.Typography variant='h5'>Score: <b>{highscore.highscore}</b></Mui.Typography>
+                                        <Mui.Typography variant='subtitle1'>Date achieved: <b>{new Date(highscore.achievedAt).toLocaleString()}</b></Mui.Typography>
+                                    </Mui.Box>
+                                </Mui.Grid>
+                            )
+                        })}
 
-                    <Mui.Grid item xs={12}>
-                        <Mui.Typography>WILDCARD MODE</Mui.Typography>
                     </Mui.Grid>
-
-                    <Mui.Grid item xs={12}>
-                        <Mui.Typography>SPECIALIZED MODE</Mui.Typography>
-                    </Mui.Grid>
-
-                    <Mui.Grid item xs={12}>
-                        <Mui.Typography>CUSTOM SETTINGS MODE</Mui.Typography>
-                    </Mui.Grid>
-
-                </Mui.Grid>
+                </Mui.Box>
 
             </Fragment>
         )
@@ -69,9 +93,9 @@ export default function Profile() {
         return (
             <Mui.Container maxWidth='lg'>
                 <Mui.Paper sx={{
-                    minHeight: 600,
-                    p: 3,
-                    borderRadius: 5,
+                    height: 600,
+                    p: 1,
+                    borderRadius: 3,
                     display: 'flex'
                 }}>
 
@@ -80,17 +104,18 @@ export default function Profile() {
                         <Mui.Box sx={{ borderRight: 2, borderColor: 'divider' }}>
                             <MuiLab.TabList onChange={handleTabChange} orientation='vertical' centered >
                                 <Mui.Tab label='General' value='general' />
-                                <Mui.Tab label='Friends List' value='friends list' />
-                                <Mui.Tab label='Records' value='records' />
+                                <Mui.Tab label='Friends' value='friends' />
+                                <Mui.Tab label='Highscores' value='highscores' />
                             </MuiLab.TabList>
                         </Mui.Box>
 
                         <Mui.Box sx={{
-                            flexGrow: 1
+                            flexGrow: 1,
+                            m: 2
                         }}>
-                            <MuiLab.TabPanel value='general'>{renderGaneralTab}</MuiLab.TabPanel>
-                            <MuiLab.TabPanel value='friends list'>{renderFriendsTab}</MuiLab.TabPanel>
-                            <MuiLab.TabPanel value='records'>{renderRecordsTab}</MuiLab.TabPanel>
+                            <MuiLab.TabPanel value='general'>{renderGeneralTab}</MuiLab.TabPanel>
+                            <MuiLab.TabPanel value='friends'>{renderFriendsTab}</MuiLab.TabPanel>
+                            <MuiLab.TabPanel value='highscores'>{renderHighscoresTab}</MuiLab.TabPanel>
                         </Mui.Box>
 
                     </MuiLab.TabContext>
