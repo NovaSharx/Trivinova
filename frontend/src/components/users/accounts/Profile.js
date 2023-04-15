@@ -2,6 +2,7 @@ import * as Mui from '@mui/material';
 import * as MuiLab from '@mui/lab';
 
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+
 import { Fragment, useContext, useState } from 'react';
 import { CurrentUser } from '../../contexts/CurrentUser';
 
@@ -60,7 +61,7 @@ export default function Profile() {
             <Fragment>
 
                 <Mui.Box sx={{
-                    height: '500px',
+                    maxHeight: '500px',
                     width: '100%',
                     p: 2,
                     overflowY: 'scroll'

@@ -26,6 +26,22 @@ router.post('/', async (req, res) => {
     res.json({ token, user })
 })
 
+router.post('/search-user', async (req, res) => {
+    try {
+        const { userId, userName, createdAt, highscores } = await User.findOne({
+            where: {
+                userName: req.body.userName
+            },
+            include: 'highscores'
+        })
+
+        res.json({ userId, userName, createdAt, highscores })
+    }
+    catch {
+        res.json({ message: `Sorry, could not find user '${req.body.userName}'` })
+    }
+})
+
 // Work In Progress...
 router.post('/add-friend', async (req, res) => {
     res.json("Added Friend")
