@@ -5,8 +5,11 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 import { Fragment, useContext, useState } from 'react';
 import { CurrentUser } from '../../contexts/CurrentUser';
+import { useTheme } from '@emotion/react';
 
 export default function Profile() {
+
+    const theme = useTheme()
 
     const { currentUser } = useContext(CurrentUser)
 
@@ -68,22 +71,28 @@ export default function Profile() {
                 }}>
                     <Mui.Grid container spacing={3} mt>
 
-                        {currentUser.highscores.toReversed().map((highscore, index) => {
-                            return (
-                                <Mui.Grid item xs={12} key={index}>
-                                    <Mui.Box sx={{
-                                        p: 1,
-                                        borderLeft: '5px solid #2f9a2f',
-                                        borderBottom: '2px solid #2f9a2f',
-                                        display: 'flex',
-                                        justifyContent: 'space-between'
-                                    }}>
-                                        <Mui.Typography variant='h5'>Score: <b>{highscore.highscore}</b></Mui.Typography>
-                                        <Mui.Typography variant='subtitle1'>Date achieved: <b>{new Date(highscore.achievedAt).toLocaleString()}</b></Mui.Typography>
-                                    </Mui.Box>
-                                </Mui.Grid>
-                            )
-                        })}
+                        {currentUser.highscores.length ?
+                            currentUser.highscores.toReversed().map((highscore, index) => {
+                                return (
+                                    <Mui.Grid item xs={12} key={index}>
+                                        <Mui.Box sx={{
+                                            p: 1,
+                                            borderLeft: '5px solid #2f9a2f',
+                                            borderBottom: '2px solid #2f9a2f',
+                                            display: 'flex',
+                                            justifyContent: 'space-between'
+                                        }}>
+                                            <Mui.Typography variant='h5'>Score: <b>{highscore.highscore}</b></Mui.Typography>
+                                            <Mui.Typography variant='subtitle1'>Date achieved: <b>{new Date(highscore.achievedAt).toLocaleString()}</b></Mui.Typography>
+                                        </Mui.Box>
+                                    </Mui.Grid>
+                                )
+                            })
+                            :
+                            <Mui.Grid item xs={12}>
+                                <Mui.Typography color={theme.palette.text.secondary}><i>...No highscore data yet...</i></Mui.Typography>
+                            </Mui.Grid>
+                        }
 
                     </Mui.Grid>
                 </Mui.Box>

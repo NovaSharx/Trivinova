@@ -12,7 +12,8 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
     const user = await User.findOne({
-        where: { userName: req.body.userName }
+        where: { userName: req.body.userName },
+        include: 'highscores'
     })
 
     if (!user || !await bcrypt.compare(req.body.password, user.dataValues.passwordDigest)) {

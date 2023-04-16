@@ -60,7 +60,6 @@ export default function SignUp() {
 
         axios.post(`${process.env.REACT_APP_SERVER_URL}users`, userDetails)
             .then(response => {
-                console.log(response)
                 localStorage.setItem('token', response.data.token)
                 setCurrentUser(response.data.user)
                 navigate("/")

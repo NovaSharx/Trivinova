@@ -14,12 +14,19 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
     const { firstName, lastName, password, ...otherUserData } = req.body
-    const user = await User.create({
+    const { userId } = await User.create({
         ...otherUserData,
         firstName: firstName.charAt(0).toUpperCase() + firstName.slice(1),
         lastName: lastName.charAt(0).toUpperCase() + lastName.slice(1),
         role: 'player',
         passwordDigest: await bcrypt.hash(password, 10)
+    })
+
+    const user = await User.findOne({
+        where: {
+            userId: userId
+        },
+        include: 'highscores'
     })
 
     const token = await jwt.sign({ id: user.dataValues.userId }, process.env.JWT_SECRET)
