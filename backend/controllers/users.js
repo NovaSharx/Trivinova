@@ -6,7 +6,6 @@ require('dotenv').config()
 
 const { User } = db
 
-// Need to secure this route from the public
 router.get('/', async (req, res) => {
     const users = await User.findAll({ include: 'highscores' })
     res.json(users)
@@ -45,7 +44,7 @@ router.post('/search-user', async (req, res) => {
         res.json({ userId, userName, createdAt, highscores })
     }
     catch {
-        res.json({ message: `Sorry, could not find user '${req.body.userName}'` })
+        res.json({ message: `Sorry, could not find user '${req.body.userName}'. Remember to check spelling and casing.` })
     }
 })
 

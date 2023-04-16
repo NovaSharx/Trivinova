@@ -2,6 +2,7 @@ import * as Mui from '@mui/material';
 
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 
 import { useState } from 'react';
 import { useTheme } from '@emotion/react';
@@ -94,6 +95,9 @@ export default function SearchPlayer() {
             <Mui.Paper sx={{
                 p: 2
             }}>
+
+                <Mui.Typography variant='h3' mb={2}><PersonSearchIcon sx={{ fontSize: 30 }} /> Search Player</Mui.Typography>
+
                 <Mui.TextField
                     label='Search player name'
                     InputProps={{

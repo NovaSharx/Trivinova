@@ -5,7 +5,11 @@ const db = require('../models')
 const { Highscore } = db
 
 router.get('/', async (req, res) => {
-    const highscores = await Highscore.findAll()
+    const highscores = await Highscore.findAll({
+        order: [
+            ['highscore', 'DESC']
+        ]
+    })
     res.json(highscores)
 })
 
