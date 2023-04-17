@@ -5,7 +5,7 @@ import * as Mui from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { getThemeMode, rewriteThemeMode } from './Theme';
 
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 
 import Home from './Home';
@@ -58,7 +58,7 @@ function App() {
 
   return (
     <div className='App'>
-      <Router>
+      <HashRouter>
         <CurrentUserProvider>
           <ThemeProvider theme={theme}>
             <Mui.Paper square sx={{
@@ -96,7 +96,7 @@ function App() {
             </Mui.Paper>
           </ThemeProvider>
         </CurrentUserProvider>
-      </Router>
+      </HashRouter>
     </div>
   );
 }
