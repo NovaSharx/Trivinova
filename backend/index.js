@@ -7,8 +7,7 @@ const app = express()
 require('dotenv').config()
 
 // Express Settings
-console.log(process.env.CLIENT)
-app.use(cors({ origin: process.env.CLIENT }))
+app.use(cors())
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(bodyParser.json())
