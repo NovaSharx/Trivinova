@@ -14,8 +14,12 @@ export default function AccessibilityTool({ toggleThemeMode }) {
         <Mui.Box>
             <Mui.SpeedDial
                 ariaLabel='Accessibility Tool'
-                sx={{ position: 'fixed', bottom: 16, right: 16 }}
-                icon={<AccessibilityNewIcon sx={{ fontSize: '30px' }} />}
+                sx={{
+                    position: 'fixed',
+                    bottom: 16,
+                    right: 16
+                }}
+                icon={<AccessibilityNewIcon sx={{ fontSize: 30 }} />}
             >
                 <Mui.SpeedDialAction
                     key={0}

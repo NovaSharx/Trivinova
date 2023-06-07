@@ -26,10 +26,10 @@ import AccountDetails from './components/users/accounts/AccountDetails';
 
 function App() {
 
-  let [themeMode, setThemeMode] = useState(getThemeMode()) // Grabs theme token from local storage (light/dark)
+  const [themeMode, setThemeMode] = useState(getThemeMode()) // Grabs theme token from local storage (light/dark)
 
   // Theme variables are defined here with themeMode state governing light/dark mode
-  let theme = createTheme({
+  const theme = createTheme({
     palette: {
       mode: themeMode,
       primary: {

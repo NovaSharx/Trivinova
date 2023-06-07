@@ -10,13 +10,18 @@ export default function Home() {
 
     let title = "TRIVINOVA"
     let titleArray = title.split('')
-    titleArray.splice(6, 1, <LightbulbCircleIcon sx={{ fontSize: '185px' }} />) // Parse the lightbulb icon in place of the 'O' in the title
+    titleArray.splice(6, 1, <LightbulbCircleIcon sx={{ fontSize: { xs: 50, sm: 80, md: 100, lg: 120, xl: 150 } }} />) // Parse the lightbulb icon in place of the 'O' in the title
 
     // Title with grow animation
     const renderTitleAnimation = titleArray.map((letter, index) => {
         return (
             <Mui.Grow key={index} in timeout={index * 500 + 1000}>
-                <Mui.Typography fontSize='200px' fontWeight={200} color='white' sx={{ display: 'flex', alignItems: 'center' }}>
+                <Mui.Typography fontWeight={200} color='white'
+                    sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        fontSize: { xs: 50, sm: 80, md: 100, lg: 120, xl: 150 }
+                    }}>
                     {letter}
                 </Mui.Typography>
             </Mui.Grow>
@@ -25,11 +30,11 @@ export default function Home() {
 
     return (
         <Mui.Box sx={{
+            flex: 1,
             width: '100%',
-            height: '600px',
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'space-between',
+            justifyContent: 'space-around',
             alignItems: 'center'
         }}>
 
@@ -37,10 +42,16 @@ export default function Home() {
                 {renderTitleAnimation}
             </Mui.Box>
 
-            <Mui.Button onClick={() => navigate("/gamelauncher")} variant='contained' sx={{ height: '100px', width: '500px', fontSize: '50px', fontWeight: 300 }}>
+            <Mui.Button onClick={() => navigate("/gamelauncher")} variant='contained'
+                sx={{
+                    py: 2,
+                    px: 5,
+                    fontSize: { xs: 20, sm: 25, md: 30, lg: 35 },
+                    fontWeight: 300
+                }}>
                 start trivia
             </Mui.Button>
 
-        </Mui.Box>
+        </Mui.Box >
     )
 }

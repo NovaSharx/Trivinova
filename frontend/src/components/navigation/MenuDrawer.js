@@ -18,7 +18,7 @@ export default function MenuDrawer() {
         <Fragment>
 
             <Mui.IconButton color='inherit' onClick={() => setDrawerState(true)}>
-                <MenuIcon fontSize='large' />
+                <MenuIcon sx={{ fontSize: { xs: 25, sm: 32 } }} />
             </Mui.IconButton>
             <Mui.Drawer anchor='left' open={drawerState} onClose={() => setDrawerState(false)}>
                 <Mui.Box sx={{ width: 300 }}>

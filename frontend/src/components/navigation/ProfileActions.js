@@ -1,6 +1,8 @@
 import * as Mui from '@mui/material';
 
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import LoginIcon from '@mui/icons-material/Login';
+import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import CircularProgress from '@mui/material/CircularProgress';
 import PersonIcon from '@mui/icons-material/Person';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
@@ -41,33 +43,71 @@ export default function ProfileActions() {
         // Render login and signup if defaultName exists
         if (currentUser.defaultName) {
             return (
-                <Mui.Stack direction='row' spacing={1}>
-                    <Mui.Button onClick={() => navigate("/login")} variant='outlined' color='inherit'>
-                        Login
-                    </Mui.Button>
 
-                    <Mui.Button onClick={() => navigate("/signup")} variant='contained' color='secondary'>
-                        Sign Up
-                    </Mui.Button>
-                </Mui.Stack>
-            )
-        }
-        // Render profile buttons if current user has been established through CurrentUser Context
-        else {
-            return (
                 <Fragment>
-                    <Mui.Typography>Welcome, {currentUser.userName}</Mui.Typography>
 
-                    <Mui.IconButton onClick={handleMenuOpen}>
-                        <AccountCircleIcon fontSize='large' sx={{ color: 'white' }} />
+                    <Mui.IconButton onClick={handleMenuOpen} size='small'>
+                        <PersonOutlineIcon sx={{ color: 'white', fontSize: { xs: 25, sm: 32 } }} />
                     </Mui.IconButton>
 
                     <Mui.Menu
                         anchorEl={anchorElement}
                         open={menuOpen}
                         onClose={handleMenuClose}
+                        sx={{
+                            fontSize: { xs: 20, sm: 25, md: 32 }
+                        }}
                     >
                         <Mui.MenuList>
+
+                            <Mui.MenuItem divider onClick={() => { navigate("/login"); handleMenuClose() }}>
+                                <Mui.ListItemIcon>
+                                    <LoginIcon />
+                                </Mui.ListItemIcon>
+                                <Mui.ListItemText>
+                                    Login
+                                </Mui.ListItemText>
+                            </Mui.MenuItem>
+
+                            <Mui.MenuItem onClick={() => { navigate("/signup"); handleMenuClose() }}>
+                                <Mui.ListItemIcon>
+                                    <AssignmentIndIcon />
+                                </Mui.ListItemIcon>
+                                <Mui.ListItemText>
+                                    Sign Up
+                                </Mui.ListItemText>
+                            </Mui.MenuItem>
+
+                        </Mui.MenuList>
+                    </Mui.Menu>
+                </Fragment>
+
+            )
+        }
+        // Render profile buttons if current user has been established through CurrentUser Context
+        else {
+            return (
+                <Fragment>
+
+                    <Mui.IconButton onClick={handleMenuOpen} size='small'>
+                        <Mui.Avatar sx={{ bgcolor: '', fontSize: { xs: 25, sm: 32 } }}>{currentUser.userName.charAt(0)}</Mui.Avatar>
+                    </Mui.IconButton>
+
+                    <Mui.Menu
+                        anchorEl={anchorElement}
+                        open={menuOpen}
+                        onClose={handleMenuClose}
+                        sx={{
+                            fontSize: { xs: 20, sm: 25, md: 32 }
+                        }}
+                    >
+                        <Mui.MenuList
+                            subheader={
+                                <Mui.ListSubheader component="div" id="nested-list-subheader">
+                                    Welcome, {currentUser.userName}
+                                </Mui.ListSubheader>
+                            }
+                        >
 
                             <Mui.MenuItem onClick={() => { navigate('/profile'); handleMenuClose() }}>
                                 <Mui.ListItemIcon>

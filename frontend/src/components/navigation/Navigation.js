@@ -17,19 +17,19 @@ export default function Navigation() {
 
                     <Mui.Grid container direction='row'>
 
-                        <Mui.Grid item xs={5} sx={{ display: 'flex' }}>
+                        <Mui.Grid item xs sx={{ display: 'flex' }}>
                             <MenuDrawer />
                         </Mui.Grid>
 
-                        <Mui.Grid item xs={2} sx={{ display: 'flex', justifyContent: 'center' }}>
+                        <Mui.Grid item xs={6} sx={{ display: 'flex', justifyContent: 'center' }}>
                             <Mui.Link component='button' onClick={() => navigate("/")} underline='none' color='inherit'>
-                                <Mui.Typography variant='h4' sx={{ display: 'flex', alignItems: 'center' }}>
-                                    TRIVIN<LightbulbCircleIcon sx={{ fontSize: 32 }} />VA
+                                <Mui.Typography variant='h4' sx={{ display: 'flex', alignItems: 'center', fontSize: { xs: 20, sm: 25, md: 32 } }}>
+                                    TRIVIN<LightbulbCircleIcon sx={{ fontSize: { xs: 20, sm: 25, md: 32 } }} />VA
                                 </Mui.Typography>
                             </Mui.Link>
                         </Mui.Grid>
 
-                        <Mui.Grid item xs={5} sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+                        <Mui.Grid item xs sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
                             <ProfileActions />
                         </Mui.Grid>
 
