@@ -47,7 +47,7 @@ export default function Game() {
 
                 <Mui.Paper variant='outlined' sx={{ mt: { xs: 1, md: 2 }, p: { xs: 1, md: 2 }, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
 
-                    <Mui.Typography variant='h3' fontSize={{ xs: 20, sm: 25, md: 30, lg: 35 }}>...Loading Trivia...</Mui.Typography>
+                    <Mui.Typography fontSize={{ xs: 20, sm: 25, md: 30, lg: 35 }}>...Loading Trivia...</Mui.Typography>
 
                     <Mui.Box sx={{ m: { xs: 1, sm: 2, md: 3 }, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                         <Mui.Skeleton variant="rounded" width='100%' sx={{ height: { xs: 3, sm: 5, md: 8, lg: 10 } }} />

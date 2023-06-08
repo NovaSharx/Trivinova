@@ -214,7 +214,7 @@ export default function GameLauncher() {
                         </Mui.Paper>
                     </Mui.Grid>
 
-                    <Mui.Grid item xs={6}>
+                    <Mui.Grid item xs>
                         <Mui.Button variant='contained' sx={{ fontSize: { xs: 10, sm: 15, md: 20 } }} fullWidth onClick={() => { openGameRoute(selectedGameMode, selectedCategory, selectedDifficulty, selectedQuestionLimit) }}>Launch Game</Mui.Button>
                     </Mui.Grid>
 

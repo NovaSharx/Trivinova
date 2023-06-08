@@ -42,7 +42,7 @@ export default function GameTimer(props) {
     return (
         <Fragment>
             <Mui.Box sx={{ m: { xs: 1, sm: 2, md: 3 } }}>
-                <Mui.Typography sx={{ fontSize: { xs: 8, sm: 12, md: 13, lg: 18 } }}>
+                <Mui.Typography sx={{ fontSize: { xs: 12, sm: 15, md: 18, lg: 20 } }}>
                     Seconds Left: <b>{timeLeft.toFixed(1)}s</b>
                 </Mui.Typography>
 

@@ -56,8 +56,8 @@ export default function GameContainer(props) {
         return (
             <Fragment key={index}>
                 {questionIndex < triviaQuestions.length &&
-                    <Mui.Grid item xs={6}>
-                        <Mui.Button variant='contained' sx={{ fontSize: { xs: 5, sm: 8, md: 13, lg: 16 } }} onClick={() => checkAnswer(answer)} fullWidth>
+                    <Mui.Grid item xs={12} sm={6}>
+                        <Mui.Button variant='contained' sx={{ fontSize: { xs: 8, sm: 13, md: 16, lg: 19 } }} onClick={() => checkAnswer(answer)} fullWidth>
                             {answer}
                         </Mui.Button>
                     </Mui.Grid>}
@@ -107,7 +107,7 @@ export default function GameContainer(props) {
 
             <Mui.Paper variant='outlined' sx={{ mt: { xs: 1, md: 2 }, p: { xs: 1, md: 2 } }}>
 
-                {questionIndex < triviaQuestions.length && <Mui.Typography variant='h4' fontSize={{ xs: 10, sm: 16, md: 20, lg: 25 }}> {questionIndex + 1}.  {triviaQuestions[questionIndex].question} </Mui.Typography>}
+                {questionIndex < triviaQuestions.length && <Mui.Typography fontSize={{ xs: 16, sm: 20, md: 25, lg: 30 }}> {questionIndex + 1}.  {triviaQuestions[questionIndex].question} </Mui.Typography>}
 
                 <GameTimer key={questionIndex} checkAnswer={checkAnswer} setTimeTaken={setTimeTaken} />
 
