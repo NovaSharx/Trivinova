@@ -13,10 +13,13 @@ import { Fragment, useState } from 'react';
 
 import { useContext } from 'react';
 import { CurrentUser } from '../contexts/CurrentUser';
+import { useTheme } from '@emotion/react';
 
 export default function ProfileActions() {
 
     const { currentUser } = useContext(CurrentUser) // Calls on the CurrentUser context and destructures current user data from CurrentUserProvider 
+
+    const theme = useTheme()
 
     const navigate = useNavigate()
 
@@ -90,7 +93,7 @@ export default function ProfileActions() {
                 <Fragment>
 
                     <Mui.IconButton onClick={handleMenuOpen} size='small'>
-                        <Mui.Avatar sx={{ bgcolor: '', fontSize: { xs: 25, sm: 32 } }}>{currentUser.userName.charAt(0)}</Mui.Avatar>
+                        <Mui.Avatar sx={{ bgcolor: theme.palette.secondary.main, fontSize: { xs: 25, sm: 32 } }}>{currentUser.userName.charAt(0)}</Mui.Avatar>
                     </Mui.IconButton>
 
                     <Mui.Menu
