@@ -77,22 +77,23 @@ export default function SignUp() {
     }
 
     return (
-        <Mui.Container component='main' maxWidth='sm'>
+        <Mui.Container component='main' maxWidth='sm' disableGutters>
 
             <Mui.Box sx={{
+                m: { xs: 1, sm: 2 },
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center'
             }}>
 
                 <Mui.Paper component='form' onSubmit={handleSubmit} sx={{
-                    p: 3,
+                    p: { xs: 2, sm: 3 },
                     borderRadius: 2,
                 }}>
                     <Mui.Grid container spacing={2} justifyContent='center'>
 
                         <Mui.Grid item xs={12}>
-                            <Mui.Typography variant='h4'>
+                            <Mui.Typography variant='h2' fontSize={30}>
                                 SIGN UP
                             </Mui.Typography>
                         </Mui.Grid>
@@ -100,11 +101,11 @@ export default function SignUp() {
                         <Mui.Grid item xs={12}>
                             <Mui.Avatar sx={{
                                 bgcolor: 'secondary.main',
-                                margin: '0px auto',
-                                width: '60px',
-                                height: '60px'
+                                mx: 'auto',
+                                width: 60,
+                                height: 60
                             }}>
-                                <LockOpenIcon sx={{ fontSize: '50px' }} />
+                                <LockOpenIcon sx={{ fontSize: 50 }} />
                             </Mui.Avatar>
                         </Mui.Grid>
 
@@ -214,7 +215,7 @@ export default function SignUp() {
 
                         <Mui.Grid item xs={12}>
                             <Mui.Typography>
-                                <Mui.Link href='/login'>Already have an account? Log in.</Mui.Link>
+                                <Mui.Link onClick={() => navigate("/login")}>Already have an account? Log in.</Mui.Link>
                             </Mui.Typography>
                         </Mui.Grid>
 
