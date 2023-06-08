@@ -31,7 +31,7 @@ export default function Game() {
     // Render while trivia data is being fetched
     function GameSkeleton() {
         return (
-            <Mui.Paper elevation={5} sx={{ p: 2 }}>
+            <Mui.Paper elevation={5} sx={{ p: { xs: 1, md: 2 } }}>
 
                 <Mui.Box sx={{
                     width: '100%',
@@ -45,7 +45,7 @@ export default function Game() {
 
                 </Mui.Box>
 
-                <Mui.Paper variant='outlined' sx={{ m: 2, p: 2, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                <Mui.Paper variant='outlined' sx={{ mt: { xs: 1, md: 2 }, p: { xs: 1, md: 2 }, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
 
                     <Mui.Typography variant='h3' fontSize={{ xs: 20, sm: 25, md: 30, lg: 35 }}>...Loading Trivia...</Mui.Typography>
 
@@ -78,7 +78,7 @@ export default function Game() {
     }
 
     return (
-        <Mui.Container my={2}>
+        <Mui.Container my={2} disableGutters>
             <Mui.Box sx={{
                 display: 'flex',
                 background: `radial-gradient(circle, ${theme.palette.background.paper} 20%, rgba(0,0,0,0) 70%)`,

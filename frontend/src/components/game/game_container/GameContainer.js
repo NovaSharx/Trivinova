@@ -87,7 +87,7 @@ export default function GameContainer(props) {
     }
 
     return (
-        <Mui.Paper elevation={5} sx={{ p: 2 }}>
+        <Mui.Paper elevation={5} sx={{ p: { xs: 1, md: 2 } }}>
 
             <Mui.Box sx={{
                 width: '100%',
@@ -105,7 +105,7 @@ export default function GameContainer(props) {
 
             </Mui.Box>
 
-            <Mui.Paper variant='outlined' sx={{ m: 2, p: 2 }}>
+            <Mui.Paper variant='outlined' sx={{ mt: { xs: 1, md: 2 }, p: { xs: 1, md: 2 } }}>
 
                 {questionIndex < triviaQuestions.length && <Mui.Typography variant='h4' fontSize={{ xs: 10, sm: 16, md: 20, lg: 25 }}> {questionIndex + 1}.  {triviaQuestions[questionIndex].question} </Mui.Typography>}
 
