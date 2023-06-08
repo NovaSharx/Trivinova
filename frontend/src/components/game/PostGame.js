@@ -181,7 +181,7 @@ export default function PostGame() {
                     </Mui.Box>
                 </Mui.Box>
 
-                <Mui.Box sx={{ px: { sm: 1, md: 2, lg: 3 } }}>
+                <Mui.Box sx={{ p: { sm: 1, md: 2, lg: 3 } }}>
                     <Mui.Grid container direction='row' spacing={{ xs: 1, sm: 2, md: 3 }}>
 
                         {renderResults}
