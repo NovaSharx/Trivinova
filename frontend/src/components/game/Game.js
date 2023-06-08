@@ -39,36 +39,36 @@ export default function Game() {
                     justifyContent: 'space-between'
                 }}>
 
-                    <Mui.Skeleton variant="rounded" width={160} height={36} />
+                    <Mui.Skeleton variant="rounded" sx={{ width: { xs: 70, sm: 100, md: 130, lg: 160 }, height: { xs: 16, sm: 23, md: 30, lg: 36 } }} />
 
-                    <Mui.Skeleton variant="rounded" width={160} height={36} />
+                    <Mui.Skeleton variant="rounded" sx={{ width: { xs: 70, sm: 100, md: 130, lg: 160 }, height: { xs: 16, sm: 23, md: 30, lg: 36 } }} />
 
                 </Mui.Box>
 
                 <Mui.Paper variant='outlined' sx={{ m: 2, p: 2, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
 
-                    <Mui.Typography variant='h3'>...Loading Trivia...</Mui.Typography>
+                    <Mui.Typography variant='h3' fontSize={{ xs: 20, sm: 25, md: 30, lg: 35 }}>...Loading Trivia...</Mui.Typography>
 
-                    <Mui.Box sx={{ m: 4, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                        <Mui.Skeleton variant="rounded" width='100%' height={10} />
+                    <Mui.Box sx={{ m: { xs: 1, sm: 2, md: 3 }, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                        <Mui.Skeleton variant="rounded" width='100%' sx={{ height: { xs: 3, sm: 5, md: 8, lg: 10 } }} />
                     </Mui.Box>
 
                     <Mui.Grid container spacing={{ xs: 1, sm: 2, md: 3 }}>
 
                         <Mui.Grid item xs={6}>
-                            <Mui.Skeleton variant="rounded" width='100%' height={36} />
+                            <Mui.Skeleton variant="rounded" width='100%' sx={{ height: { xs: 16, sm: 23, md: 30, lg: 36 } }} />
                         </Mui.Grid>
 
                         <Mui.Grid item xs={6}>
-                            <Mui.Skeleton variant="rounded" width='100%' height={36} />
+                            <Mui.Skeleton variant="rounded" width='100%' sx={{ height: { xs: 16, sm: 23, md: 30, lg: 36 } }} />
                         </Mui.Grid>
 
                         <Mui.Grid item xs={6}>
-                            <Mui.Skeleton variant="rounded" width='100%' height={36} />
+                            <Mui.Skeleton variant="rounded" width='100%' sx={{ height: { xs: 16, sm: 23, md: 30, lg: 36 } }} />
                         </Mui.Grid>
 
                         <Mui.Grid item xs={6}>
-                            <Mui.Skeleton variant="rounded" width='100%' height={36} />
+                            <Mui.Skeleton variant="rounded" width='100%' sx={{ height: { xs: 16, sm: 23, md: 30, lg: 36 } }} />
                         </Mui.Grid>
 
                     </Mui.Grid>
@@ -78,16 +78,16 @@ export default function Game() {
     }
 
     return (
-        <Mui.Container>
+        <Mui.Container my={2}>
             <Mui.Box sx={{
                 display: 'flex',
-                height: '80px',
                 background: `radial-gradient(circle, ${theme.palette.background.paper} 20%, rgba(0,0,0,0) 70%)`,
                 backdropFilter: 'blur(5px)',
                 justifyContent: 'center',
-                alignItems: 'center'
+                alignItems: 'center',
+                py: 2
             }}>
-                <Mui.Typography variant='h2' fontWeight={500} noWrap>
+                <Mui.Typography variant='h2' fontWeight={500} fontSize={{ xs: 25, sm: 30, md: 35, lg: 40 }} noWrap>
                     {triviaSettings.gameMode.toUpperCase()} TRIVIA
                 </Mui.Typography>
             </Mui.Box>

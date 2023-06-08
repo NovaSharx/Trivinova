@@ -57,7 +57,7 @@ export default function GameContainer(props) {
             <Fragment key={index}>
                 {questionIndex < triviaQuestions.length &&
                     <Mui.Grid item xs={6}>
-                        <Mui.Button variant='contained' onClick={() => checkAnswer(answer)} fullWidth>
+                        <Mui.Button variant='contained' sx={{ fontSize: { xs: 5, sm: 8, md: 13, lg: 16 } }} onClick={() => checkAnswer(answer)} fullWidth>
                             {answer}
                         </Mui.Button>
                     </Mui.Grid>}
@@ -92,14 +92,14 @@ export default function GameContainer(props) {
             <Mui.Box sx={{
                 width: '100%',
                 display: 'flex',
-                justifyContent: 'space-between'
+                justifyContent: 'space-between',
             }}>
 
-                <Mui.Button onClick={() => navigate("/gamelauncher")} variant='outlined'>
+                <Mui.Button sx={{ fontSize: { xs: 9, sm: 10, md: 11, lg: 12 } }} onClick={() => navigate("/gamelauncher")} variant='outlined'>
                     Game Launcher
                 </Mui.Button>
 
-                <Mui.Button onClick={() => navigate("/")} variant='outlined'>
+                <Mui.Button sx={{ fontSize: { xs: 9, sm: 10, md: 11, lg: 12 } }} onClick={() => navigate("/")} variant='outlined'>
                     Main Menu
                 </Mui.Button>
 
@@ -107,7 +107,7 @@ export default function GameContainer(props) {
 
             <Mui.Paper variant='outlined' sx={{ m: 2, p: 2 }}>
 
-                {questionIndex < triviaQuestions.length && <Mui.Typography variant='h4'> {questionIndex + 1}.  {triviaQuestions[questionIndex].question} </Mui.Typography>}
+                {questionIndex < triviaQuestions.length && <Mui.Typography variant='h4' fontSize={{ xs: 10, sm: 16, md: 20, lg: 25 }}> {questionIndex + 1}.  {triviaQuestions[questionIndex].question} </Mui.Typography>}
 
                 <GameTimer key={questionIndex} checkAnswer={checkAnswer} setTimeTaken={setTimeTaken} />
 
@@ -117,6 +117,6 @@ export default function GameContainer(props) {
 
                 </Mui.Grid>
             </Mui.Paper>
-        </Mui.Paper>
+        </Mui.Paper >
     )
 }
