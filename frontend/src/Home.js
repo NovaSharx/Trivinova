@@ -38,7 +38,7 @@ export default function Home() {
             alignItems: 'center'
         }}>
 
-            <Mui.Box sx={{ width: '100%', display: 'flex', justifyContent: 'space-around' }}>
+            <Mui.Box sx={{ width: '100%', display: 'flex', justifyContent: 'space-evenly', overflowX: 'hidden' }}>
                 {renderTitleAnimation}
             </Mui.Box>
 
