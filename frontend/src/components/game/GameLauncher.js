@@ -118,7 +118,7 @@ export default function GameLauncher() {
                             textAlign: 'center'
                         }}>
 
-                            <Mui.FormControl fullWidth variant='fill{ed'>
+                            <Mui.FormControl fullWidth variant='filled'>
                                 <Mui.FormLabel id='custom-category' sx={{ fontSize: { xs: 10, sm: 12, md: 15 } }}>Category</Mui.FormLabel>
                                 <Mui.Select
                                     variant='outlined'
