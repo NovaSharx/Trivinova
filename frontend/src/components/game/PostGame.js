@@ -59,20 +59,20 @@ export default function PostGame() {
                     <Mui.Accordion
                         elevation={8}
                         sx={{
-                            border: result.gotCorrect ? 'solid 3px #46e046' : 'solid 3px #ff0000',
+                            border: result.gotCorrect ? 'solid 0.2rem #46e046' : 'solid 0.2rem #ff0000',
                             backgroundColor: result.gotCorrect ? '#2f9a2f' : '#a70000'
                         }}
                     >
 
                         <Mui.AccordionSummary expandIcon={<ExpandMoreIcon sx={{ color: 'white' }} />}>
-                            <Mui.Typography color='white'>{index + 1}.  {result.question}</Mui.Typography>
+                            <Mui.Typography color='white' sx={{ fontSize: { xs: 12, sm: 16, md: 20 } }}>{index + 1}.  {result.question}</Mui.Typography>
                         </Mui.AccordionSummary>
 
                         <Mui.AccordionDetails sx={{ p: 0 }}>
                             <Mui.Box sx={{ p: 1, backgroundColor: 'white', color: 'black' }}>
-                                <Mui.Typography>Selection: <b>{result.selection}</b></Mui.Typography>
-                                <Mui.Typography>Answer: <b>{result.answer}</b></Mui.Typography>
-                                <Mui.Typography>Answered In: <b>{result.timeTaken} second(s)</b></Mui.Typography>
+                                <Mui.Typography sx={{ fontSize: { xs: 12, sm: 16, md: 20 } }}>Selection: <b>{result.selection}</b></Mui.Typography>
+                                <Mui.Typography sx={{ fontSize: { xs: 12, sm: 16, md: 20 } }}>Answer: <b>{result.answer}</b></Mui.Typography>
+                                <Mui.Typography sx={{ fontSize: { xs: 12, sm: 16, md: 20 } }}>Answered In: <b>{result.timeTaken} second(s)</b></Mui.Typography>
                             </Mui.Box>
                         </Mui.AccordionDetails>
 
@@ -93,7 +93,9 @@ export default function PostGame() {
             }
             else if (currentUser.defaultName === 'Guest') {
                 return (
-                    <Mui.Typography><i><Mui.Link color='inherit' onClick={() => navigate('/login')} sx={{ cursor: 'pointer' }}><b>Login</b></Mui.Link> or <Mui.Link color='inherit' onClick={() => navigate('/signup')} sx={{ cursor: 'pointer' }}><b>Create an account</b></Mui.Link> in order to be placed on the leaderboard</i></Mui.Typography>
+                    <Mui.Typography sx={{ fontSize: { xs: 12, sm: 16, md: 20, lg: 24 } }}>
+                        <i>You must <Mui.Link color='inherit' onClick={() => navigate('/login')} sx={{ cursor: 'pointer' }}><b>Login</b></Mui.Link> or <Mui.Link color='inherit' onClick={() => navigate('/signup')} sx={{ cursor: 'pointer' }}><b>Create an account</b></Mui.Link> in order to be placed on the leaderboard</i>
+                    </Mui.Typography>
                 )
             }
             else {
@@ -126,10 +128,9 @@ export default function PostGame() {
     }
 
     return (
-        <Mui.Container component='main' maxWidth='lg' sx={{ p: 5 }}>
+        <Mui.Container component='main' maxWidth='lg' sx={{ p: { xs: 2, sm: 3, md: 4, lg: 5 } }}>
             <Mui.Box elevation={5} sx={{
-                pt: 2,
-                pb: 2,
+                p: 2,
                 borderRadius: 3,
                 background: 'rgba(0,0,0,0.15)',
                 backdropFilter: 'blur(10px)'
@@ -156,29 +157,31 @@ export default function PostGame() {
                     </Mui.Button>
 
                     <Mui.Box sx={{
-                        m: 2,
+                        my: { xs: 1, sm: 2 },
                     }}>
-                        <Mui.Typography>Game mode: <b>{triviaSettings.gameMode.toUpperCase()}</b></Mui.Typography>
-                        <Mui.Typography>Category: <b>{triviaSettings.category.toUpperCase()}</b></Mui.Typography>
-                        <Mui.Typography>Difficulty: <b>{triviaSettings.difficulty.toUpperCase()}</b></Mui.Typography>
-                        <Mui.Typography>Number of questions: <b>{triviaSettings.limit}</b></Mui.Typography>
+                        <Mui.Typography sx={{ fontSize: { xs: 16 } }}>Game mode: <b>{triviaSettings.gameMode.toUpperCase()}</b></Mui.Typography>
+                        <Mui.Typography sx={{ fontSize: { xs: 16 } }}>Category: <b>{triviaSettings.category.toUpperCase()}</b></Mui.Typography>
+                        <Mui.Typography sx={{ fontSize: { xs: 16 } }}>Difficulty: <b>{triviaSettings.difficulty.toUpperCase()}</b></Mui.Typography>
+                        <Mui.Typography sx={{ fontSize: { xs: 16 } }}>Number of questions: <b>{triviaSettings.limit}</b></Mui.Typography>
                     </Mui.Box>
 
                     <Mui.Box sx={{
-                        m: '10px 30%',
-                        p: 3,
+                        my: 5,
+                        mx: 'auto',
+                        p: 2,
+                        width: { sm: 3 / 4 },
                         borderRadius: 3,
-                        boxShadow: 'inset 0px 0px 15px 5px #00000050'
+                        boxShadow: 'inset 0px 0px 1rem 0.3rem #00000050'
                     }}>
-                        <Mui.Typography variant='h5'>SCORE</Mui.Typography>
-                        <Mui.Typography variant='h2' fontWeight={700}>{calculateScore()} </Mui.Typography>
+                        <Mui.Typography variant='h2' sx={{ fontSize: { xs: 20, sm: 25, md: 30, lg: 35 } }}>SCORE</Mui.Typography>
+                        <Mui.Typography sx={{ fontSize: { xs: 60, sm: 65, md: 70, lg: 75 }, fontWeight: 700 }}>{calculateScore()} </Mui.Typography>
 
                         {renderhighscoreOptions()}
 
                     </Mui.Box>
                 </Mui.Box>
 
-                <Mui.Box sx={{ p: 3 }}>
+                <Mui.Box sx={{ px: { sm: 1, md: 2, lg: 3 } }}>
                     <Mui.Grid container direction='row' spacing={{ xs: 1, sm: 2, md: 3 }}>
 
                         {renderResults}
