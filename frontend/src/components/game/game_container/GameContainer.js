@@ -95,11 +95,11 @@ export default function GameContainer(props) {
                 justifyContent: 'space-between',
             }}>
 
-                <Mui.Button sx={{ fontSize: { xs: 9, sm: 10, md: 11, lg: 12 }, width: { xs: 1 / 3, sm: 1 / 4, md: 1 / 5 } }} onClick={() => navigate("/gamelauncher")} variant='outlined'>
+                <Mui.Button sx={{ fontSize: { xs: 9, sm: 10, md: 11, lg: 12 }, width: { xs: 120, sm: 1 / 4, md: 1 / 5 } }} onClick={() => navigate("/gamelauncher")} variant='outlined'>
                     Game Launcher
                 </Mui.Button>
 
-                <Mui.Button sx={{ fontSize: { xs: 9, sm: 10, md: 11, lg: 12 }, width: { xs: 1 / 3, sm: 1 / 4, md: 1 / 5 } }} onClick={() => navigate("/")} variant='outlined'>
+                <Mui.Button sx={{ fontSize: { xs: 9, sm: 10, md: 11, lg: 12 }, width: { xs: 120, sm: 1 / 4, md: 1 / 5 } }} onClick={() => navigate("/")} variant='outlined'>
                     Main Menu
                 </Mui.Button>
 

@@ -39,9 +39,9 @@ export default function Game() {
                     justifyContent: 'space-between'
                 }}>
 
-                    <Mui.Skeleton variant="rounded" sx={{ width: { xs: 70, sm: 100, md: 130, lg: 160 }, height: { xs: 16, sm: 23, md: 30, lg: 36 } }} />
+                    <Mui.Skeleton variant="rounded" sx={{ width: { xs: 120, sm: 1 / 4, md: 1 / 5 }, height: { xs: 16, sm: 23, md: 30, lg: 36 } }} />
 
-                    <Mui.Skeleton variant="rounded" sx={{ width: { xs: 70, sm: 100, md: 130, lg: 160 }, height: { xs: 16, sm: 23, md: 30, lg: 36 } }} />
+                    <Mui.Skeleton variant="rounded" sx={{ width: { xs: 120, sm: 1 / 4, md: 1 / 5 }, height: { xs: 16, sm: 23, md: 30, lg: 36 } }} />
 
                 </Mui.Box>
 
@@ -78,7 +78,7 @@ export default function Game() {
     }
 
     return (
-        <Mui.Container my={2} disableGutters>
+        <Mui.Container disableGutters>
             <Mui.Box sx={{
                 display: 'flex',
                 background: `radial-gradient(circle, ${theme.palette.background.paper} 20%, rgba(0,0,0,0) 70%)`,
