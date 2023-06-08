@@ -78,13 +78,18 @@ export default function Game() {
     }
 
     return (
-        <Mui.Container disableGutters>
+        <Mui.Container disableGutters sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            flex: 1,
+        }}>
+
             <Mui.Box sx={{
                 display: 'flex',
                 background: `radial-gradient(circle, ${theme.palette.background.paper} 20%, rgba(0,0,0,0) 70%)`,
                 backdropFilter: 'blur(5px)',
                 justifyContent: 'center',
-                alignItems: 'center',
+                my: 2,
                 py: 2
             }}>
                 <Mui.Typography variant='h2' fontWeight={500} fontSize={{ xs: 25, sm: 30, md: 35, lg: 40 }} noWrap>
@@ -93,7 +98,7 @@ export default function Game() {
             </Mui.Box>
 
             <Mui.Container maxWidth='lg' component='main' sx={{
-                mt: 10
+                my: 'auto'
             }}>
                 {triviaAPIData ?
                     <GameContainer triviaAPIData={triviaAPIData} triviaSettings={triviaSettings} />
@@ -101,6 +106,7 @@ export default function Game() {
                     <GameSkeleton />
                 }
             </Mui.Container>
+
         </Mui.Container>
     )
 }
