@@ -157,16 +157,16 @@ export default function PostGame() {
                     </Mui.Button>
 
                     <Mui.Box sx={{
-                        my: { xs: 1, sm: 2 },
+                        my: 3
                     }}>
-                        <Mui.Typography sx={{ fontSize: { xs: 16 } }}>Game mode: <b>{triviaSettings.gameMode.toUpperCase()}</b></Mui.Typography>
-                        <Mui.Typography sx={{ fontSize: { xs: 16 } }}>Category: <b>{triviaSettings.category.toUpperCase()}</b></Mui.Typography>
-                        <Mui.Typography sx={{ fontSize: { xs: 16 } }}>Difficulty: <b>{triviaSettings.difficulty.toUpperCase()}</b></Mui.Typography>
-                        <Mui.Typography sx={{ fontSize: { xs: 16 } }}>Number of questions: <b>{triviaSettings.limit}</b></Mui.Typography>
+                        <Mui.Typography sx={{ fontSize: { xs: 10, sm: 13, md: 16 } }}>Game mode: <b>{triviaSettings.gameMode.toUpperCase()}</b></Mui.Typography>
+                        <Mui.Typography sx={{ fontSize: { xs: 10, sm: 13, md: 16 } }}>Category: <b>{triviaSettings.category.toUpperCase()}</b></Mui.Typography>
+                        <Mui.Typography sx={{ fontSize: { xs: 10, sm: 13, md: 16 } }}>Difficulty: <b>{triviaSettings.difficulty.toUpperCase()}</b></Mui.Typography>
+                        <Mui.Typography sx={{ fontSize: { xs: 10, sm: 13, md: 16 } }}>Number of questions: <b>{triviaSettings.limit}</b></Mui.Typography>
                     </Mui.Box>
 
                     <Mui.Box sx={{
-                        my: 5,
+                        my: 3,
                         mx: 'auto',
                         p: 2,
                         width: { sm: 3 / 4 },
