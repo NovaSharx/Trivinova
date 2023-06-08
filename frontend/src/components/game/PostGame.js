@@ -93,8 +93,8 @@ export default function PostGame() {
             }
             else if (currentUser.defaultName === 'Guest') {
                 return (
-                    <Mui.Typography sx={{ fontSize: { xs: 12, sm: 16, md: 20, lg: 24 } }}>
-                        <i>You must <Mui.Link color='inherit' onClick={() => navigate('/login')} sx={{ cursor: 'pointer' }}><b>Login</b></Mui.Link> or <Mui.Link color='inherit' onClick={() => navigate('/signup')} sx={{ cursor: 'pointer' }}><b>Create an account</b></Mui.Link> in order to be placed on the leaderboard</i>
+                    <Mui.Typography sx={{ fontSize: { xs: 12, sm: 16, md: 20, lg: 24 }, fontStyle: 'italic' }}>
+                        You must <Mui.Link color='inherit' onClick={() => navigate('/login')} sx={{ cursor: 'pointer' }}><b>Login</b></Mui.Link> or <Mui.Link color='inherit' onClick={() => navigate('/signup')} sx={{ cursor: 'pointer' }}><b>Create an account</b></Mui.Link> in order to be placed on the leaderboard
                     </Mui.Typography>
                 )
             }

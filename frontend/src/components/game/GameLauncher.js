@@ -101,16 +101,16 @@ export default function GameLauncher() {
             transform: 'translate(-50%, -50%)',
             bgcolor: 'background.paper',
             color: 'text.primary',
-            border: '2px solid #000',
+            borderRadius: 1,
             boxShadow: 24,
-            p: 4
+            p: { xs: 1, sm: 2, md: 3 }
         }}>
             <Mui.Box sx={{
                 display: 'flex',
                 justifyContent: 'center',
                 flexDirection: 'column'
             }}>
-                <Mui.Grid container spacing={5} justifyContent='center'>
+                <Mui.Grid container spacing={{ xs: 1, sm: 2, md: 3 }} justifyContent='center'>
 
                     <Mui.Grid item xs={12}>
                         <Mui.Paper elevation={3} sx={{
@@ -183,10 +183,10 @@ export default function GameLauncher() {
                                     value={selectedDifficulty}
                                     onChange={(event) => setSelectedDifficulty(event.target.value)}
                                 >
-                                    <Mui.FormControlLabel value="random" control={<Mui.Radio />} label="Random" disabled={selectedGameMode !== 'custom'} />
-                                    <Mui.FormControlLabel value="easy" control={<Mui.Radio />} label="Easy" disabled={selectedGameMode !== 'custom'} />
-                                    <Mui.FormControlLabel value="medium" control={<Mui.Radio />} label="Medium" disabled={selectedGameMode !== 'custom'} />
-                                    <Mui.FormControlLabel value="hard" control={<Mui.Radio />} label="Hard" disabled={selectedGameMode !== 'custom'} />
+                                    <Mui.FormControlLabel sx={{ fontSize: { xs: 12, sm: 14, md: 16 } }} disableTypography value="random" control={<Mui.Radio />} label="Random" disabled={selectedGameMode !== 'custom'} />
+                                    <Mui.FormControlLabel sx={{ fontSize: { xs: 12, sm: 14, md: 16 } }} disableTypography value="easy" control={<Mui.Radio />} label="Easy" disabled={selectedGameMode !== 'custom'} />
+                                    <Mui.FormControlLabel sx={{ fontSize: { xs: 12, sm: 14, md: 16 } }} disableTypography value="medium" control={<Mui.Radio />} label="Medium" disabled={selectedGameMode !== 'custom'} />
+                                    <Mui.FormControlLabel sx={{ fontSize: { xs: 12, sm: 14, md: 16 } }} disableTypography value="hard" control={<Mui.Radio />} label="Hard" disabled={selectedGameMode !== 'custom'} />
                                 </Mui.RadioGroup>
                             </Mui.FormControl>
 
@@ -206,6 +206,11 @@ export default function GameLauncher() {
                                     marks={limitMarks}
                                     value={selectedQuestionLimit}
                                     step={10} min={10} max={50}
+                                    sx={{
+                                        '& .MuiSlider-markLabel': {
+                                            fontSize: { xs: 10, sm: 12, md: 14 },
+                                        }
+                                    }}
                                     onChange={(event) => setSelectedQuestionLimit(event.target.value)}
                                     disabled={selectedGameMode !== 'custom'}
                                 />
