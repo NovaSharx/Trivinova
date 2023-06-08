@@ -6,7 +6,7 @@ export default function GameTimer(props) {
 
     const { checkAnswer, setTimeTaken } = props // Destructured utility functions passed from game container
 
-    const duration = 30000 // Time limit for prompted questions
+    const duration = 30 // Time limit for prompted questions
 
     let [endTime] = useState(Date.now() + 1000 * duration) // Stores the date in which the timer should run out
     let [timeLeft, setTimeLeft] = useState(duration) // Stores the amount of time left on timer
