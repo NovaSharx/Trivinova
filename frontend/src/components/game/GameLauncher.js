@@ -43,7 +43,7 @@ export default function GameLauncher() {
     }
 
     const gameModeButtonStyling = {
-        height: 150,
+        minHeight: { xs: 100 },
         color: theme.palette.text.primary,
         background: `url(./questionmark-background-glow-${theme.palette.mode}mode-button.jpg)`,
         backgroundPosition: 'center center',
@@ -51,34 +51,31 @@ export default function GameLauncher() {
         backgroundRepeat: 'no-repeat',
         backgroundColor: 'rgba(0, 0, 0, 0)',
         backgroundBlendMode: 'multiply',
-        fontSize: '2.5em',
-        '&:hover': {
-            fontSize: '2.8em'
-        }
+        p: { xs: 3, sm: 4, md: 5 }
     }
 
     // Renders the gamemode selection screen
     const gameModeSelectionScreen = (
-        <Mui.Stack spacing={3} sx={{ width: '100%' }}>
+        <Mui.Stack spacing={{ xs: 1, sm: 2, md: 3 }} sx={{ width: '100%' }}>
 
             <Mui.Grow in timeout={2000}>
                 <Mui.Button sx={{ ...gameModeButtonStyling, flexDirection: 'column' }} color='secondary' variant='contained' onClick={() => handleModalChange('wildcard')}>
-                    <Mui.Typography variant='h3' fontWeight={500}>Wildcard Mode</Mui.Typography>
-                    <Mui.Typography>Category: <b>Random</b>, Difficulty: <b>Random</b>, Number of questions: <b>10</b></Mui.Typography>
+                    <Mui.Typography variant='h3' fontWeight={500} sx={{ fontSize: { xs: 20, sm: 25, md: 30, lg: 35 } }}>Wildcard Mode</Mui.Typography>
+                    <Mui.Typography sx={{ fontSize: { xs: 10, sm: 13, md: 15 } }}>Category: <b>Random</b>, Difficulty: <b>Random</b>, Number of questions: <b>10</b></Mui.Typography>
                 </Mui.Button>
             </Mui.Grow>
 
             <Mui.Grow in timeout={2500}>
                 <Mui.Button sx={{ ...gameModeButtonStyling, flexDirection: 'column' }} color='secondary' variant='contained' onClick={() => handleModalChange('specialized')}>
-                    <Mui.Typography variant='h3' fontWeight={500}>Specialized Mode</Mui.Typography>
-                    <Mui.Typography>Category: <b>Custom</b>, Difficulty: <b>Random</b>, Number of questions: <b>10</b></Mui.Typography>
+                    <Mui.Typography variant='h3' fontWeight={500} sx={{ fontSize: { xs: 20, sm: 25, md: 30, lg: 35 } }}>Specialized Mode</Mui.Typography>
+                    <Mui.Typography sx={{ fontSize: { xs: 10, sm: 13, md: 15 } }}>Category: <b>Custom</b>, Difficulty: <b>Random</b>, Number of questions: <b>10</b></Mui.Typography>
                 </Mui.Button>
             </Mui.Grow>
 
             <Mui.Grow in timeout={3000}>
                 <Mui.Button sx={{ ...gameModeButtonStyling, flexDirection: 'column' }} color='secondary' variant='contained' onClick={() => handleModalChange('custom')}>
-                    <Mui.Typography variant='h3' fontWeight={500}>Custom Settings Mode</Mui.Typography>
-                    <Mui.Typography>Category: <b>Custom</b>, Difficulty: <b>Custom</b>, Number of questions: <b>Custom</b></Mui.Typography>
+                    <Mui.Typography variant='h3' fontWeight={500} sx={{ fontSize: { xs: 20, sm: 25, md: 30, lg: 35 } }}>Custom Settings Mode</Mui.Typography>
+                    <Mui.Typography sx={{ fontSize: { xs: 10, sm: 13, md: 15 } }}>Category: <b>Custom</b>, Difficulty: <b>Custom</b>, Number of questions: <b>Custom</b></Mui.Typography>
                 </Mui.Button>
             </Mui.Grow>
 
@@ -96,10 +93,11 @@ export default function GameLauncher() {
 
     // Renders the corresponding game mode settings according to the pre-selected game mode
     const gameModeSettings = (
-        <Mui.Container maxWidth='md' sx={{
+        <Mui.Container sx={{
             position: 'absolute',
             top: '50%',
             left: '50%',
+            maxWidth: { xs: 9 / 10, sm: 'sm', md: 'md' },
             transform: 'translate(-50%, -50%)',
             bgcolor: 'background.paper',
             color: 'text.primary',
@@ -120,14 +118,15 @@ export default function GameLauncher() {
                             textAlign: 'center'
                         }}>
 
-                            <Mui.FormControl fullWidth variant='filled'>
-                                <Mui.FormLabel id='custom-category'>Category</Mui.FormLabel>
+                            <Mui.FormControl fullWidth variant='fill{ed'>
+                                <Mui.FormLabel id='custom-category' sx={{ fontSize: { xs: 10, sm: 12, md: 15 } }}>Category</Mui.FormLabel>
                                 <Mui.Select
                                     variant='outlined'
                                     aria-labelledby="cutom-category"
                                     value={selectedCategory}
                                     onChange={(event) => setselectedCategory(event.target.value)}
                                     disabled={selectedGameMode === 'wildcard'}
+                                    sx={{ fontSize: { xs: 13, sm: 14, md: 15 } }}
                                 >
                                     <Mui.MenuItem value='random' disabled={selectedGameMode !== 'custom'}>
                                         Random
@@ -175,7 +174,7 @@ export default function GameLauncher() {
                         }}>
 
                             <Mui.FormControl fullWidth variant='filled'>
-                                <Mui.FormLabel id='custom-difficulty'>Difficulty</Mui.FormLabel>
+                                <Mui.FormLabel id='custom-difficulty' sx={{ fontSize: { xs: 10, sm: 12, md: 15 } }}>Difficulty</Mui.FormLabel>
                                 <Mui.RadioGroup
                                     row
                                     sx={{ justifyContent: 'center' }}
@@ -201,7 +200,7 @@ export default function GameLauncher() {
                         }}>
 
                             <Mui.FormControl fullWidth variant='filled'>
-                                <Mui.FormLabel id='custom-limit'>Number of Questions</Mui.FormLabel>
+                                <Mui.FormLabel id='custom-limit' sx={{ fontSize: { xs: 10, sm: 12, md: 15 } }}>Number of Questions</Mui.FormLabel>
                                 <Mui.Slider
                                     aria-labelledby='custom-limit'
                                     marks={limitMarks}
@@ -216,7 +215,7 @@ export default function GameLauncher() {
                     </Mui.Grid>
 
                     <Mui.Grid item xs={6}>
-                        <Mui.Button variant='contained' fullWidth onClick={() => { openGameRoute(selectedGameMode, selectedCategory, selectedDifficulty, selectedQuestionLimit) }}>Launch Game</Mui.Button>
+                        <Mui.Button variant='contained' sx={{ fontSize: { xs: 10, sm: 15, md: 20 } }} fullWidth onClick={() => { openGameRoute(selectedGameMode, selectedCategory, selectedDifficulty, selectedQuestionLimit) }}>Launch Game</Mui.Button>
                     </Mui.Grid>
 
                 </Mui.Grid>
@@ -225,8 +224,8 @@ export default function GameLauncher() {
     )
 
     return (
-        <Mui.Container component='main' maxWidth='md'>
-            <Mui.Paper elevation={10} sx={{ p: 3, display: 'flex', justifyContent: 'center', background: 'rgba(0,0,0,0)', backdropFilter: 'blur(10px)' }}>
+        <Mui.Container component='main' sx={{ maxWidth: { xs: 'xs', sm: 'sm', md: 'md', lg: 'lg' } }}>
+            <Mui.Paper elevation={10} sx={{ p: { xs: 1, sm: 2, md: 3 }, display: 'flex', justifyContent: 'center', background: 'rgba(0,0,0,0)', backdropFilter: 'blur(10px)' }}>
                 <Mui.Modal
                     open={modalState}
                     onClose={() => setModalState(false)}
