@@ -38,24 +38,22 @@ export default function SearchPlayer() {
         else {
             return (
                 <Mui.Box sx={{
-                    p: 4
+                    p: { sm: 1, md: 2, lg: 3 }
                 }}>
-                    <Mui.Typography variant='h2' fontWeight={600}>{playerData.userName}</Mui.Typography>
+                    <Mui.Typography variant='h3' sx={{ fontWeight: 600, fontSize: 30 }}>{playerData.userName}</Mui.Typography>
 
-                    <AccountCircleIcon sx={{ fontSize: 200 }} />
+                    <AccountCircleIcon sx={{ fontSize: 100 }} />
 
                     <Mui.Typography>Date created: <b>{new Date(playerData.createdAt).toDateString()}</b></Mui.Typography>
 
                     <Mui.Box sx={{
-                        maxHeight: '300px',
                         width: '100%',
                         mt: 3,
-                        p: 2,
-                        overflowY: 'scroll'
+                        p: { sm: 1 },
                     }}>
-                        <Mui.Typography variant='h4'>Highscores</Mui.Typography>
+                        <Mui.Typography variant='h4' sx={{ fontSize: { xs: 25 } }}>Highscores</Mui.Typography>
 
-                        <Mui.Grid container spacing={3} mt>
+                        <Mui.Grid container spacing={3} my sx={{ maxHeight: 300, overflowY: 'scroll' }}>
 
                             {playerData.highscores.length ?
                                 playerData.highscores.toReversed().map((highscore, index) => {
@@ -68,8 +66,8 @@ export default function SearchPlayer() {
                                                 display: 'flex',
                                                 justifyContent: 'space-between'
                                             }}>
-                                                <Mui.Typography variant='h5'>Score: <b>{highscore.highscore}</b></Mui.Typography>
-                                                <Mui.Typography variant='subtitle1'>Date achieved: <b>{new Date(highscore.achievedAt).toLocaleString()}</b></Mui.Typography>
+                                                <Mui.Typography sx={{ fontSize: { sm: 18, md: 20 } }}>Score: <b>{highscore.highscore}</b></Mui.Typography>
+                                                <Mui.Typography sx={{ fontSize: { xs: 14, sm: 16, md: 18 } }}>Date achieved: <b>{new Date(highscore.achievedAt).toLocaleString()}</b></Mui.Typography>
                                             </Mui.Box>
                                         </Mui.Grid>
                                     )
@@ -88,12 +86,23 @@ export default function SearchPlayer() {
     }
 
     return (
-        <Mui.Container maxWidth='md'>
+        <Mui.Container maxWidth='md' disableGutters>
             <Mui.Paper sx={{
-                p: 2
+                m: { xs: 1, sm: 2 },
+                p: { xs: 1, md: 2 }
             }}>
 
-                <Mui.Typography variant='h3' mb={2}><PersonSearchIcon sx={{ fontSize: 30 }} /> Search Player</Mui.Typography>
+                <Mui.Typography variant='h2' mb={2} sx={{
+                    fontSize: { xs: 30 },
+                    fontWeight: 600,
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                }}>
+
+                    <PersonSearchIcon sx={{ fontSize: { xs: 30 }, pr: 1 }} /> Search Player
+
+                </Mui.Typography>
 
                 <Mui.TextField
                     label='Search player name'
