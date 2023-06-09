@@ -90,7 +90,7 @@ export default function ProfileActions() {
                 <Fragment>
 
                     <Mui.IconButton onClick={handleMenuOpen} size='small'>
-                        <Mui.Avatar sx={{ bgcolor: (theme) => theme.palette.secondary.main, fontSize: { xs: 25, sm: 32 } }}>{currentUser.userName.charAt(0)}</Mui.Avatar>
+                        <Mui.Avatar sx={{ bgcolor: (theme) => theme.palette.secondary.main, fontSize: { xs: 25, sm: 32 }, textTransform: 'capitalize' }}>{currentUser.userName.charAt(0)}</Mui.Avatar>
                     </Mui.IconButton>
 
                     <Mui.Menu
