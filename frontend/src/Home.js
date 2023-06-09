@@ -20,7 +20,7 @@ export default function Home() {
                     sx={{
                         display: 'flex',
                         alignItems: 'center',
-                        fontSize: { xs: 50, sm: 80, md: 100, lg: 120, xl: 150 }
+                        fontSize: { xs: 50, sm: 80, md: 100, lg: 120, xl: 150 },
                     }}>
                     {letter}
                 </Mui.Typography>

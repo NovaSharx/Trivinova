@@ -44,7 +44,7 @@ export default function GameLauncher() {
 
     const gameModeButtonStyling = {
         minHeight: { xs: 100 },
-        color: theme.palette.text.primary,
+        color: (theme) => theme.palette.text.primary,
         background: `url(./questionmark-background-glow-${theme.palette.mode}mode-button.jpg)`,
         backgroundPosition: 'center center',
         backgroundSize: '100%',

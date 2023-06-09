@@ -1,6 +1,7 @@
 import * as Mui from '@mui/material';
 
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+
 import { useContext } from 'react';
 import { CurrentUser } from '../../contexts/CurrentUser';
 
@@ -21,11 +22,16 @@ export default function AccountDetails() {
     }
     else {
         return (
-            <Mui.Container maxWidth='md'>
+            <Mui.Container maxWidth='md' disableGutters>
                 <Mui.Paper sx={{
+                    m: 2,
                     p: 2
                 }}>
                     <Mui.Grid container direction='column' spacing={2}>
+
+                        <Mui.Grid item xs={12}>
+                            <Mui.Typography variant='h2' fontWeight={600} sx={{ fontSize: 30 }}>Account Details</Mui.Typography>
+                        </Mui.Grid>
 
                         <Mui.Grid item xs={12}>
                             <Mui.IconButton>

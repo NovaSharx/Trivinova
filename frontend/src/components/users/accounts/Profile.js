@@ -5,11 +5,8 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 import { Fragment, useContext, useState } from 'react';
 import { CurrentUser } from '../../contexts/CurrentUser';
-import { useTheme } from '@emotion/react';
 
 export default function Profile() {
-
-    const theme = useTheme()
 
     const { currentUser } = useContext(CurrentUser)
 
@@ -90,7 +87,7 @@ export default function Profile() {
                             })
                             :
                             <Mui.Grid item xs={12}>
-                                <Mui.Typography color={theme.palette.text.secondary}><i>...No highscore data yet...</i></Mui.Typography>
+                                <Mui.Typography color={(theme) => theme.palette.text.secondary}><i>...No highscore data yet...</i></Mui.Typography>
                             </Mui.Grid>
                         }
 

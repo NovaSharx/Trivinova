@@ -5,12 +5,9 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 
 import { useState } from 'react';
-import { useTheme } from '@emotion/react';
 import axios from 'axios';
 
 export default function SearchPlayer() {
-
-    const theme = useTheme()
 
     const [playerSearchValue, setPlayerSearchValue] = useState('')
     const [searchingState, setSearchingState] = useState(null)
@@ -35,7 +32,7 @@ export default function SearchPlayer() {
     const renderSearchResults = () => {
         if (playerData.message) {
             return (
-                <Mui.Typography color={theme.palette.error.main}><i>{playerData.message}</i></Mui.Typography>
+                <Mui.Typography color={(theme) => theme.palette.error.main}><i>{playerData.message}</i></Mui.Typography>
             )
         }
         else {
@@ -79,7 +76,7 @@ export default function SearchPlayer() {
                                 })
                                 :
                                 <Mui.Grid item xs={12}>
-                                    <Mui.Typography color={theme.palette.text.secondary}><i>...No highscore data yet...</i></Mui.Typography>
+                                    <Mui.Typography color={(theme) => theme.palette.text.secondary}><i>...No highscore data yet...</i></Mui.Typography>
                                 </Mui.Grid>
                             }
 
@@ -117,7 +114,7 @@ export default function SearchPlayer() {
                 {playerData ?
                     renderSearchResults()
                     :
-                    <Mui.Typography color={theme.palette.text.secondary}><i>Player data will show up here</i></Mui.Typography>
+                    <Mui.Typography color={(theme) => theme.palette.text.secondary}><i>Player data will show up here</i></Mui.Typography>
                 }
             </Mui.Paper>
         </Mui.Container>
