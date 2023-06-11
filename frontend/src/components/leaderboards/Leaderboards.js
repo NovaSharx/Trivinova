@@ -66,6 +66,9 @@ export default function Leaderboards() {
                     }}
                     pageSizeOptions={[10, 25, 50, 100]}
                     disableRowSelectionOnClick
+                    sx={{
+                        // fontSize: 5
+                    }}
                 />
             )
         }
@@ -80,11 +83,23 @@ export default function Leaderboards() {
     }
 
     return (
-        <Mui.Container maxWidth='lg'>
+        <Mui.Container maxWidth='lg' disableGutters>
             <Mui.Paper sx={{
-                p: 4
+                m: { xs: 1, sm: 2 },
+                p: { xs: 1, md: 2 }
             }}>
-                <Mui.Typography variant='h3' mb={2}><LeaderboardIcon sx={{ fontSize: 30 }} /> Leaderboards</Mui.Typography>
+                <Mui.Typography variant='h2' mb={2}
+                    sx={{
+                        fontSize: { xs: 30 },
+                        fontWeight: 600,
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center'
+                    }}>
+
+                    <LeaderboardIcon sx={{ fontSize: { xs: 30 }, pr: 1 }} /> Leaderboards
+
+                </Mui.Typography>
 
                 {renderLeaderboardTable()}
 
