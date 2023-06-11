@@ -46,8 +46,15 @@ export default function ProfileActions() {
 
                 <Fragment>
 
-                    <Mui.IconButton onClick={handleMenuOpen} size='small'>
-                        <PersonOutlineIcon sx={{ color: 'white', fontSize: { xs: 25, sm: 32 } }} />
+                    <Mui.IconButton onClick={handleMenuOpen}
+                        sx={{
+                            '& div': {
+                                xs: { width: 30, height: 30 },
+                                sm: { width: 35, height: 35 },
+                                md: { width: 40, height: 40 }
+                            }
+                        }}>
+                        <PersonOutlineIcon sx={{ color: 'white', fontSize: { xs: 20, sm: 25 } }} />
                     </Mui.IconButton>
 
                     <Mui.Menu
@@ -89,8 +96,15 @@ export default function ProfileActions() {
             return (
                 <Fragment>
 
-                    <Mui.IconButton onClick={handleMenuOpen} size='small'>
-                        <Mui.Avatar sx={{ bgcolor: (theme) => theme.palette.secondary.main, fontSize: { xs: 25, sm: 32 }, textTransform: 'capitalize' }}>{currentUser.userName.charAt(0)}</Mui.Avatar>
+                    <Mui.IconButton onClick={handleMenuOpen}
+                        sx={{
+                            '& div': {
+                                xs: { width: 30, height: 30 },
+                                sm: { width: 35, height: 35 },
+                                md: { width: 40, height: 40 }
+                            }
+                        }}>
+                        <Mui.Avatar sx={{ bgcolor: (theme) => theme.palette.secondary.main, fontSize: { xs: 20, sm: 25 }, textTransform: 'capitalize' }}>{currentUser.userName.charAt(0)}</Mui.Avatar>
                     </Mui.IconButton>
 
                     <Mui.Menu
