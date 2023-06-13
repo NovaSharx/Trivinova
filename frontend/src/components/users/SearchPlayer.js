@@ -49,7 +49,7 @@ export default function SearchPlayer() {
                     <Mui.Box sx={{
                         width: '100%',
                         mt: 3,
-                        p: { sm: 1 },
+                        p: { sm: 1 }
                     }}>
                         <Mui.Typography variant='h4' sx={{ fontSize: { xs: 25 } }}>Highscores</Mui.Typography>
 

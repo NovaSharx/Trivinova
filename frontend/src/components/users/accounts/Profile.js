@@ -25,14 +25,14 @@ export default function Profile() {
                     borderRadius: 5,
                     display: 'flex',
                     flexDirection: 'column',
-                    justifyContent: 'space-around',
+                    justifyContent: 'center',
                     alignItems: 'center'
                 }}>
-                    <Mui.Typography variant='h2'>
+                    <Mui.Typography>
                         ...Loading Profile...
                     </Mui.Typography>
 
-                    <Mui.CircularProgress size={200} />
+                    <Mui.CircularProgress size={100} />
                 </Mui.Paper>
             </Mui.Container>
         )
@@ -42,18 +42,18 @@ export default function Profile() {
         const renderGeneralTab = (
             <Fragment>
 
-                <Mui.Typography variant='h2' fontWeight={600}>{currentUser.userName}</Mui.Typography>
+                <Mui.Typography sx={{ fontSize: { sm: 20, md: 24, lg: 28 }, fontWeight: 600 }}>{currentUser.userName}</Mui.Typography>
 
-                <AccountCircleIcon sx={{ fontSize: 200 }} />
+                <AccountCircleIcon sx={{ fontSize: { xs: 100, sm: 125, md: 150, lg: 175 } }} />
 
-                <Mui.Typography>Date created: <b>{new Date(currentUser.createdAt).toDateString()}</b></Mui.Typography>
+                <Mui.Typography sx={{ fontSize: { sm: 20, md: 24, lg: 28 } }}>Date created: <b>{new Date(currentUser.createdAt).toDateString()}</b></Mui.Typography>
 
             </Fragment>
         )
 
         const renderFriendsTab = (
             <Fragment>
-                <Mui.Typography variant='h4' fontWeight={300}>...Friends List Coming Soon...</Mui.Typography>
+                <Mui.Typography sx={{ fontSize: { sm: 20, md: 24, lg: 28 }, fontWeight: 300 }}>...Friends List Coming Soon...</Mui.Typography>
             </Fragment>
         )
 
@@ -61,12 +61,11 @@ export default function Profile() {
             <Fragment>
 
                 <Mui.Box sx={{
-                    maxHeight: '500px',
                     width: '100%',
-                    p: 2,
-                    overflowY: 'scroll'
+                    mt: 3,
+                    p: { sm: 1 }
                 }}>
-                    <Mui.Grid container spacing={3} mt>
+                    <Mui.Grid container spacing={3} mt sx={{ maxHeight: 300, overflowY: 'scroll' }}>
 
                         {currentUser.highscores.length ?
                             currentUser.highscores.toReversed().map((highscore, index) => {
@@ -79,8 +78,8 @@ export default function Profile() {
                                             display: 'flex',
                                             justifyContent: 'space-between'
                                         }}>
-                                            <Mui.Typography variant='h5'>Score: <b>{highscore.highscore}</b></Mui.Typography>
-                                            <Mui.Typography variant='subtitle1'>Date achieved: <b>{new Date(highscore.achievedAt).toLocaleString()}</b></Mui.Typography>
+                                            <Mui.Typography sx={{ fontSize: { sm: 18, md: 20 } }}>Score: <b>{highscore.highscore}</b></Mui.Typography>
+                                            <Mui.Typography sx={{ fontSize: { xs: 14, sm: 16, md: 18 } }}>Date achieved: <b>{new Date(highscore.achievedAt).toLocaleString()}</b></Mui.Typography>
                                         </Mui.Box>
                                     </Mui.Grid>
                                 )
@@ -98,10 +97,11 @@ export default function Profile() {
         )
 
         return (
-            <Mui.Container maxWidth='lg'>
+            <Mui.Container maxWidth='lg' disableGutters>
                 <Mui.Paper sx={{
                     height: 600,
-                    p: 1,
+                    m: { xs: 1, sm: 2 },
+                    p: { xs: 1, md: 2 },
                     borderRadius: 3,
                     display: 'flex'
                 }}>
@@ -109,16 +109,15 @@ export default function Profile() {
                     <MuiLab.TabContext value={currentTab}>
 
                         <Mui.Box sx={{ borderRight: 2, borderColor: 'divider' }}>
-                            <MuiLab.TabList onChange={handleTabChange} orientation='vertical' centered >
-                                <Mui.Tab label='General' value='general' />
-                                <Mui.Tab label='Friends' value='friends' />
-                                <Mui.Tab label='Highscores' value='highscores' />
+                            <MuiLab.TabList onChange={handleTabChange} orientation='vertical' centered>
+                                <Mui.Tab label='General' value='general' sx={{ fontSize: { xs: 10, sm: 12, md: 14, lg: 16 }, minWidth: 0, p: { xs: 1, sm: 2, md: 3 } }} />
+                                <Mui.Tab label='Friends' value='friends' sx={{ fontSize: { xs: 10, sm: 12, md: 14, lg: 16 }, minWidth: 0, p: { xs: 1, sm: 2, md: 3 } }} />
+                                <Mui.Tab label='Highscores' value='highscores' sx={{ fontSize: { xs: 10, sm: 12, md: 14, lg: 16 }, minWidth: 0, p: { xs: 1, sm: 2, md: 3 } }} />
                             </MuiLab.TabList>
                         </Mui.Box>
 
                         <Mui.Box sx={{
-                            flexGrow: 1,
-                            m: 2
+                            flexGrow: 1
                         }}>
                             <MuiLab.TabPanel value='general'>{renderGeneralTab}</MuiLab.TabPanel>
                             <MuiLab.TabPanel value='friends'>{renderFriendsTab}</MuiLab.TabPanel>
