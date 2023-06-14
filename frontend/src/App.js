@@ -23,6 +23,7 @@ import PostGame from './components/game/PostGame';
 import CurrentUserProvider from './components/contexts/CurrentUser';
 import Profile from './components/users/accounts/Profile';
 import AccountDetails from './components/users/accounts/AccountDetails';
+import Footer from './components/footer/Footer';
 
 function App() {
 
@@ -92,6 +93,7 @@ function App() {
                   <Route path='/' element={<Error404 />} />
                 </Routes>
               </Mui.Box>
+              <Footer />
               <AccessibilityTool toggleThemeMode={toggleThemeMode} />
             </Mui.Paper>
           </ThemeProvider>
