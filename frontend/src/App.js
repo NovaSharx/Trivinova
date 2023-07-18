@@ -5,7 +5,7 @@ import * as Mui from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { getThemeMode, rewriteThemeMode } from './Theme';
 
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 
 import Home from './Home';
@@ -48,6 +48,8 @@ function App() {
     },
   })
 
+  console.log(theme)
+
   // Toggle between light and dark mode when called
   const toggleThemeMode = () => {
     if (themeMode === 'light') {
@@ -59,7 +61,7 @@ function App() {
 
   return (
     <div className='App'>
-      <HashRouter>
+      <BrowserRouter>
         <CurrentUserProvider>
           <ThemeProvider theme={theme}>
             <Mui.Paper square sx={{
@@ -98,7 +100,7 @@ function App() {
             </Mui.Paper>
           </ThemeProvider>
         </CurrentUserProvider>
-      </HashRouter>
+      </BrowserRouter>
     </div>
   );
 }
