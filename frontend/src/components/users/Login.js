@@ -159,6 +159,15 @@ export default function Login() {
                             </Mui.Typography>
                         </Mui.Grid>
 
+                        <Mui.Grid item xs={12}>
+                            <Mui.Typography>
+                                Demo Username: FakeUser
+                            </Mui.Typography>
+                            <Mui.Typography>
+                                Demo Password: Passw0rd!
+                            </Mui.Typography>
+                        </Mui.Grid>
+
                     </Mui.Grid>
 
                 </Mui.Paper>
