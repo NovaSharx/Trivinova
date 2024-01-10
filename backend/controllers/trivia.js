@@ -12,7 +12,9 @@ router.post('/', async (req, res) => {
         const apiResponse = await axios.get(API_URL)
         res.json(apiResponse.data)
     } catch (error) {
-        console.log(error) // *** PlaceHolder ***
+        res.status(503).json({
+            message: `Uh oh...trivia data unavailable.`
+        })
     }
 })
 
