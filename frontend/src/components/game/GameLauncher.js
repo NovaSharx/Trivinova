@@ -29,7 +29,7 @@ export default function GameLauncher() {
     let [selectedQuestionLimit, setSelectedQuestionLimit] = useState(10) // Stores the selected number of trivia question to ask
 
     // Opens modal if closed with proper initial trivia game mode setting values or closes modal if opened and resets game mode setting values to default values
-    const handleModalChange = (gameMode) => {
+    const handleModalChange = (gameMode) => { 
         if (modalState) {
             setSelectedGameMode(null)
             setModalState(false)

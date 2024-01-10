@@ -48,8 +48,6 @@ function App() {
     },
   })
 
-  console.log(theme)
-
   // Toggle between light and dark mode when called
   const toggleThemeMode = () => {
     if (themeMode === 'light') {
@@ -92,7 +90,7 @@ function App() {
                   <Route exact path='/gamelauncher' element={<GameLauncher />} />
                   <Route exact path='/game' element={<Game />} />
                   <Route exact path='/postgame' element={<PostGame />} />
-                  <Route path='/' element={<Error404 />} />
+                  <Route path='*' element={<Error404 />} />
                 </Routes>
               </Mui.Box>
               <Footer />

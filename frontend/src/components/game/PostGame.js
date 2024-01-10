@@ -46,7 +46,7 @@ export default function PostGame() {
                     setAchievedHighscore(response.data)
                 })
                 .catch(error => {
-                    console.log(error) // ***PlaceHolder***
+                    console.log(error) // ***Placeholder***
                 })
         }
     }

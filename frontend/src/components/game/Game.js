@@ -23,7 +23,7 @@ export default function Game() {
                 setTriviaAPIData(response.data)
             })
             .catch(error => {
-                console.log(error) // *** PLACEHOLDER ***
+                console.log(error.response.data.message) // *** PLACEHOLDER ***
             })
 
     }, [triviaSettings])
