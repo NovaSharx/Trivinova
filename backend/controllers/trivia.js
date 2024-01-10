@@ -13,7 +13,7 @@ router.post('/', async (req, res) => {
         res.json(apiResponse.data)
     } catch (error) {
         res.status(503).json({
-            message: `Uh oh...trivia data unavailable.`
+            message: `Uh oh... trivia data unavailable.`
         })
     }
 })
