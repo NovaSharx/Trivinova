@@ -28,8 +28,8 @@ function StatusBarProvider({ children }) {
     const handleExited = () => setMessageInfo(undefined)
 
     // Handles the addition of incoming status messages and adds it to the status queue
-    function deployStatusMessage(message) {
-        setStatusStack((prev) => [...prev, { message, key: new Date().getTime() }])
+    function deployStatusMessage(message, messageType = 'success') {
+        setStatusStack((prev) => [...prev, { message, messageType, key: new Date().getTime() }])
     }
 
     return (
@@ -43,16 +43,23 @@ function StatusBarProvider({ children }) {
                 autoHideDuration={5000}
                 onClose={handleClose}
                 TransitionProps={{ onExited: handleExited }}
-                message={messageInfo ? messageInfo.message : undefined}
-            action={
-                <Fragment>
-                    <Mui.Button onClick={handleClose}>
-                        CLOSE
-                    </Mui.Button>
-                </Fragment>
-            }
+                action={
+                    <Fragment>
+                        <Mui.Button onClick={handleClose}>
+                            CLOSE
+                        </Mui.Button>
+                    </Fragment>
+                }
             >
+                <Mui.Alert
+                    variant='filled'
+                    severity={messageInfo ? messageInfo.messageType : undefined}
+                    onClose={handleClose}
+                >
+                    {messageInfo ? messageInfo.message : undefined}
+                </Mui.Alert>
             </Mui.Snackbar>
+
         </StatusBar.Provider>
     )
 }

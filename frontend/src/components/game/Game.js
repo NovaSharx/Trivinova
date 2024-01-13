@@ -14,8 +14,9 @@ export default function Game() {
     const location = useLocation()
     const triviaSettings = location.state // Trivia settings established in the game launcher screen are initialized
     const theme = useTheme()
+    
     const { deployStatusMessage } = useContext(StatusBar)
-
+    
     let [triviaAPIData, setTriviaAPIData] = useState(null) // Stores all trivia data processed at '/trivia' endpoint in backend
 
     // Requests a fresh set of trivia questions onload according to passed trivia settings
@@ -26,9 +27,12 @@ export default function Game() {
                 setTriviaAPIData(response.data)
             })
             .catch(error => {
-                deployStatusMessage(error.message)
+                if (error.response) {
+                    deployStatusMessage(error.response.data.message, 'error')
+                } else {
+                    deployStatusMessage(error.message, 'error')
+                }
             })
-
     }, [triviaSettings])
 
     // Render while trivia data is being fetched
