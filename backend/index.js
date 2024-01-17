@@ -7,7 +7,11 @@ const app = express()
 require('dotenv').config()
 
 // Express Settings
-app.use(cors())
+const corsOptions = {
+    origin: 'http://trivinova.com',
+    optionsSuccessStatus: 200
+}
+app.use(cors(corsOptions))
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(bodyParser.json())
