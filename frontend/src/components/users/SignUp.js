@@ -9,6 +9,7 @@ import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { CurrentUser } from '../contexts/CurrentUser';
+import { StatusBar } from '../contexts/StatusBar';
 import LoadingButton from '@mui/lab/LoadingButton/LoadingButton';
 
 export default function SignUp() {
@@ -16,6 +17,7 @@ export default function SignUp() {
     const navigate = useNavigate()
 
     const { setCurrentUser } = useContext(CurrentUser)
+    const { deployStatusMessage } = useContext(StatusBar)
 
     const [userDetails, setUserDetails] = useState({
         firstName: '',
@@ -68,7 +70,7 @@ export default function SignUp() {
                 if (error.response) {
                     setErrorMessage(error.response.data.message)
                 } else {
-                    setErrorMessage(error.message)
+                    deployStatusMessage(error.message, 'error')
                 }
             })
             .finally(() => {
