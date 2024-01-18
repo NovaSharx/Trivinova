@@ -6,11 +6,7 @@ require('dotenv').config()
 
 const { User } = db
 
-router.get('/', async (req, res) => {
-    const users = await User.findAll({ include: 'highscores' })
-    res.json(users)
-})
-
+// Create account route
 router.post('/', async (req, res) => {
     const { firstName, lastName, password, ...otherUserData } = req.body
     const { userId } = await User.create({
@@ -32,6 +28,7 @@ router.post('/', async (req, res) => {
     res.json({ token, user })
 })
 
+// Search user route
 router.post('/search-user', async (req, res) => {
     try {
         const { userId, userName, createdAt, highscores } = await User.findOne({
@@ -46,11 +43,6 @@ router.post('/search-user', async (req, res) => {
     catch {
         res.json({ message: `Sorry, could not find user '${req.body.userName}'. Remember to check spelling and casing.` })
     }
-})
-
-// Work In Progress...
-router.post('/add-friend', async (req, res) => {
-    res.json("Added Friend")
 })
 
 module.exports = router

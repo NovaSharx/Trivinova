@@ -6,10 +6,7 @@ require('dotenv').config()
 
 const { User } = db
 
-router.get('/', async (req, res) => {
-    res.send('Authentication GET route.')
-})
-
+// Authenticates a user signing in
 router.post('/', async (req, res) => {
     const user = await User.findOne({
         where: { userName: req.body.userName },
@@ -26,6 +23,7 @@ router.post('/', async (req, res) => {
     }
 })
 
+// Returns signed in user data
 router.get('/profile', async (req, res) => {
     // defineCurrentUser middleware verifies the jwt token and attaches the currentUser data to the request
     res.json(req.currentUser)

@@ -4,6 +4,7 @@ const db = require('../models')
 
 const { Highscore } = db
 
+// Returns all highscores data
 router.get('/', async (req, res) => {
     try {
         const highscores = await Highscore.findAll({
@@ -19,8 +20,8 @@ router.get('/', async (req, res) => {
     }
 })
 
+// Calculates if a highscore has been achieved
 router.post('/evaluate', async (req, res) => {
-
     try {
         const { count, rows } = await Highscore.findAndCountAll({
             where: {
@@ -45,6 +46,7 @@ router.post('/evaluate', async (req, res) => {
     }
 })
 
+// Records highscores into the database
 router.post('/', async (req, res) => {
     try {
         const { count, rows } = await Highscore.findAndCountAll({
