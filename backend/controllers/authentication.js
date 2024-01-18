@@ -8,18 +8,22 @@ const { User } = db
 
 // Authenticates a user signing in
 router.post('/', async (req, res) => {
-    const user = await User.findOne({
-        where: { userName: req.body.userName },
-        include: 'highscores'
-    })
-
-    if (!user || !await bcrypt.compare(req.body.password, user.dataValues.passwordDigest)) {
-        res.status(404).json({
-            message: `Invalid username or password`
+    try {
+        const user = await User.findOne({
+            where: { userName: req.body.userName },
+            include: 'highscores'
         })
-    } else {
-        const token = await jwt.sign({ id: user.dataValues.userId }, process.env.JWT_SECRET)
-        res.json({ user, token })
+
+        if (!user || !await bcrypt.compare(req.body.password, user.dataValues.passwordDigest)) {
+            res.status(404).json({
+                message: `Invalid username or password`
+            })
+        } else {
+            const token = await jwt.sign({ id: user.dataValues.userId }, process.env.JWT_SECRET)
+            res.json({ user, token })
+        }
+    } catch {
+        res.status(400).json({ message: 'Something went wrong while trying to log in' })
     }
 })
 
