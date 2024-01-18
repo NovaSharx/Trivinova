@@ -40,6 +40,7 @@ export default function Login() {
                 localStorage.setItem('token', response.data.token)
                 setCurrentUser(response.data.user)
                 navigate("/")
+                deployStatusMessage('Welcome ' + userCredentials.userName)
             })
             .catch(error => {
                 if (error.response) {

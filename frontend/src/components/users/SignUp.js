@@ -65,6 +65,7 @@ export default function SignUp() {
                 localStorage.setItem('token', response.data.token)
                 setCurrentUser(response.data.user)
                 navigate("/")
+                deployStatusMessage('Welcome ' + userDetails.userName)
             })
             .catch(error => {
                 if (error.response) {

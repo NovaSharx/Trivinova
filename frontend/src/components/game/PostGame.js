@@ -131,6 +131,7 @@ export default function PostGame() {
             .then(() => {
                 window.history.replaceState(null, '')
                 navigate('/gamelauncher')
+                deployStatusMessage('Highscore was posted successfully!')
             })
             .catch(error => {
                 if (error.response) {
