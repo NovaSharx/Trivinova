@@ -6,9 +6,13 @@ import { DataGrid } from '@mui/x-data-grid';
 
 import axios from 'axios';
 
-import { Fragment, useState } from 'react';
+import { Fragment, useState, useContext } from 'react';
+
+import { StatusBar } from '../contexts/StatusBar';
 
 export default function Leaderboards() {
+
+    const { deployStatusMessage } = useContext(StatusBar)
 
     const [highscoresData, setHighscoresData] = useState(null)
 
@@ -21,7 +25,11 @@ export default function Leaderboards() {
                 setHighscoresData(highscores)
             })
             .catch(error => {
-                console.log(error) // ***Place Holder***
+                if (error.response) {
+                    deployStatusMessage(error.response.data.message, 'error')
+                } else {
+                    deployStatusMessage(error.message, 'error')
+                }
             })
     }
 

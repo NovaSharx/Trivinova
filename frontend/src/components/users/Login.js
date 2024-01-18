@@ -8,6 +8,8 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import { useContext, useState } from 'react';
 
 import { CurrentUser } from "../contexts/CurrentUser";
+import { StatusBar } from '../contexts/StatusBar';
+
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -16,6 +18,7 @@ export default function Login() {
     const navigate = useNavigate()
 
     const { setCurrentUser } = useContext(CurrentUser)
+    const { deployStatusMessage } = useContext(StatusBar)
 
     // Stores the entered user credentials
     const [userCredentials, setUserCredentials] = useState({
@@ -42,7 +45,7 @@ export default function Login() {
                 if (error.response) {
                     setErrorMessage(error.response.data.message)
                 } else {
-                    setErrorMessage(error.message)
+                    deployStatusMessage(error.message, 'error')
                 }
             })
             .finally(() => {
@@ -76,7 +79,7 @@ export default function Login() {
             }}>
 
                 <Mui.Paper component='form' onSubmit={handleSubmit} sx={{
-                    p: {xs: 2, sm: 3},
+                    p: { xs: 2, sm: 3 },
                     borderRadius: 2,
                 }}>
                     <Mui.Grid container spacing={2} justifyContent='center'>

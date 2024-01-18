@@ -5,6 +5,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import { CurrentUser } from '../contexts/CurrentUser';
+import { StatusBar } from '../contexts/StatusBar';
 import axios from 'axios';
 
 export default function PostGame() {
@@ -12,6 +13,7 @@ export default function PostGame() {
     const navigate = useNavigate()
 
     const { currentUser } = useContext(CurrentUser)
+    const { deployStatusMessage } = useContext(StatusBar)
 
     const location = useLocation()
     const { postGameData, triviaSettings } = location.state // Destructures post game data and trivia settings passed at game container
@@ -35,6 +37,7 @@ export default function PostGame() {
         return averagePlayerScore
     }
 
+    // Evaluates whether or not an account user has achieved a highscore
     if (currentUser && !achievedHighscore) {
         if (currentUser.userId) {
             axios.post(`${process.env.REACT_APP_SERVER_URL}highscores/evaluate`, {
@@ -46,7 +49,11 @@ export default function PostGame() {
                     setAchievedHighscore(response.data)
                 })
                 .catch(error => {
-                    console.log(error) // ***Placeholder***
+                    if (error.response) {
+                        deployStatusMessage(error.response.data.message, 'error')
+                    } else {
+                        deployStatusMessage(error.message, 'error')
+                    }
                 })
         }
     }
@@ -82,6 +89,7 @@ export default function PostGame() {
         )
     })
 
+    // Renders post game options depending on a user has an account or not
     const renderhighscoreOptions = () => {
         if (currentUser) {
             if (achievedHighscore) {
@@ -104,10 +112,12 @@ export default function PostGame() {
         }
     }
 
+    // Closes the highscore alert dialog window
     const closeHighscoreDialog = () => {
         setOpenHighscoreDialog(false)
     }
 
+    // Handles the submission of highscore data
     const submitHighscore = () => {
         axios.post(`${process.env.REACT_APP_SERVER_URL}highscores`, {
             userId: currentUser.userId,
@@ -123,7 +133,11 @@ export default function PostGame() {
                 navigate('/gamelauncher')
             })
             .catch(error => {
-                console.log(error) // ***PlaceHolder***
+                if (error.response) {
+                    deployStatusMessage(error.response.data.message, 'error')
+                } else {
+                    deployStatusMessage(error.message, 'error')
+                }
             })
     }
 

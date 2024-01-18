@@ -1,18 +1,22 @@
 import * as Mui from '@mui/material'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { useLocation } from 'react-router-dom'
 
 import axios from 'axios'
 import GameContainer from './game_container/GameContainer'
 import { useTheme } from '@emotion/react'
 
+import { StatusBar } from '../contexts/StatusBar'
+
 export default function Game() {
 
     const location = useLocation()
     const triviaSettings = location.state // Trivia settings established in the game launcher screen are initialized
     const theme = useTheme()
-
+    
+    const { deployStatusMessage } = useContext(StatusBar)
+    
     let [triviaAPIData, setTriviaAPIData] = useState(null) // Stores all trivia data processed at '/trivia' endpoint in backend
 
     // Requests a fresh set of trivia questions onload according to passed trivia settings
@@ -23,9 +27,12 @@ export default function Game() {
                 setTriviaAPIData(response.data)
             })
             .catch(error => {
-                console.log(error.response.data.message) // *** PLACEHOLDER ***
+                if (error.response) {
+                    deployStatusMessage(error.response.data.message, 'error')
+                } else {
+                    deployStatusMessage(error.message, 'error')
+                }
             })
-
     }, [triviaSettings])
 
     // Render while trivia data is being fetched

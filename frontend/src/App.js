@@ -21,6 +21,7 @@ import Game from './components/game/Game';
 import Error404 from './Error404';
 import PostGame from './components/game/PostGame';
 import CurrentUserProvider from './components/contexts/CurrentUser';
+import StatusMessageProvider from './components/contexts/StatusBar';
 import Profile from './components/users/accounts/Profile';
 import AccountDetails from './components/users/accounts/AccountDetails';
 import Footer from './components/footer/Footer';
@@ -62,40 +63,42 @@ function App() {
       <BrowserRouter>
         <CurrentUserProvider>
           <ThemeProvider theme={theme}>
-            <Mui.Paper square sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              minHeight: '100vh',
-              backgroundImage: themeMode === 'light' ? 'url(white-questionmark-background-glow-lightmode.jpg)' : 'url(white-questionmark-background-glow-darkmode.jpg)', // Change game background wallpaper according to the current theme mode
-              backgroundRepeat: 'no-repeat',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center'
-            }}>
-              <Navigation />
-              <Mui.Box sx={{
-                flexGrow: 1,
+            <StatusMessageProvider>
+              <Mui.Paper square sx={{
                 display: 'flex',
                 flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center'
+                minHeight: '100vh',
+                backgroundImage: themeMode === 'light' ? 'url(white-questionmark-background-glow-lightmode.jpg)' : 'url(white-questionmark-background-glow-darkmode.jpg)', // Change game background wallpaper according to the current theme mode
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center'
               }}>
-                <Routes>
-                  <Route exact path='/' element={<Home />} />
-                  <Route exact path='/login' element={<Login />} />
-                  <Route exact path='/signup' element={<SignUp />} />
-                  <Route exact path='/profile' element={<Profile />} />
-                  <Route exact path='/accountdetails' element={<AccountDetails />} />
-                  <Route exact path='/searchplayer' element={<SearchPlayer />} />
-                  <Route exact path='/leaderboards' element={<Leaderboards />} />
-                  <Route exact path='/gamelauncher' element={<GameLauncher />} />
-                  <Route exact path='/game' element={<Game />} />
-                  <Route exact path='/postgame' element={<PostGame />} />
-                  <Route path='*' element={<Error404 />} />
-                </Routes>
-              </Mui.Box>
-              <Footer />
-              <AccessibilityTool toggleThemeMode={toggleThemeMode} />
-            </Mui.Paper>
+                <Navigation />
+                <Mui.Box sx={{
+                  flexGrow: 1,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  alignItems: 'center'
+                }}>
+                  <Routes>
+                    <Route exact path='/' element={<Home />} />
+                    <Route exact path='/login' element={<Login />} />
+                    <Route exact path='/signup' element={<SignUp />} />
+                    <Route exact path='/profile' element={<Profile />} />
+                    <Route exact path='/accountdetails' element={<AccountDetails />} />
+                    <Route exact path='/searchplayer' element={<SearchPlayer />} />
+                    <Route exact path='/leaderboards' element={<Leaderboards />} />
+                    <Route exact path='/gamelauncher' element={<GameLauncher />} />
+                    <Route exact path='/game' element={<Game />} />
+                    <Route exact path='/postgame' element={<PostGame />} />
+                    <Route path='*' element={<Error404 />} />
+                  </Routes>
+                </Mui.Box>
+                <Footer />
+                <AccessibilityTool toggleThemeMode={toggleThemeMode} />
+              </Mui.Paper>
+            </StatusMessageProvider>
           </ThemeProvider>
         </CurrentUserProvider>
       </BrowserRouter>

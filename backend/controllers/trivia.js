@@ -1,8 +1,8 @@
 const router = require('express').Router()
 const axios = require('axios')
 
+// Returns trivia data according to user parameters
 router.post('/', async (req, res) => {
-
     let limit = `limit=${req.body.limit}`
     let category = req.body.category === 'random' ? '' : `&categories=${req.body.category}`
     let difficulty = req.body.difficulty === 'random' ? '' : `&difficulty=${req.body.difficulty}`
@@ -13,7 +13,7 @@ router.post('/', async (req, res) => {
         res.json(apiResponse.data)
     } catch (error) {
         res.status(503).json({
-            message: `Uh oh...trivia data unavailable.`
+            message: `Uh oh... trivia data unavailable`
         })
     }
 })
